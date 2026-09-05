@@ -1,7 +1,7 @@
 // Geometry is authored by the model or pen user. This module has no image input.
 export const LINE_PHASES = [
-  ['layout','整体定位'],['rough','完整粗稿'],['structure_review','结构修稿与全身复核'],
-  ['refine','细化草稿'],['clean','精细清线'],['lineart_review','清线后的整体复核']
+  ['layout','整体定位'],['rough','完整粗稿'],['structure_review','结构修稿'],
+  ['refine','细化草稿'],['clean','精细清线'],['lineart_review','1F · 两轮整体审核']
 ].map(([id,name])=>({id,name}));
 const geomId=v=>{if(typeof v!=='string'||!/^[\w-]{1,100}$/.test(v))throw Error('几何 ID 格式错误');return v;};
 const geomNumber=(v,min=-8192,max=8192)=>{if(!Number.isFinite(v)||v<min||v>max)throw Error('几何坐标超出范围');return v;};

@@ -61,10 +61,14 @@ export class PaintEngine extends EventTarget {
     this.doc.reviews=this.doc.reviews.map(r=>({...r,stale:r.stale||(r.scope==='global'?affectsLines:!objectIds.length||(!r.objectIds.length&&!r.ids.length)||r.objectIds.some(id=>related.has(id))||r.ids.some(id=>ids.includes(id)))}));
     this.doc.events.push({revision:this.doc.revision,kind,note:String(note).slice(0,1000),ids});this.doc.events=this.doc.events.slice(-300);
   }
-  reviewPassed(kind){const current=this.doc.reviews.filter(r=>r.scope==='global'&&r.kind===kind&&!r.stale).at(-1);return current?.status==='pass';}
+  reviewPassed(kind){
+    const current=this.doc.reviews.filter(r=>r.scope==='global'&&r.kind===kind&&!r.stale).at(-1);
+    if(current?.status!=='pass'||current.reviewPhase!=='lineart_review')return false;
+    if(kind==='lineart-checkpoint'){const first=this.doc.reviews.filter(r=>r.scope==='global'&&r.kind==='structure-checkpoint'&&!r.stale).at(-1);return this.reviewPassed('structure-checkpoint')&&this.doc.reviews.indexOf(first)<this.doc.reviews.indexOf(current);}
+    return true;
+  }
   setPhase({phase,enabled=true}={}){
     if(!LINE_PHASES.some(p=>p.id===phase))throw Error('子阶段不存在');
-    if(enabled&&['refine','clean'].includes(phase)&&!this.reviewPassed('structure-checkpoint'))throw Error('先记录当前草稿的全身结构复核，并修正未解决的大形问题');
     this.remember();this.doc.workflow={enabled,phase};this.doc.events.push({revision:this.doc.revision,kind:'phase',note:phase,ids:[]});this.emit('change');return {...this.doc.workflow};
   }
   recordReview({region=[],note,kind='observation',scope='local',objectIds=[],ids=[],status='needs-work',evidence=[],issues=[]}={}){
@@ -72,8 +76,9 @@ export class PaintEngine extends EventTarget {
     if(!['pass','needs-work'].includes(status)||!['global','local'].includes(scope))throw Error('复核状态或范围错误');
     if(status==='pass'&&issues.length)throw Error('仍有未解决问题时不能记为通过');
     if(scope==='global'&&status==='pass'&&!['drawing','reference','mirrored'].every(e=>evidence.includes(e)))throw Error('全身通过记录需包含画布、参考和翻转视图的实际观察');
-    if(kind==='lineart-checkpoint'&&status==='pass'&&this.doc.workflow.phase!=='lineart_review')throw Error('最终线稿复核属于 lineart_review 子阶段');
-    const r={at:this.doc.commands.length,revision:this.doc.revision,region,note:note.slice(0,1500),kind,scope,objectIds,ids,status,evidence,issues,stale:false};this.doc.reviews.push(r);this.doc.reviews=this.doc.reviews.slice(-100);this.emit('change');return r;
+    if(scope==='global'&&status==='pass'&&['structure-checkpoint','lineart-checkpoint'].includes(kind)&&this.doc.workflow.phase!=='lineart_review')throw Error('两轮正式审核统一在 1F（lineart_review）记录');
+    if(scope==='global'&&kind==='lineart-checkpoint'&&status==='pass'&&!this.reviewPassed('structure-checkpoint'))throw Error('先完成 1F 第一轮：结构与造型审核');
+    const r={at:this.doc.commands.length,revision:this.doc.revision,reviewPhase:this.doc.workflow.phase,region,note:note.slice(0,1500),kind,scope,objectIds,ids,status,evidence,issues,stale:false};this.doc.reviews.push(r);this.doc.reviews=this.doc.reviews.slice(-100);this.emit('change');return r;
   }
   setScene({objects,anchors,regions,occlusions,note='更新物体关系'}={}){
     const priorScene=this.doc.scene;const scene={...this.doc.scene,...(objects?{objects}:{}),...(anchors?{anchors}:{}),...(regions?{regions}:{}),...(occlusions?{occlusions}:{})},candidate=validateDocument({...this.doc,scene});

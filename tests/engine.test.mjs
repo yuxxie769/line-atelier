@@ -63,8 +63,8 @@ test('working checkpoints retain editable source, preserve baseline and restore 
  const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{id:'a',through:[[20,20],[40,50],[80,20]],corners:[1]}],{animate:false});e.checkpoint({action:'save',id:'rough',name:'rough'});e.editGeometry({id:'a',index:1,point:[45,60],note:'revise'});e.checkpoint({action:'save',id:'refined',name:'refined'});e.checkpoint({action:'restore',id:'rough'});assert.deepEqual(e.doc.commands[0].geometry.through[1],[40,50]);assert.equal(e.doc.checkpoints.length,2);e.undo();assert.deepEqual(e.doc.commands[0].geometry.through[1],[45,60]);
 });
 test('line-art workflow cannot color before review; subsequent color batches do not invalidate line review',async()=>{
- const d=blankDocument();d.stages=[{id:'lineart'},{id:'hair'}];d.workflow={phase:'rough',enabled:true};const e=new PaintEngine(new Canvas(),d);await assert.rejects(e.submit([{points:[[1,1]],stage:'hair'}]));assert.throws(()=>e.setPhase({phase:'clean'}));
- e.recordReview({scope:'global',kind:'structure-checkpoint',note:'checked proportions',status:'pass',evidence:['drawing','reference','mirrored']});e.setPhase({phase:'clean'});await e.submit([{id:'a',points:[[1,1],[20,20]],stage:'lineart'}],{animate:false});e.setPhase({phase:'lineart_review'});e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'checked clean lines',status:'pass',evidence:['drawing','reference','mirrored']});await e.submit([{points:[[1,1]],stage:'hair'}],{animate:false});await e.submit([{points:[[2,2]],stage:'hair'}],{animate:false});assert.equal(e.reviewPassed('lineart-checkpoint'),true);e.revise({replace:[{id:'a',points:[[1,1],[25,20]]}],note:'shape changed'});assert.equal(e.reviewPassed('lineart-checkpoint'),false);
+ const d=blankDocument();d.stages=[{id:'lineart'},{id:'hair'}];d.workflow={phase:'rough',enabled:true};const e=new PaintEngine(new Canvas(),d);await assert.rejects(e.submit([{points:[[1,1]],stage:'hair'}]));assert.doesNotThrow(()=>e.setPhase({phase:'clean'}));
+ e.setPhase({phase:'clean'});await e.submit([{id:'a',points:[[1,1],[20,20]],stage:'lineart'}],{animate:false});e.setPhase({phase:'lineart_review'});e.recordReview({scope:'global',kind:'structure-checkpoint',note:'checked structure and aesthetics',status:'pass',evidence:['drawing','reference','mirrored']});e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'checked clean lines',status:'pass',evidence:['drawing','reference','mirrored']});await e.submit([{points:[[1,1]],stage:'hair'}],{animate:false});await e.submit([{points:[[2,2]],stage:'hair'}],{animate:false});assert.equal(e.reviewPassed('lineart-checkpoint'),true);e.revise({replace:[{id:'a',points:[[1,1],[25,20]]}],note:'shape changed'});assert.equal(e.reviewPassed('lineart-checkpoint'),false);
 });
 test('geometry snapshot and trial revision leave document, playhead and live surfaces untouched',async()=>{
  Canvas.prototype.toDataURL=function(){return 'data:image/png;mock,'+this.width+'x'+this.height;};const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{id:'a',through:[[10,10],[40,50],[80,20]]}],{animate:false});e.seek(.4);const before=JSON.stringify(e.doc),cursor=e.cursor,units=e.metrics.drawUnits,paint=structuredClone(states(e)),undo=e.undoStack.length;
@@ -80,6 +80,17 @@ test('moving an occlusion boundary shared anchor rebuilds the rear layer, not an
 
 test('a newer needs-work review retracts a pass even without a geometry change',async()=>{
  const d=blankDocument();d.stages=[{id:'lineart'},{id:'hair'}];d.workflow={enabled:true,phase:'lineart_review'};const e=new PaintEngine(new Canvas(),d);
- e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'initial check',status:'pass',evidence:['drawing','reference','mirrored']});assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ e.recordReview({scope:'global',kind:'structure-checkpoint',note:'structure and aesthetics',status:'pass',evidence:['drawing','reference','mirrored']});e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'initial check',status:'pass',evidence:['drawing','reference','mirrored']});assert.equal(e.reviewPassed('lineart-checkpoint'),true);
  e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'a missed shoulder gap was found',status:'needs-work',issues:['shoulder gap']});assert.equal(e.reviewPassed('lineart-checkpoint'),false);await assert.rejects(e.submit([{stage:'hair',points:[[10,10],[20,20]]}],{animate:false}));
+});
+
+
+test('both formal reviews belong to 1F, survive import, and obsolete reviews cannot skip a round',async()=>{
+ const d=blankDocument();d.stages=[{id:'lineart'},{id:'hair'}];d.workflow={enabled:true,phase:'rough'};const e=new PaintEngine(new Canvas(),d);
+ const pass=kind=>e.recordReview({scope:'global',kind,status:'pass',note:'actual visual review',evidence:['drawing','reference','mirrored']});
+ assert.doesNotThrow(()=>e.setPhase({phase:'refine'}));assert.doesNotThrow(()=>e.setPhase({phase:'clean'}));assert.throws(()=>pass('structure-checkpoint'),/1F/);
+ e.setPhase({phase:'lineart_review'});assert.throws(()=>pass('lineart-checkpoint'),/第一轮/);pass('structure-checkpoint');assert.equal(e.reviewPassed('lineart-checkpoint'),false);pass('lineart-checkpoint');assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ e.load(e.doc);assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ pass('structure-checkpoint');assert.equal(e.reviewPassed('lineart-checkpoint'),false,'a fresh first round requires its own second round');pass('lineart-checkpoint');assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ e.doc.reviews.forEach(r=>delete r.reviewPhase);e.load(e.doc);assert.equal(e.reviewPassed('lineart-checkpoint'),false,'legacy records cannot stand in for the consolidated 1F reviews');await assert.rejects(e.submit([{stage:'hair',points:[[10,10],[20,20]]}],{animate:false}));
 });

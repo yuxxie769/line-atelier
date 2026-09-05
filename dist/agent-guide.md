@@ -4,13 +4,13 @@
 
 当前作品是 `structure-repair-study.line.json`，下载 `line-atelier-v4-line-tools.html`。717 条记录包含 67 条人体构造线、328 条保留草稿和 322 条清线记录，32 个物体、37 层、8 个检查点。当前处于 `lineart_review` 且结论为 needs-work；上一轮清线通过已撤回。结构修订记录见仓库 `docs/STRUCTURE_REPAIR.md`。
 
-正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、三轮审核、九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
+正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、1F 两轮审核、九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
 
 ## 绘画纪律
 
 完整线稿 → 头发大色块 → 皮肤底色 → 服装大色块 → 配饰／鞋履底色 → 覆盖阴影 → 高光与整理 → 局部复核。
 
-线稿内部：`layout` 整体定位 → `rough` 完整粗稿 → `structure_review` 结构修稿与全身复核 → `refine` 细化草稿 → `clean` 独立清线 → `lineart_review` 清线后的全身复核。
+线稿内部：`layout` 整体定位 → `rough` 完整粗稿 → `structure_review` 结构修稿 → `refine` 细化草稿 → `clean` 独立清线 → `lineart_review` 两轮整体审核（结构与造型 → 清线质量）。
 
 先建立衣物下的完整人体：头、胸廓、骨盆、肩肘腕、髋膝踝以及足部的落点，再围绕人体画衣服、头发和配饰。人体构造层保留为辅助，最终隐藏。
 
@@ -106,7 +106,7 @@ frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0
 
 交给 `paint_record_review`。scope 为 local/global；kind 为 observation / structure-checkpoint / lineart-checkpoint；status 为 pass/needs-work。改动会令相关复核 stale，历史仍保留。
 
-`paint_set_phase({phase:"refine"})` 启用规范流程；进入 refine/clean 前需有效的全身 structure-checkpoint。完整清线后进入 lineart_review，实际查看无草稿的全身、参考与翻转视图，再记录全身 lineart-checkpoint。未通过前颜色提交会拒绝。记录不是自动质量评分，不能为了让接口通过而编造观察。
+`paint_set_phase({phase:"refine"})` 启用规范流程；进入 refine/clean 不再要求先提交正式审核通过。完成清线后进入 1F `lineart_review`，第一轮实际检查结构与造型并记录全身 structure-checkpoint；第二轮检查边界、接头和线条质量并记录全身 lineart-checkpoint。两轮都查看实际画布、参考与缩小／翻转视图，缺口和泄漏工具辅助第二轮。两轮未通过前颜色提交会拒绝。旧版或非 1F 的记录保留，但不能替代本流程两轮审核。记录不是自动质量评分，不能为了让接口通过而编造观察。
 
 `paint_checkpoint({action:"save",name:"结构修正后"})` 保存阶段；list 返回列表；restore 加 id 可恢复，恢复可撤销。最多 8 个检查点，工程中保留几何、图层和复核，不含参考像素。`paint_undo` 撤销文档操作。
 
