@@ -16,3 +16,13 @@ test('undo and redo preserve complete batches and validation failures preserve p
  await assert.rejects(e.submit([{points:[[1,1]],layer:'missing'}]));assert.equal(e.doc.commands.length,1);assert.deepEqual(states(e),complete);
  assert.equal(e.undo(),true);assert.equal(e.doc.commands.length,0);assert.equal(e.redo(),true);assert.deepEqual(states(e),complete);
 });
+test('a two-point long stroke visibly advances by distance and holds a separate pen lift',async()=>{
+ const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{points:[[10,10],[210,10]],width:3}],{animate:false});
+ e.renderTo(25);const ops=e.surfaces.get('paper').ctx.ops;
+ assert.equal(ops.length,25);assert.deepEqual(ops.at(-1).path.at(-1),['L',60,10]);
+ assert.equal(e.state().completed,0);e.renderTo(100);const inkCount=e.surfaces.get('paper').ctx.ops.length;
+ e.renderTo(110);assert.equal(e.surfaces.get('paper').ctx.ops.length,inkCount);assert.equal(e.state().completed,0);
+ e.finish();assert.equal(e.state().completed,1);
+ const other=new PaintEngine(new Canvas(),blankDocument());await other.submit([{points:[[10,10],[60,10],[110,10],[210,10]]}],{animate:false});
+ assert.equal(e.index.total,other.index.total,'coordinate sampling density must not change duration');
+});

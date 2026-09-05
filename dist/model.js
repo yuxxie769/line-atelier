@@ -52,7 +52,17 @@ export function validateDocument(raw) {
   for(let i=0;i<raw.commands.length;i+=LIMITS.batch)doc.commands.push(...validateBatch(raw.commands.slice(i,i+LIMITS.batch),doc,{importing:true}));
   doc.commands.forEach((c,i)=>c.id=`c-${i}`);return doc;
 }
-export function commandUnits(c){return c.type==='fill'?1:Math.max(1,c.points.length-1)+(c.closed?1:0);}
+// Replay uses physical arc length, independent of how many points the sender sampled.
+// Each unit moves the brush by 2 document pixels; 18 quiet units lift the pen.
+export const PIXELS_PER_UNIT=2, PEN_LIFT_UNITS=18;
+export function strokeGeometry(c){
+  const lengths=[0];let length=0;
+  const points=c.closed&&c.points.length>1?[...c.points,c.points[0]]:c.points;
+  for(let i=1;i<points.length;i++){length+=Math.hypot(points[i][0]-points[i-1][0],points[i][1]-points[i-1][1]);lengths.push(length);}
+  const drawingUnits=c.type==='fill'?1:Math.max(1,Math.ceil(length/PIXELS_PER_UNIT));
+  return {points,lengths,length,drawingUnits,units:drawingUnits+PEN_LIFT_UNITS};
+}
+export function commandUnits(c){return strokeGeometry(c).units;}
 export function planIndex(commands){const ends=[];let total=0;for(const c of commands){total+=commandUnits(c);ends.push(total);}return {ends,total};}
 export function createDemo() {
   const d=blankDocument();d.title='潮汐 · 笔迹练习';d.stages=[{id:'sketch',name:'路径骨架',description:'细线建立流向'},{id:'base',name:'青蓝笔触',description:'沿曲线逐笔铺色'},{id:'detail',name:'暖色交织',description:'穿插有节奏的线条'},{id:'finish',name:'细线收尾',description:'补充明亮的边缘'}];
