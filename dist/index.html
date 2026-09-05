@@ -46,7 +46,7 @@
       <div class="section-title divided"><h2>图层</h2><button id="add-layer" class="icon-button" title="添加图层" aria-label="添加图层" data-icon="plus"></button></div>
       <div id="layers" class="layers"></div>
       <div class="section-title divided"><h2>当前笔迹</h2><span id="command-type" class="meta">STROKE</span></div><pre id="live-code" class="live-code">等待绘图指令</pre>
-      <div class="demo-note"><span>笔迹练习</span><p>当前示例由曲线指令绘制。也可以新建画布、上传参考图，或让模型提交笔迹。</p><button id="demo-btn" class="text-button">重新载入示例 <span>↗</span></button></div>
+      <div class="demo-note"><span>笔迹练习</span><p>曲线练习和已保存的参考图临摹均可逐笔回放。载入会替换当前画布，可撤销。</p><button id="demo-btn" class="text-button">载入曲线练习 <span>↗</span></button><button id="study-btn" class="text-button">载入本次角色临摹 <span>↗</span></button></div>
     </div>
     <div id="panel-reference" class="panel" role="tabpanel" aria-labelledby="tab-reference" hidden>
       <div class="section-title"><h2>从一张图开始</h2><span class="meta">REFERENCE</span></div><p class="panel-copy">上传参考图，让模型分析，或先体验逐笔重绘。</p>
@@ -56,6 +56,7 @@
       <div class="section-title divided"><h2>笔刷重绘</h2></div><p class="panel-copy">分析原图颜色与边缘，生成可回放的笔触。此模式使用本地算法，不调用 AI。</p>
       <label class="field-label">精细程度<select id="trace-detail"><option value="4">轻量 · 更少笔触</option><option value="2" selected>精细 · 更多细节</option></select></label>
       <button id="trace-btn" class="primary full" disabled data-icon="wand">生成重绘笔迹</button><button id="trace-cancel" class="secondary full" hidden>取消生成</button><p id="trace-status" class="caption" aria-live="polite">上传后可开始。重绘将替换当前笔迹，可撤销。</p>
+      <div class="section-title divided"><h2>分批临摹</h2></div><p class="panel-copy">模型可选择区域、笔刷间距和绘画阶段，逐批调用参考图取色与描线工具。也可在这里手动试一批。</p><label class="field-label">临摹步骤<select id="pass-mode"><option value="outline">轮廓 · 2 px</option><option value="color">底色 · 5 px</option></select></label><button id="pass-btn" class="secondary full">追加这一批笔迹</button><p class="caption">使用当前绘画阶段；在“模型”面板允许读取参考图后可用。</p>
     </div>
     <div id="panel-agent" class="panel" role="tabpanel" aria-labelledby="tab-agent" hidden>
       <div class="section-title"><h2>交给模型绘画</h2><span class="meta">AGENT</span></div>
