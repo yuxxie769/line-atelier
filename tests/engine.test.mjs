@@ -77,3 +77,9 @@ test('trimming keeps source geometry editable and does not join across an occlud
 test('moving an occlusion boundary shared anchor rebuilds the rear layer, not an unrelated one',async()=>{
  const d=blankDocument();d.layers.push({id:'rear',name:'rear'},{id:'other',name:'other'});d.scene={objects:[{id:'leg',frame:[0,0,100,100]},{id:'tail',frame:[0,0,100,100]},{id:'head',frame:[0,0,100,100]}],anchors:[{id:'edge',objectId:'leg',point:[.5,0]}],regions:[{id:'volume',objectId:'leg',through:[{anchor:'edge'},[50,80],[0,80],[0,0]],corners:[0,1,2,3]}],occlusions:[{id:'front',regionId:'volume',back:'tail'}]};const e=new PaintEngine(new Canvas(),d);await e.submit([{id:'tail-line',objectId:'tail',layer:'rear',points:[[0,40],[100,40]]},{id:'head-line',objectId:'head',layer:'other',points:[[0,90],[100,90]]}],{animate:false});e.recordReview({objectIds:['head'],status:'pass',note:'head inspected'});const r=e.editGeometry({anchorId:'edge',point:[.7,0],note:'leg volume changed'});assert.deepEqual(r.repaintedLayers,['rear']);assert.equal(e.doc.reviews[0].stale,false);
 });
+
+test('a newer needs-work review retracts a pass even without a geometry change',async()=>{
+ const d=blankDocument();d.stages=[{id:'lineart'},{id:'hair'}];d.workflow={enabled:true,phase:'lineart_review'};const e=new PaintEngine(new Canvas(),d);
+ e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'initial check',status:'pass',evidence:['drawing','reference','mirrored']});assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ e.recordReview({scope:'global',kind:'lineart-checkpoint',note:'a missed shoulder gap was found',status:'needs-work',issues:['shoulder gap']});assert.equal(e.reviewPassed('lineart-checkpoint'),false);await assert.rejects(e.submit([{stage:'hair',points:[[10,10],[20,20]]}],{animate:false}));
+});

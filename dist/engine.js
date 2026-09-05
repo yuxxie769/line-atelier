@@ -50,7 +50,7 @@ export class PaintEngine extends EventTarget {
     this.doc.reviews=this.doc.reviews.map(r=>({...r,stale:r.stale||(r.scope==='global'?affectsLines:!objectIds.length||(!r.objectIds.length&&!r.ids.length)||r.objectIds.some(id=>related.has(id))||r.ids.some(id=>ids.includes(id)))}));
     this.doc.events.push({revision:this.doc.revision,kind,note:String(note).slice(0,1000),ids});this.doc.events=this.doc.events.slice(-300);
   }
-  reviewPassed(kind){return this.doc.reviews.some(r=>r.scope==='global'&&r.kind===kind&&r.status==='pass'&&!r.stale);}
+  reviewPassed(kind){const current=this.doc.reviews.filter(r=>r.scope==='global'&&r.kind===kind&&!r.stale).at(-1);return current?.status==='pass';}
   setPhase({phase,enabled=true}={}){
     if(!LINE_PHASES.some(p=>p.id===phase))throw Error('子阶段不存在');
     if(enabled&&['refine','clean'].includes(phase)&&!this.reviewPassed('structure-checkpoint'))throw Error('先记录当前草稿的全身结构复核，并修正未解决的大形问题');
