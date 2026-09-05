@@ -1,0 +1,16 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+const root=new URL('../',import.meta.url);
+const read=p=>readFile(new URL(p,root),'utf8');
+const doc=JSON.parse(await read('dist/lineart-study.line.json'));
+const reference='data:image/png;base64,'+(await readFile(new URL('dist/reference.png',root))).toString('base64');
+const guide=await read('dist/agent-guide.md');
+let script='const EMBEDDED_STUDY='+JSON.stringify(doc).replace(/</g,'\\u003c')+';\nconst EMBEDDED_REFERENCE='+JSON.stringify(reference)+';\n';
+for(const file of ['model.js','engine.js','app.js'])script+=(await read('dist/'+file)).replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+'\n';
+script=script.replaceAll("fetch('./lineart-study.line.json')","Promise.resolve({ok:true,json:async()=>structuredClone(EMBEDDED_STUDY)})").replaceAll("'./reference.png'",'EMBEDDED_REFERENCE');
+let html=(await read('dist/index.html')).replace('<link rel="icon" href="./favicon.svg" type="image/svg+xml">','').replace('<link rel="stylesheet" href="./styles.css">','<style>'+await read('dist/styles.css')+'</style>');
+html=html.replace('<script type="module" src="./app.js"></script>',()=>'<script type="module">'+script.replace(/<\/script/gi,'<\\/script')+'</script>');
+html=html.replaceAll('href="./agent-guide.md"','download="line-atelier-agent-guide.md" href="data:text/markdown;charset=utf-8,'+encodeURIComponent(guide)+'"');
+await mkdir(new URL('downloads/',root),{recursive:true});
+await writeFile(new URL('downloads/line-atelier-v4-lineart-20260905.html',root),html);
+await writeFile(new URL('dist/line-atelier-v4-lineart-20260905.html',root),html);
+console.log('Standalone HTML written; '+doc.commands.length+' stroke records.');

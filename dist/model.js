@@ -1,5 +1,32 @@
 // Pure document model. Every visible mark is reconstructible from these records.
-export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000};
+export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000, layers:64};
+export const PAINT_STAGES = [
+  ['lineart','完整线稿','结构定位、主要轮廓、内部结构、逐区清线'],
+  ['hair','头发大色块','前发与后发分开，沿发束连续铺色'],
+  ['skin','皮肤底色','脸、颈、手和腿分别铺色'],
+  ['clothes','服装大色块','顺布料体积铺设底色'],
+  ['accessories','配饰／鞋履底色','配饰、镜框和鞋履分别处理'],
+  ['shadows','覆盖阴影','在各部位底色上方剪贴阴影'],
+  ['highlights','高光与整理','按材质补高光，整理边缘与局部压线'],
+  ['review','局部复核','放大检查脸、手、遮挡与线条交接']
+].map(([id,name,description])=>({id,name,description}));
+// Curves express the agent's pen trajectory, never image-derived contours.
+// One path is one pen-down gesture. A second M is rejected to prevent hidden lifts.
+export function pathPoints(path){
+  if(typeof path!=='string'||path.length>40000)throw Error('path 格式错误');
+  const tokens=path.match(/[MLQCZ]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g)||[];
+  if(path.replace(/[MLQCZ]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?|[\s,]/g,''))throw Error('path 仅支持绝对坐标 M L Q C Z');
+  let i=0,p=null,start=null;const out=[];
+  const pair=()=>{const a=Number(tokens[i++]),b=Number(tokens[i++]);number(a,-8192,8192,'path x');number(b,-8192,8192,'path y');return [a,b];};
+  while(i<tokens.length){const op=tokens[i++];if(op==='M'){if(p)throw Error('每条 path 只允许一次落笔，请分成多条笔迹');p=pair();start=p;out.push(p);}else if(!p)throw Error('path 必须以 M 开始');else if(op==='L'){p=pair();out.push(p);}else if(op==='Q'||op==='C'){const control=[p,pair(),pair()];if(op==='C')control.push(pair());let length=0;for(let j=1;j<control.length;j++)length+=Math.hypot(control[j][0]-control[j-1][0],control[j][1]-control[j-1][1]);out.push(...curvePoints(control,Math.max(4,Math.min(256,Math.ceil(length/1.5)))).slice(1));p=control.at(-1);}else if(op==='Z'){out.push([...start]);p=start;}else throw Error('path 坐标数量错误');if(out.length>4096)throw Error('单笔过长，请在自然断点抬笔');}
+  if(!out.length)throw Error('path 不能为空');return out;
+}
+function pressurePoints(points,taper){
+  if(!Array.isArray(taper)||taper.length!==3)throw Error('taper 需要起笔、中段、收笔三个压力值');taper.forEach(v=>number(v,0,1,'taper'));
+  const sampled=[points[0]];for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/3));for(let j=1;j<=n;j++){const t=j/n;sampled.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]);if(sampled.length>4096)throw Error('单笔过长，请分段落笔');}}points=sampled;
+  const lengths=[0];for(let i=1;i<points.length;i++)lengths.push(lengths.at(-1)+Math.hypot(points[i][0]-points[i-1][0],points[i][1]-points[i-1][1]));const total=lengths.at(-1)||1;
+  return points.map((p,i)=>{const t=lengths[i]/total;const edge=.18;const a=t<edge?t/edge:t>1-edge?(1-t)/edge:1;const s=a*a*(3-2*a);return [p[0],p[1],(t<.5?taper[0]:taper[2])*(1-s)+taper[1]*s];});
+}
 const color = /^#[0-9a-f]{6}$/i;
 export function number(value, min, max, label) {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < min || value > max) throw Error(`${label} 必须在 ${min}–${max} 之间`);
@@ -19,7 +46,7 @@ export function curvePoints(control, steps=32) {
 export function validateBatch(input, doc, defaults={}) {
   if(!Array.isArray(input)||!input.length||input.length>LIMITS.batch)throw Error(`每批需要 1–${LIMITS.batch} 条指令`);
   if(doc.commands.length+input.length>LIMITS.commands)throw Error('笔迹数量达到上限，请保存后新建画布');
-  let total=doc.commands.reduce((n,c)=>n+c.points.length,0);
+  let total=doc.commands.reduce((n,c)=>n+c.points.length,0);const commandIds=new Set(doc.commands.map(c=>c.id));
   const commands=input.map((raw,i)=>{
     if(!raw||typeof raw!=='object')throw Error(`指令 ${i+1} 格式错误`);
     let type=raw.type||'stroke'; if(type==='bezier')type='stroke';
@@ -29,12 +56,14 @@ export function validateBatch(input, doc, defaults={}) {
     if(layerObj.locked&&!defaults.importing)throw Error(`图层已锁定：${layerObj.name}`);
     const stage=raw.stage||defaults.stage||doc.stages[0].id;if(!doc.stages.some(s=>s.id===stage))throw Error(`阶段不存在：${stage}`);
     const hex=raw.color||'#142832';if(typeof hex!=='string'||!color.test(hex))throw Error('颜色需要 #RRGGBB 格式');
-    let points=raw.control?curvePoints(raw.control,raw.steps||32):raw.points;
+    let points=raw.path?pathPoints(raw.path):raw.control?curvePoints(raw.control,raw.steps||32):raw.points;
+    if(raw.taper)points=pressurePoints(points,raw.taper);
     if(!Array.isArray(points)||points.length<(type==='fill'?3:1)||points.length>4096)throw Error('每笔需要 1–4096 个坐标点（填色至少 3 点）');
     points=points.map(p=>{if(!Array.isArray(p)||p.length<2)throw Error('坐标格式为 [x,y] 或 [x,y,pressure]');const a=[number(p[0],-doc.width,doc.width*2,'x'),number(p[1],-doc.height,doc.height*2,'y')];if(p.length>2)a.push(number(p[2],0,1,'pressure'));return a;});
     total+=points.length;if(total>LIMITS.points)throw Error('轨迹点数量超过上限');
     if(raw.mask&&!doc.masks?.some(m=>m.id===raw.mask))throw Error(`选区不存在：${raw.mask}`);
-    return {id:raw.id||`c-${Date.now()}-${doc.commands.length+i}`,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{})};
+    const id=raw.id||`c-${Date.now()}-${doc.commands.length+i}`;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id)||commandIds.has(id))throw Error('笔迹 ID 重复或格式错误');commandIds.add(id);
+    return {id,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
   });
   return commands;
 }
@@ -43,10 +72,10 @@ export function validateDocument(raw) {
   const width=number(raw.width,64,LIMITS.side,'宽度'),height=number(raw.height,64,LIMITS.side,'高度');
   if(!Number.isInteger(width)||!Number.isInteger(height))throw Error('画布尺寸必须是整数');
   if(!color.test(raw.background))throw Error('背景颜色格式错误');
-  if(!Array.isArray(raw.layers)||!raw.layers.length||raw.layers.length>12)throw Error('需要 1–12 个图层');
+  if(!Array.isArray(raw.layers)||!raw.layers.length||raw.layers.length>LIMITS.layers)throw Error(`需要 1–${LIMITS.layers} 个图层`);
   if(!Array.isArray(raw.stages)||!raw.stages.length||raw.stages.length>24)throw Error('需要 1–24 个绘画阶段');
   const ids=new Set();const safeId=id=>{if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,64}$/.test(id)||ids.has(id))throw Error('ID 重复或格式错误');ids.add(id);return id;};
-  const layers=raw.layers.map(l=>{if(l.blend&&!['source-over','multiply','screen'].includes(l.blend))throw Error('不支持的图层混合模式');return {id:safeId(l.id),name:String(l.name||'图层').slice(0,60),visible:l.visible!==false,opacity:number(l.opacity??1,0,1,'图层透明度'),locked:!!l.locked,blend:l.blend||'source-over',...(l.clipTo?{clipTo:String(l.clipTo)}:{}),...(l.hideAtStage?{hideAtStage:String(l.hideAtStage)}:{})};});
+  const layers=raw.layers.map(l=>{if(l.blend&&!['source-over','multiply','screen'].includes(l.blend))throw Error('不支持的图层混合模式');return {id:safeId(l.id),name:String(l.name||'图层').slice(0,60),visible:l.visible!==false,opacity:number(l.opacity??1,0,1,'图层透明度'),locked:!!l.locked,blend:l.blend||'source-over',...(l.clipTo?{clipTo:String(l.clipTo)}:{}),...(l.hideAtStage?{hideAtStage:String(l.hideAtStage)}:{}),...(l.group?{group:String(l.group).slice(0,80)}:{}),...(l.role?{role:String(l.role).slice(0,40)}:{}),...(l.hideAtCommand?{hideAtCommand:String(l.hideAtCommand).slice(0,100)}:{})};});
   layers.forEach((l,i)=>{if(l.clipTo&&!layers.slice(0,i).some(b=>b.id===l.clipTo))throw Error('裁切图层必须引用下方已有图层');});
   ids.clear();const stages=raw.stages.map(s=>({id:safeId(s.id),name:String(s.name||'阶段').slice(0,60),description:String(s.description||'').slice(0,160)}));
   layers.forEach(l=>{if(l.hideAtStage&&!stages.some(s=>s.id===l.hideAtStage))throw Error('草稿隐藏阶段不存在');});
@@ -55,7 +84,7 @@ export function validateDocument(raw) {
   if(!Array.isArray(raw.commands)||raw.commands.length>LIMITS.commands)throw Error('笔迹列表格式错误或数量过多');
   const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,commands:[]};
   for(let i=0;i<raw.commands.length;i+=LIMITS.batch)doc.commands.push(...validateBatch(raw.commands.slice(i,i+LIMITS.batch),doc,{importing:true}));
-  doc.commands.forEach((c,i)=>c.id=`c-${i}`);return doc;
+  doc.reviews=Array.isArray(raw.reviews)?raw.reviews.slice(-100).map(r=>({at:Number(r.at)||0,region:Array.isArray(r.region)?r.region.slice(0,4).map(Number):[],note:String(r.note||'').slice(0,1000),kind:String(r.kind||'observation').slice(0,40),ids:Array.isArray(r.ids)?r.ids.slice(0,200).map(String):[]})):[];return doc;
 }
 // Replay uses physical arc length, independent of how many points the sender sampled.
 // Each unit moves the brush by 2 document pixels; 18 quiet units lift the pen.

@@ -30,10 +30,24 @@ test('a two-point long stroke visibly advances by distance and holds a separate 
 
 test('one translucent stroke commits opacity once, independent of segment count',async()=>{const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{points:[[10,10],[100,10],[100,90]],opacity:.4}],{animate:false});const commits=e.surfaces.get('paper').ctx.ops;assert.equal(commits.length,1);assert.equal(commits[0].opacity,.4);assert.ok(commits[0].source.every(op=>op.opacity===1));});
 
-test('layer visibility reuses painted surfaces and preserves the replay cursor',async()=>{
- const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{points:[[10,10],[210,10]],width:4}],{animate:false});e.seek(.3);
- const cursor=e.cursor,surfaces=e.surfaces,geometry=e.geometry,paint=structuredClone(states(e));
- e.load=()=>assert.fail('visibility must not reload or replay the document');
- e.updateLayer('paper',{visible:false});e.updateLayer('paper',{visible:true,opacity:.6});
- assert.equal(e.cursor,cursor);assert.equal(e.surfaces,surfaces);assert.equal(e.geometry,geometry);assert.deepEqual(states(e),paint);
+test('layer toggles and their undo preserve cursor and cached painted surfaces',async()=>{
+ const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{id:'a',path:'M 10 10 C 70 5 80 90 130 120'}],{animate:false});e.seek(.5);
+ const cursor=e.cursor,paint=e.surfaces.get('paper'),ops=structuredClone(paint.ctx.ops),units=e.metrics.drawUnits;
+ e.setLayers([{id:'paper',visible:false}]);assert.equal(e.cursor,cursor);assert.equal(e.surfaces.get('paper'),paint);assert.deepEqual(paint.ctx.ops,ops);assert.equal(e.metrics.drawUnits,units);
+ e.undo();assert.equal(e.doc.layers[0].visible,true);assert.equal(e.cursor,cursor);assert.equal(e.metrics.drawUnits,units);
+});
+test('local revision retains IDs, repaints only affected layers, and survives replay',async()=>{
+ const d=blankDocument();d.layers.push({id:'other',name:'other'});const e=new PaintEngine(new Canvas(),d);
+ await e.submit([{id:'a',path:'M 10 10 L 50 20'},{id:'b',layer:'other',path:'M 10 70 L 80 70'}],{animate:false});const cached=e.surfaces.get('other'),cachedOps=structuredClone(cached.ctx.ops);
+ const result=e.revise({replace:[{id:'a',path:'M 10 10 Q 30 60 60 30'}],note:'correct arc'});assert.deepEqual(result.repaintedLayers,['paper']);assert.equal(e.surfaces.get('other'),cached);assert.deepEqual(cached.ctx.ops,cachedOps);assert.deepEqual(e.doc.commands.map(c=>c.id),['a','b']);
+ const final=structuredClone(states(e));e.seek(0);e.finish();assert.deepEqual(states(e),final);e.undo();assert.deepEqual(e.doc.commands[0].points,[[10,10],[50,20]]);
+});
+test('invalid local revision is atomic even during partial playback',async()=>{
+ const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{id:'a',path:'M 10 10 L 50 20'}],{animate:false});e.seek(.4);const cursor=e.cursor,doc=JSON.stringify(e.doc);
+ assert.throws(()=>e.revise({replace:[{id:'a',path:'M 10 10 L NaN 20'}]}));assert.equal(e.cursor,cursor);assert.equal(JSON.stringify(e.doc),doc);
+});
+test('construction automatically hides when clean linework starts',async()=>{
+ const d=blankDocument();d.layers[0].hideAtCommand='ink';d.layers.push({id:'ink-layer',name:'ink'});
+ d.commands=[{id:'guide',points:[[10,10],[20,20]]},{id:'ink',layer:'ink-layer',points:[[10,10],[30,20]]}];const e=new PaintEngine(new Canvas(),d);
+ assert.equal(e.layerVisible(e.doc.layers[0]),false);e.seek(0);assert.equal(e.layerVisible(e.doc.layers[0]),true);e.finish();e.setLayers([{id:'paper',visible:true}]);assert.equal(e.layerVisible(e.doc.layers[0]),true);
 });

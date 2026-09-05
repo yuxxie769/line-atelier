@@ -1,0 +1,5622 @@
+[
+  {
+    "part": "结构定位",
+    "commands": [
+      {
+        "id": "axis-face",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-face",
+        "path": "M 281 188 Q 273 251 269 321",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-eyes",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-eyes",
+        "path": "M 210 256 Q 271 239 334 253",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-torso",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-torso",
+        "path": "M 271 334 C 278 427 258 510 260 629",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-shoulders",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-shoulders",
+        "path": "M 207 358 Q 276 325 350 359",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-hips",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-hips",
+        "path": "M 186 531 Q 259 568 337 544",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-leftleg",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-leftleg",
+        "path": "M 211 568 C 212 667 229 755 226 811 L 229 1031",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-rightleg",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-rightleg",
+        "path": "M 303 594 C 310 676 307 749 307 818 L 314 1035",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-hand",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-hand",
+        "path": "M 186 360 L 201 320 L 220 287",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "axis-tail",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "construction",
+        "part": "结构定位",
+        "intent": "axis-tail",
+        "path": "M 181 637 C 116 788 124 851 196 902 C 238 969 371 1045 457 1065",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "脸部结构",
+    "commands": [
+      {
+        "id": "face-jaw",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "face-jaw",
+        "path": "M 221 301 C 232 311 257 321 271 323 C 289 317 310 305 324 294",
+        "width": 1.3,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "neck-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "neck-left",
+        "path": "M 241 315 Q 246 323 246 331",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "neck-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "neck-right",
+        "path": "M 293 315 Q 289 326 290 334",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "ear-outline",
+        "path": "M 337 253 C 346 240 355 245 352 259 C 350 270 344 278 336 282",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "ear-fold",
+        "path": "M 340 257 Q 346 248 348 254 L 346 264 Q 342 269 339 269",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-tragus",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "ear-tragus",
+        "path": "M 339 260 Q 344 260 339 266",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "eye-upper-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "eye-upper-left",
+        "path": "M 210 265 C 219 251 235 243 246 246 Q 252 247 255 251",
+        "width": 2.05,
+        "taper": [
+          0.3,
+          1,
+          0.2
+        ],
+        "color": "#60425d",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "eye-lid-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "eye-lid-left",
+        "path": "M 217 251 C 228 241 243 240 250 245",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "eye-lower-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "eye-lower-left",
+        "path": "M 219 272 Q 236 276 251 266",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lash-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "lash-outer",
+        "path": "M 215 258 Q 213 265 207 266",
+        "width": 1.6,
+        "taper": [
+          0.6,
+          1,
+          0.1
+        ],
+        "color": "#60425d",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lash-left1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "lash-left1",
+        "path": "M 214 260 Q 209 263 206 261",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lash-left2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "lash-left2",
+        "path": "M 218 254 Q 216 261 211 262",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "iris-leftedge",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "iris-leftedge",
+        "path": "M 230 249 Q 228 257 231 265",
+        "width": 1.2,
+        "taper": [
+          0.6,
+          1,
+          0.4
+        ],
+        "color": "#70516e",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "iris-rightedge",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "iris-rightedge",
+        "path": "M 248 249 Q 249 256 247 263",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "iris-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "iris-bottom",
+        "path": "M 232 268 Q 239 272 246 266",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pupil-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "pupil-left",
+        "path": "M 239 250 L 239 261",
+        "width": 1.5,
+        "taper": [
+          0.35,
+          0.95,
+          0.25
+        ],
+        "color": "#70516e",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "brow-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "brow-left",
+        "path": "M 221 233 Q 234 223 249 221",
+        "width": 0.9,
+        "taper": [
+          0.12,
+          0.8,
+          0.1
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "nose-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "nose-left",
+        "path": "M 266 294 Q 267 292 268 293",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "nose-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "nose-right",
+        "path": "M 272 293 L 273 294",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "mouth",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "mouth",
+        "path": "M 269 305 Q 272 304.3 275 305.5",
+        "width": 0.65,
+        "taper": [
+          0.1,
+          0.7,
+          0.1
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lowerlip",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "脸部结构",
+        "intent": "lowerlip",
+        "path": "M 270 309 Q 272 309.5 274 309",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "眼镜",
+    "commands": [
+      {
+        "id": "lens-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-left",
+        "path": "M 210 270 C 214 262 240 256 255 260 C 262 261 267 267 264 277 C 260 292 250 301 238 302 C 223 300 213 285 210 270",
+        "width": 0.85,
+        "taper": [
+          0.8,
+          0.85,
+          0.8
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lens-left-rim",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-left-rim",
+        "path": "M 209 269 C 219 259 242 255 257 259",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lens-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-right",
+        "path": "M 285 263 C 286 253 309 248 329 252 Q 333 253 334 258 C 334 272 326 289 317 291 C 302 293 290 282 285 263",
+        "width": 0.85,
+        "taper": [
+          0.8,
+          0.85,
+          0.8
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lens-bridge-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-bridge-upper",
+        "path": "M 261 262 Q 274 257 287 258",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lens-bridge-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-bridge-lower",
+        "path": "M 265 269 Q 274 264 285 267",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "glasses-left-temple",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "glasses-left-temple",
+        "path": "M 210 270 L 203 263",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lens-right-temple",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "眼镜",
+        "intent": "lens-right-temple",
+        "path": "M 334 258 L 341 253",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "前发与脸侧发束",
+    "commands": [
+      {
+        "id": "hair-left-silhouette",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-silhouette",
+        "path": "M 205 151 C 184 172 173 193 169 220 C 164 243 154 260 145 270 Q 161 263 174 253",
+        "width": 1.25,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-left-tip",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-tip",
+        "path": "M 174 253 C 174 277 181 298 198 309 C 187 292 189 276 188 268",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-left-cheek",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-cheek",
+        "path": "M 188 269 C 192 282 201 291 213 295",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-part-face",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-part-face",
+        "path": "M 264 190 C 259 184 251 184 244 190 C 220 207 211 224 211 244 Q 209 258 216 266",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-curtain-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-curtain-left",
+        "path": "M 215 301 C 229 318 227 351 214 377",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-curtain-tip",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-curtain-tip",
+        "path": "M 214 351 C 211 374 205 398 215 418",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-fringe-diagonal",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-fringe-diagonal",
+        "path": "M 267 190 C 279 220 290 246 303 262 C 312 272 322 278 329 280",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-fringe-plane",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-fringe-plane",
+        "path": "M 285 194 C 296 216 308 238 330 250",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-strand-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-front-strand-left",
+        "path": "M 295 158 C 315 175 325 207 324 239 C 324 279 316 322 316 361 C 316 399 324 428 335 441 Q 331 454 323 466",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-strand-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-front-strand-right",
+        "path": "M 315 147 C 339 170 345 212 343 247 C 340 279 335 313 339 347 C 342 385 352 419 365 445 Q 371 459 361 470 L 345 480",
+        "width": 1.25,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-front-fold",
+        "path": "M 323 466 Q 341 471 354 456 Q 347 451 335 441",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-curl",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-front-curl",
+        "path": "M 346 480 Q 353 482 362 481 Q 351 491 339 491",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-front-flow",
+        "path": "M 317 193 C 327 223 329 245 327 268",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-left-flow1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-flow1",
+        "path": "M 218 160 C 205 182 196 206 193 229",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-left-flow2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-flow2",
+        "path": "M 188 192 C 180 219 177 240 163 259",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-left-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-left-inner",
+        "path": "M 204 278 Q 208 286 213 288",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-back-head-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "前发与脸侧发束",
+        "intent": "hair-back-head-right",
+        "path": "M 340 188 C 361 207 365 235 354 258",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "耳朵",
+    "commands": [
+      {
+        "id": "ear-tall-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-tall-left",
+        "path": "M 271 6 C 256 42 253 101 270 139",
+        "width": 1.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-tall-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-tall-right",
+        "path": "M 271 6 C 302 41 327 105 335 148",
+        "width": 1.35,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-tall-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-tall-inner",
+        "path": "M 281 31 C 302 67 317 105 323 140 C 310 132 295 125 284 110",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-fur1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-fur1",
+        "path": "M 282 54 L 286 78 L 278 71 Q 280 91 286 105 L 278 99 C 282 110 291 117 297 122",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-fur2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-fur2",
+        "path": "M 303 83 Q 313 109 315 127 L 301 117",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-left-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-left-upper",
+        "path": "M 93 95 C 128 111 166 127 201 133",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-left-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-left-bottom",
+        "path": "M 93 95 Q 98 123 116 145",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-left-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-left-inner",
+        "path": "M 108 112 L 176 137 L 133 132 L 143 140",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-left-fur",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "head-ink",
+        "part": "耳朵",
+        "intent": "ear-left-fur",
+        "path": "M 119 129 L 129 135 L 120 135",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "帽檐与帽顶",
+    "commands": [
+      {
+        "id": "cap-brim-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-brim-upper",
+        "path": "M 116 147 C 130 129 175 138 217 150 C 252 159 288 178 310 195",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-brim-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-brim-lower",
+        "path": "M 310 195 C 281 199 237 184 199 167 C 161 151 133 143 116 147",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-brim-back",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-brim-back",
+        "path": "M 116 148 C 107 159 118 181 139 202 Q 152 216 169 224",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-top",
+        "path": "M 202 137 C 207 122 219 118 231 123 C 257 130 285 145 305 164",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-band",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-band",
+        "path": "M 214 129 C 243 133 275 150 294 163",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-back-band",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-back-band",
+        "path": "M 345 196 Q 357 207 359 224",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-visor-rim",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-visor-rim",
+        "path": "M 123 146 C 164 139 242 166 285 184",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-brim-seam",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-brim-seam",
+        "path": "M 193 150 Q 170 179 166 215",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-loop",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-loop",
+        "path": "M 291 163 Q 291 156 284 154",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-charm",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-charm",
+        "path": "M 291 163 C 303 160 314 174 310 182 C 304 192 290 181 287 173 Q 285 167 291 163",
+        "width": 0.9,
+        "taper": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-charm-eye",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-charm-eye",
+        "path": "M 302 175 Q 307 171 308 179 Q 307 184 303 184",
+        "width": 1.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-charm-speck",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-charm-speck",
+        "path": "M 294 166 L 295 167",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-brim-tag",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-brim-tag",
+        "path": "M 252 170 L 279 180 Q 282 183 278 183 L 251 175 Q 248 173 252 170",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-tag-inset",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-tag-inset",
+        "path": "M 255 173 L 274 180",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-label",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-label",
+        "path": "M 215 150 L 232 155 L 230 159 L 213 154 Z",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-label-dots1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-label-dots1",
+        "path": "M 217 152 L 220 153",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cap-label-dots2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽檐与帽顶",
+        "intent": "cap-label-dots2",
+        "path": "M 224 154 L 227 155",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "帽后装饰",
+    "commands": [
+      {
+        "id": "halo-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-left",
+        "path": "M 258 69 C 236 80 222 99 220 121 L 230 121 L 231 116 L 244 117 L 247 124 L 261 124",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-top",
+        "path": "M 322 64 C 355 68 382 86 393 116 L 382 119 L 378 111 L 366 109 L 361 116 L 352 116 L 347 126",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-top-inset",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-top-inset",
+        "path": "M 326 68 C 354 71 378 88 389 113",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-right",
+        "path": "M 336 149 L 350 159 L 363 157 L 368 164 L 390 164 L 392 157 L 400 159 Q 400 179 389 193",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-slot1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-slot1",
+        "path": "M 244 91 Q 249 89 253 95 L 253 99 L 244 99 Z",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-slot2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-slot2",
+        "path": "M 236 105 L 248 105",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-notch",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-notch",
+        "path": "M 322 80 L 332 82 L 335 95 L 325 101",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "halo-slot3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "帽后装饰",
+        "intent": "halo-slot3",
+        "path": "M 354 86 Q 364 89 367 97 L 355 96 Z",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "扶镜的手",
+    "commands": [
+      {
+        "id": "hand-index-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-index-outer",
+        "path": "M 187 323 Q 187 314 195 305 L 211 289 Q 218 282 220 285 Q 220 287 217 291 L 204 307 L 202 314",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-palm-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-palm-outline",
+        "path": "M 187 323 C 183 330 178 337 180 347 Q 182 355 187 360",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-inner-wrist",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-inner-wrist",
+        "path": "M 187 360 Q 195 352 199 341 Q 201 331 207 328",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-middle",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-middle",
+        "path": "M 193 313 Q 202 309 207 311 Q 211 312 211 318 L 213 324",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-ring",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-ring",
+        "path": "M 190 321 Q 199 316 205 317 Q 211 318 212 324 L 213 329 Q 217 334 220 332 Q 222 330 218 327",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-little",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-little",
+        "path": "M 190 327 Q 197 322 202 323 Q 207 324 211 329 L 215 334 Q 215 337 210 335 L 205 330",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-thumb",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-thumb",
+        "path": "M 199 341 Q 200 334 204 331 Q 205 329 207 330",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-index-nail",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-index-nail",
+        "path": "M 215 287 Q 217 285 218 286 L 215 289",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-index-joint",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-index-joint",
+        "path": "M 201 308 L 197 310",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-knuckle-line",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-knuckle-line",
+        "path": "M 204 318 L 207 320",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-palm-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "hand-ink",
+        "part": "扶镜的手",
+        "intent": "hand-palm-fold",
+        "path": "M 190 348 Q 193 343 194 339",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "衣领与身体轮廓",
+    "commands": [
+      {
+        "id": "choker-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "choker-top",
+        "path": "M 243 324 C 255 320 278 320 293 325",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "choker-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "choker-bottom",
+        "path": "M 243 341 C 258 334 278 334 291 341",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "choker-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "choker-left",
+        "path": "M 243 324 L 243 341",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "choker-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "choker-right",
+        "path": "M 293 325 L 291 341",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "collar-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "collar-left",
+        "path": "M 243 341 L 226 362 L 260 359 L 271 336",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "collar-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "collar-right",
+        "path": "M 271 336 L 283 358 L 311 353 L 291 341",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "keyhole",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "keyhole",
+        "path": "M 260 359 L 273 387 L 283 358",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "keyhole-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "keyhole-fold",
+        "path": "M 260 359 L 272 365 L 283 358",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoulder-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "shoulder-left",
+        "path": "M 214 351 Q 225 354 235 350",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoulder-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "shoulder-right",
+        "path": "M 339 350 Q 357 352 362 365",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "arm-right-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "arm-right-outer",
+        "path": "M 362 365 C 369 388 363 418 367 440 Q 367 454 372 465",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-left",
+        "path": "M 215 415 C 219 436 211 454 207 472",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-waist-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-waist-left",
+        "path": "M 201 509 Q 195 524 192 538 C 209 564 229 606 255 634 Q 265 642 277 635 C 298 600 313 560 334 538 C 330 515 329 492 333 473",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-right-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-right-upper",
+        "path": "M 335 438 Q 334 452 333 464",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-fold-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-fold-left",
+        "path": "M 218 445 Q 214 451 214 457",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-fold-waist",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-fold-waist",
+        "path": "M 199 525 L 204 541",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-fold-bottom-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-fold-bottom-left",
+        "path": "M 237 606 L 250 620",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "bodice-fold-bottom-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "衣领与身体轮廓",
+        "intent": "bodice-fold-bottom-right",
+        "path": "M 281 621 L 291 608",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "抬起的衣袖",
+    "commands": [
+      {
+        "id": "cuff-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-outer",
+        "path": "M 178 348 C 167 365 160 390 166 402 C 175 414 195 424 208 420 Q 214 409 217 393",
+        "width": 1.25,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-mouth-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-mouth-left",
+        "path": "M 184 353 C 190 368 201 385 214 391",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-mouth-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-mouth-right",
+        "path": "M 207 339 Q 211 367 214 391",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-lower-edge",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-lower-edge",
+        "path": "M 168 402 C 180 411 198 419 209 416",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-left-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-left-outer",
+        "path": "M 163 362 C 140 371 120 390 111 400 L 95 412 C 82 426 80 448 80 468 Q 80 483 93 490 C 108 500 135 499 151 490 L 176 474 C 193 469 206 460 215 449",
+        "width": 1.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-inner",
+        "path": "M 216 407 Q 224 430 215 449",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-shoulder-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-shoulder-fold",
+        "path": "M 149 380 C 138 401 135 425 146 439",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-elbow-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-elbow-fold",
+        "path": "M 132 389 Q 116 422 104 438",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-elbow-fold2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-elbow-fold2",
+        "path": "M 103 439 L 95 449",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-gather-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-gather-upper",
+        "path": "M 100 407 Q 106 408 110 404",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-lower-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-lower-fold",
+        "path": "M 150 479 Q 172 484 192 469",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-lower-seam",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-lower-seam",
+        "path": "M 104 488 Q 127 490 144 483",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-cuff-tuck",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "sleeve-cuff-tuck",
+        "path": "M 182 420 Q 198 427 208 422",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib1",
+        "path": "M 176 358 Q 169 383 173 401",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib2",
+        "path": "M 180 361 Q 173 384 177 404",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib3",
+        "path": "M 183 366 Q 178 387 181 407",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib4",
+        "path": "M 186 371 Q 182 391 185 409",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib5",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib5",
+        "path": "M 189 377 Q 186 395 189 411",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib6",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib6",
+        "path": "M 193 382 Q 190 397 193 413",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib7",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib7",
+        "path": "M 197 386 Q 194 400 197 415",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib8",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib8",
+        "path": "M 202 389 Q 198 403 201 416",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-rib9",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "抬起的衣袖",
+        "intent": "cuff-rib9",
+        "path": "M 206 392 Q 203 404 205 416",
+        "width": 0.42,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "外套左下摆",
+    "commands": [
+      {
+        "id": "jacket-left-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-outer",
+        "path": "M 101 494 C 94 514 80 537 73 553 Q 70 559 77 569 L 89 585 L 85 596 C 106 613 149 626 184 634",
+        "width": 1.3,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-opening",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-opening",
+        "path": "M 155 494 C 173 511 180 526 185 544 L 184 634",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-hem",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-hem",
+        "path": "M 86 582 Q 125 610 184 630",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-hem-back",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-hem-back",
+        "path": "M 86 591 Q 121 617 172 628",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-pocket",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-pocket",
+        "path": "M 104 518 Q 127 503 135 506 Q 146 534 142 557",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-pocket-seam",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-pocket-seam",
+        "path": "M 138 516 Q 153 548 143 578 L 129 611",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-fold1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-fold1",
+        "path": "M 84 544 L 99 532",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-fold2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-fold2",
+        "path": "M 90 566 Q 97 575 109 581",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-fold3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-fold3",
+        "path": "M 137 579 L 166 617",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "jacket-left-hem-tab",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "外套左下摆",
+        "intent": "jacket-left-hem-tab",
+        "path": "M 105 597 L 147 613 L 147 630 L 104 614 Z",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "后发与卷发",
+    "commands": [
+      {
+        "id": "pony-top-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-top-outline",
+        "path": "M 359 203 C 358 187 367 176 377 177 C 393 178 404 211 411 234 C 422 280 432 313 454 335 C 482 365 493 383 483 403 Q 473 418 449 425",
+        "width": 1.3,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-inner-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-inner-outline",
+        "path": "M 357 237 C 352 264 346 297 348 324 C 349 352 374 375 406 391",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-root-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-root-fold",
+        "path": "M 361 208 Q 360 199 355 199",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-front-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-front-flow",
+        "path": "M 366 207 C 374 255 383 300 398 334 C 409 357 417 376 406 397",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-inner-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-inner-flow",
+        "path": "M 363 252 C 363 297 368 334 388 363 Q 397 377 406 382",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-ribbon-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-ribbon-left",
+        "path": "M 406 391 C 394 412 377 439 376 458 Q 374 473 382 483",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-ribbon-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-ribbon-right",
+        "path": "M 482 373 C 483 404 459 430 427 449 C 409 461 395 474 382 483",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-ribbon-middle",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-ribbon-middle",
+        "path": "M 464 350 C 480 385 449 419 419 442 C 397 458 387 471 382 481",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-ribbon-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-ribbon-flow",
+        "path": "M 426 319 C 438 349 438 378 424 406 Q 405 439 388 466",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-outer1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-outer1",
+        "path": "M 449 425 C 468 414 484 419 496 430 Q 499 434 489 438 C 462 453 414 456 382 483",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-inner1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-inner1",
+        "path": "M 457 426 C 469 429 461 440 449 446",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-outer2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-outer2",
+        "path": "M 450 446 C 447 459 453 474 472 484 Q 481 489 477 495 C 466 507 444 513 421 520",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-inner2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-inner2",
+        "path": "M 427 457 C 430 472 442 481 459 488 Q 465 491 469 491",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-cross",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-cross",
+        "path": "M 387 483 C 405 503 437 500 457 509 Q 469 514 459 522 C 440 534 401 535 380 551",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-bottom",
+        "path": "M 411 534 Q 406 545 421 551",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-curl-strand",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-curl-strand",
+        "path": "M 461 496 Q 433 512 399 523",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "pony-inner-foldline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "pony-inner-foldline",
+        "path": "M 436 440 Q 437 452 434 459",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-lock-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "left-lock-upper",
+        "path": "M 213 447 C 204 454 190 468 181 476 Q 172 488 185 495 C 194 500 203 497 213 495 Q 193 511 180 508",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-lock-under",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "left-lock-under",
+        "path": "M 181 476 Q 190 484 201 484",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-lock-middle",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "left-lock-middle",
+        "path": "M 181 508 C 180 524 187 531 199 532 L 211 530 Q 197 541 191 541",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-lock-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "left-lock-lower",
+        "path": "M 168 504 Q 175 525 183 542 L 184 550",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-lock-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "rearhair-ink",
+        "part": "后发与卷发",
+        "intent": "left-lock-fold",
+        "path": "M 174 481 Q 165 496 171 510",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "发饰星形",
+    "commands": [
+      {
+        "id": "hair-star1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star1",
+        "path": "M 402 270 L 404 274 L 408 276 L 405 279 L 404 282 L 400 279 L 397 277 L 400 275 Z",
+        "width": 0.6,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-star2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star2",
+        "path": "M 374 330 L 376 335 L 380 338 L 376 340 L 374 344 L 372 340 L 368 338 L 371 335 Z",
+        "width": 0.6,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-star3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star3",
+        "path": "M 454 357 L 459 359 L 462 357 L 462 362 L 465 366 L 459 365 L 455 368 L 455 363 Z",
+        "width": 0.55,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-star4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star4",
+        "path": "M 405 405 L 407 409 L 411 410 L 407 413 L 405 417 L 403 413 L 399 412 L 402 409 Z",
+        "width": 0.55,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-star5",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star5",
+        "path": "M 460 439 L 462 442 L 465 443 L 462 446 L 460 448 L 458 445 L 455 444 L 458 442 Z",
+        "width": 0.5,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-star6",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "accessory-ink",
+        "part": "发饰星形",
+        "intent": "hair-star6",
+        "path": "M 443 516 L 445 519 L 449 520 L 446 522 L 444 525 L 442 522 L 439 521 L 442 519 Z",
+        "width": 0.45,
+        "taper": [
+          0.85,
+          0.85,
+          0.85
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "垂下的外套衣袖",
+    "commands": [
+      {
+        "id": "right-cuff-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-cuff-fold",
+        "path": "M 331 493 Q 342 480 356 480 L 371 471 Q 379 465 384 472 L 395 492",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-cuff-rim",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-cuff-rim",
+        "path": "M 332 508 C 348 489 377 486 393 494 Q 400 500 403 511 C 375 511 347 522 339 544",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-cuff-return",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-cuff-return",
+        "path": "M 332 508 Q 330 527 339 544",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-cuff-crease",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-cuff-crease",
+        "path": "M 349 492 Q 373 499 358 511 Q 354 514 349 514",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-cuff-fold2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-cuff-fold2",
+        "path": "M 354 487 Q 345 504 342 513",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-outer",
+        "path": "M 389 514 Q 399 523 401 536 L 417 549 L 420 569 C 437 589 446 616 453 641 L 467 655 Q 473 662 470 678",
+        "width": 1.25,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-inner",
+        "path": "M 339 544 C 341 578 343 613 343 648 L 341 671 Q 354 685 375 694 L 402 706 Q 436 699 470 678",
+        "width": 1.3,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-fold1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-fold1",
+        "path": "M 357 535 Q 377 543 397 542",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-fold2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-fold2",
+        "path": "M 359 548 Q 390 565 416 563",
+        "width": 0.75,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-fold3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-fold3",
+        "path": "M 343 556 Q 352 579 374 597",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-sleeve-fold4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-sleeve-fold4",
+        "path": "M 402 637 Q 428 655 453 664",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib-outline",
+        "path": "M 470 678 Q 482 695 492 715 C 479 728 459 737 444 738 C 426 732 414 720 402 706",
+        "width": 1.25,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-seam",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-seam",
+        "path": "M 407 707 Q 441 698 471 682",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib1",
+        "path": "M 414 706 Q 429 727 444 735",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib2",
+        "path": "M 419 704 Q 433 725 450 733",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib3",
+        "path": "M 424 702 Q 439 722 456 731",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib4",
+        "path": "M 429 700 Q 445 720 461 729",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib5",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib5",
+        "path": "M 434 698 Q 451 718 466 727",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib6",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib6",
+        "path": "M 439 696 Q 457 716 471 724",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib7",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib7",
+        "path": "M 444 694 Q 463 714 476 722",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib8",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib8",
+        "path": "M 449 692 Q 468 712 481 720",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib9",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib9",
+        "path": "M 454 690 Q 473 710 485 717",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "right-wrist-rib10",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "coat-ink",
+        "part": "垂下的外套衣袖",
+        "intent": "right-wrist-rib10",
+        "path": "M 460 687 Q 477 705 488 715",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "腿部结构",
+    "commands": [
+      {
+        "id": "leg-left-outer-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "leg-left-outer-upper",
+        "path": "M 192 539 C 182 565 182 618 185 667 C 187 708 196 751 204 779 Q 207 790 210 797",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "leg-left-outer-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "leg-left-outer-lower",
+        "path": "M 210 797 C 215 829 206 867 208 905 C 209 948 216 991 216 1033",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "leg-left-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "leg-left-inner",
+        "path": "M 255 636 C 258 680 256 727 255 759 Q 257 780 250 800 C 245 830 247 878 245 916 L 244 1028",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "leg-right-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "leg-right-inner",
+        "path": "M 277 637 C 273 679 279 728 283 763 C 287 786 285 801 288 820 C 286 861 292 907 293 948 L 296 1038",
+        "width": 1.15,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "leg-right-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "leg-right-outer",
+        "path": "M 334 539 C 346 577 341 631 341 675 C 343 720 336 758 334 791 C 331 830 341 876 342 918 C 346 956 340 1000 338 1042",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "knee-left-inside",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "knee-left-inside",
+        "path": "M 250 793 Q 247 802 247 812",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "knee-left-outside",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "knee-left-outside",
+        "path": "M 214 799 Q 218 806 219 815",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "knee-right-inside",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "knee-right-inside",
+        "path": "M 291 807 Q 293 817 298 820",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "knee-right-outside",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "knee-right-outside",
+        "path": "M 327 809 Q 325 818 322 823",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ankle-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "ankle-left",
+        "path": "M 219 1017 L 220 1028",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ankle-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "腿部结构",
+        "intent": "ankle-right",
+        "path": "M 300 1024 L 302 1036",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "鞋履左侧",
+    "commands": [
+      {
+        "id": "shoe-left-rim",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-rim",
+        "path": "M 208 1038 C 208 1029 250 1026 263 1037 Q 267 1042 262 1049 C 248 1057 216 1054 208 1046 Z",
+        "width": 0.9,
+        "taper": [
+          0.75,
+          0.9,
+          0.75
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-outer",
+        "path": "M 208 1047 Q 204 1067 211 1085 L 211 1096",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-outer-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-outer-lower",
+        "path": "M 209 1100 Q 202 1120 206 1145 L 208 1160 Q 211 1173 233 1175 C 251 1176 270 1171 274 1163 L 273 1144",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-inner",
+        "path": "M 263 1048 Q 268 1064 262 1079 L 264 1092",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-inner-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-inner-lower",
+        "path": "M 268 1107 Q 275 1124 273 1144",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-tongue1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-tongue1",
+        "path": "M 219 1057 Q 230 1066 228 1086",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-tongue2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-tongue2",
+        "path": "M 255 1056 Q 245 1068 246 1086",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-panel1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-panel1",
+        "path": "M 210 1058 C 219 1061 222 1073 220 1084",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-panel2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-panel2",
+        "path": "M 263 1059 Q 254 1069 255 1084",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap1-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap1-top",
+        "path": "M 211 1091 C 220 1082 244 1080 259 1088 Q 265 1093 266 1104",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap1-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap1-bottom",
+        "path": "M 209 1105 C 219 1094 244 1090 264 1102",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap1-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap1-side",
+        "path": "M 211 1091 Q 207 1098 209 1105",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap2-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap2-top",
+        "path": "M 209 1109 C 223 1098 247 1097 265 1106 Q 271 1111 270 1119",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap2-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap2-bottom",
+        "path": "M 208 1122 C 224 1111 248 1110 270 1119",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap2-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap2-side",
+        "path": "M 209 1109 L 208 1122",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap3-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap3-top",
+        "path": "M 208 1127 C 223 1117 248 1115 269 1125",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap3-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap3-bottom",
+        "path": "M 208 1137 C 227 1128 250 1125 272 1134",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap3-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap3-side",
+        "path": "M 208 1127 L 208 1137",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap-edge1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap-edge1",
+        "path": "M 213 1101 C 231 1092 248 1095 259 1099",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-strap-edge2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-strap-edge2",
+        "path": "M 212 1118 C 230 1109 249 1112 265 1116",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-toe-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-toe-outline",
+        "path": "M 216 1133 C 212 1136 213 1144 220 1147 Q 224 1148 226 1144 Q 229 1151 235 1148 Q 240 1154 245 1149 Q 251 1153 254 1147 C 261 1150 266 1144 264 1136",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-toe1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-toe1",
+        "path": "M 223 1136 Q 226 1140 225 1145",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-toe2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-toe2",
+        "path": "M 232 1134 Q 236 1141 235 1148",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-toe3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-toe3",
+        "path": "M 242 1133 Q 247 1141 245 1149",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-toe4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-toe4",
+        "path": "M 252 1133 Q 256 1140 254 1147",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-sole-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-sole-top",
+        "path": "M 207 1146 C 216 1160 257 1164 273 1146",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-sole-front",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-sole-front",
+        "path": "M 209 1162 C 221 1171 258 1173 272 1161",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-tab",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-tab",
+        "path": "M 229 1022 L 242 1022 L 240 1035 Q 235 1037 230 1034 Z",
+        "width": 0.75,
+        "taper": [
+          0.8,
+          0.9,
+          0.8
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-tab-stitch",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-tab-stitch",
+        "path": "M 232 1025 L 239 1025",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-buckle1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-buckle1",
+        "path": "M 213 1095 L 216 1091 L 218 1097 L 214 1101 Z",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-buckle2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履左侧",
+        "intent": "shoe-left-buckle2",
+        "path": "M 212 1113 L 215 1109 L 216 1115 L 212 1119 Z",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "鞋履右侧",
+    "commands": [
+      {
+        "id": "shoe-right-rim",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-rim",
+        "path": "M 291 1044 C 295 1035 328 1035 341 1043 Q 348 1047 343 1056 C 330 1064 298 1062 291 1053 Z",
+        "width": 0.9,
+        "taper": [
+          0.75,
+          0.9,
+          0.75
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-left",
+        "path": "M 291 1054 Q 286 1070 292 1088 L 291 1098",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-right",
+        "path": "M 343 1056 Q 351 1070 345 1085 L 347 1101",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-outer-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-outer-lower",
+        "path": "M 291 1102 C 285 1120 287 1144 289 1167 Q 294 1178 316 1180 C 333 1180 349 1177 351 1167 L 350 1141 Q 352 1126 347 1110",
+        "width": 1.2,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-tongue1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-tongue1",
+        "path": "M 301 1061 Q 311 1074 308 1089",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-tongue2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-tongue2",
+        "path": "M 337 1063 Q 326 1074 328 1090",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-panel1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-panel1",
+        "path": "M 291 1062 Q 303 1070 300 1088",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-panel2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-panel2",
+        "path": "M 345 1066 Q 338 1076 339 1088",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap1-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap1-top",
+        "path": "M 291 1098 C 301 1084 328 1083 342 1092 Q 350 1097 350 1108",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap1-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap1-bottom",
+        "path": "M 290 1110 C 303 1095 329 1095 349 1108",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap1-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap1-side",
+        "path": "M 291 1098 Q 287 1105 290 1110",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap2-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap2-top",
+        "path": "M 290 1116 C 303 1104 330 1102 348 1113",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap2-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap2-bottom",
+        "path": "M 289 1128 C 306 1116 329 1116 350 1125",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap2-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap2-side",
+        "path": "M 290 1116 L 289 1128",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap3-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap3-top",
+        "path": "M 289 1133 C 307 1124 331 1121 350 1131",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap3-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap3-bottom",
+        "path": "M 290 1144 C 307 1134 331 1133 350 1141",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap3-side",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap3-side",
+        "path": "M 289 1133 L 290 1144",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap-edge1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap-edge1",
+        "path": "M 296 1105 C 313 1097 332 1099 345 1105",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-strap-edge2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-strap-edge2",
+        "path": "M 294 1123 C 313 1114 332 1119 345 1122",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-toe-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-toe-outline",
+        "path": "M 298 1138 C 293 1141 296 1153 303 1156 Q 309 1158 312 1153 Q 317 1160 322 1156 Q 328 1159 330 1153 Q 338 1157 340 1150 Q 347 1151 347 1142",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-toe1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-toe1",
+        "path": "M 308 1139 Q 313 1145 312 1154",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-toe2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-toe2",
+        "path": "M 319 1138 Q 324 1147 322 1156",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-toe3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-toe3",
+        "path": "M 329 1139 Q 333 1145 330 1153",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-toe4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-toe4",
+        "path": "M 339 1140 Q 342 1144 340 1150",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-sole-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-sole-top",
+        "path": "M 289 1152 C 302 1166 335 1166 351 1152",
+        "width": 1.05,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-sole-front",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-sole-front",
+        "path": "M 291 1168 C 305 1177 336 1177 350 1167",
+        "width": 0.7,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-tab",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-tab",
+        "path": "M 310 1031 L 322 1031 L 321 1044 Q 315 1047 311 1043 Z",
+        "width": 0.75,
+        "taper": [
+          0.8,
+          0.9,
+          0.8
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-tab-stitch",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-tab-stitch",
+        "path": "M 313 1034 L 320 1034",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-buckle1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-buckle1",
+        "path": "M 341 1097 L 344 1099 L 346 1105 L 342 1103 Z",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-buckle2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "body-ink",
+        "part": "鞋履右侧",
+        "intent": "shoe-right-buckle2",
+        "path": "M 344 1116 L 347 1118 L 348 1123 L 344 1120 Z",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "尾巴与落地卷曲",
+    "commands": [
+      {
+        "id": "tail-left-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-left-outer",
+        "path": "M 180 636 C 153 686 127 753 119 807 C 109 861 154 909 202 944",
+        "width": 1.1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-left-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-left-inner",
+        "path": "M 203 790 C 187 826 186 868 197 916 L 202 941",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-long-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-long-flow",
+        "path": "M 171 659 C 151 713 147 779 156 826 Q 166 875 190 908",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-between-thighs",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-between-thighs",
+        "path": "M 256 738 Q 266 718 278 696",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-between-calves-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-between-calves-upper",
+        "path": "M 254 859 Q 270 884 289 909",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-between-calves-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-between-calves-lower",
+        "path": "M 252 936 Q 274 958 298 973",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-right-upper",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-right-upper",
+        "path": "M 341 959 C 380 996 420 1038 458 1066",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-right-lower",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-right-lower",
+        "path": "M 338 1022 C 378 1045 417 1060 449 1073",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-turn-outer",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-turn-outer",
+        "path": "M 458 1066 C 480 1073 499 1084 506 1092 C 470 1108 406 1118 351 1122",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-turn-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-turn-inner",
+        "path": "M 458 1066 C 456 1079 401 1090 349 1098",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-turn-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-turn-fold",
+        "path": "M 474 1074 Q 491 1091 456 1109",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-between-shoes-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-between-shoes-top",
+        "path": "M 273 1109 L 287 1108",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-between-shoes-bottom",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-between-shoes-bottom",
+        "path": "M 274 1129 L 288 1128",
+        "width": 0.8,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-upper-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-upper-left",
+        "path": "M 207 1108 C 131 1118 45 1132 11 1158 Q 0 1163 10 1172 C 57 1218 238 1239 379 1228",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-inner-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-inner-left",
+        "path": "M 208 1130 C 152 1139 102 1143 74 1156 Q 61 1163 74 1171 C 133 1205 269 1229 379 1222",
+        "width": 0.95,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-left-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-left-fold",
+        "path": "M 69 1138 Q 59 1148 72 1157",
+        "width": 0.55,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-left-crease",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-left-crease",
+        "path": "M 33 1147 C 9 1170 59 1192 86 1197",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-right-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-right-top",
+        "path": "M 433 1154 C 472 1150 530 1155 565 1168 Q 591 1178 574 1190 C 545 1210 488 1220 442 1225",
+        "width": 1,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-right-inner",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-right-inner",
+        "path": "M 433 1154 C 476 1156 521 1170 514 1188 C 506 1204 474 1210 439 1214",
+        "width": 0.9,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-floor-right-fold",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-floor-right-fold",
+        "path": "M 510 1158 Q 553 1178 527 1199",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-star-outline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-star-outline",
+        "path": "M 380 1200 Q 396 1200 410 1207 Q 427 1200 444 1200 Q 445 1210 439 1219 Q 448 1234 451 1243 Q 426 1244 410 1236 Q 392 1243 375 1243 Q 375 1234 383 1222 Q 377 1210 380 1200 Z",
+        "width": 0.95,
+        "taper": [
+          0.8,
+          0.9,
+          0.8
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-star-fold1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-star-fold1",
+        "path": "M 382 1203 L 410 1219 L 442 1203",
+        "width": 0.65,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-star-fold2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-star-fold2",
+        "path": "M 410 1219 L 410 1236",
+        "width": 0.6,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-star-fold3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-star-fold3",
+        "path": "M 410 1219 L 377 1240",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "tail-star-fold4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "tail-ink",
+        "part": "尾巴与落地卷曲",
+        "intent": "tail-star-fold4",
+        "path": "M 410 1219 L 448 1240",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  },
+  {
+    "part": "局部清线与结构补充",
+    "commands": [
+      {
+        "id": "pony-flow-below-star",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "pony-flow-below-star",
+        "path": "M 377 346 Q 393 371 406 382",
+        "width": 0.5,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-tall-inner-fine",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hair-tall-inner-fine",
+        "path": "M 297 58 Q 308 88 316 119",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-substrand",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hair-front-substrand",
+        "path": "M 337 192 Q 344 224 340 250",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hair-front-lower-flow",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hair-front-lower-flow",
+        "path": "M 327 345 C 328 380 334 411 342 430",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "left-hair-curvature",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "left-hair-curvature",
+        "path": "M 181 245 Q 181 260 187 274",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "lash-emphasis",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "lash-emphasis",
+        "path": "M 213 261 C 223 251 236 246 244 247",
+        "width": 1.5,
+        "taper": [
+          0.08,
+          0.95,
+          0.05
+        ],
+        "color": "#60425d",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "iris-inner-top",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "iris-inner-top",
+        "path": "M 234 251 Q 239 249 244 250",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "iris-lower-lightline",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "iris-lower-lightline",
+        "path": "M 233 266 Q 239 269 244 265",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "ear-cartilage",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "ear-cartilage",
+        "path": "M 344 260 L 342 265",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-index-inner-detail",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hand-index-inner-detail",
+        "path": "M 207 301 L 211 297",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hand-fingernail",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hand-fingernail",
+        "path": "M 210 329 Q 212 329 213 331",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "collar-stitch-left",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "collar-stitch-left",
+        "path": "M 233 358 L 256 357",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "collar-stitch-right",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "collar-stitch-right",
+        "path": "M 287 352 L 304 352",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "cuff-fold-emphasis",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "cuff-fold-emphasis",
+        "path": "M 208 417 Q 212 409 213 402",
+        "width": 0.85,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "sleeve-crease-emphasis",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "sleeve-crease-emphasis",
+        "path": "M 207 453 Q 211 451 214 447",
+        "width": 1,
+        "taper": [
+          0.1,
+          0.9,
+          0.1
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hem-mark1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hem-mark1",
+        "path": "M 108 602 L 115 605 L 115 609 L 109 607 L 109 611 L 116 614",
+        "width": 0.75,
+        "taper": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hem-mark2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hem-mark2",
+        "path": "M 121 607 L 128 610 L 128 618 L 121 616 Z",
+        "width": 0.75,
+        "taper": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "hem-mark3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "hem-mark3",
+        "path": "M 134 612 L 141 615 L 141 618 L 135 616 L 135 621 L 142 624",
+        "width": 0.75,
+        "taper": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-nail1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-left-nail1",
+        "path": "M 216 1140 Q 219 1143 222 1140",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-nail2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-left-nail2",
+        "path": "M 229 1142 Q 231 1145 233 1143",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-nail3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-left-nail3",
+        "path": "M 239 1145 Q 241 1147 243 1144",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-nail4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-left-nail4",
+        "path": "M 249 1144 Q 251 1146 252 1143",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-left-nail5",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-left-nail5",
+        "path": "M 257 1140 Q 260 1143 262 1139",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-nail1",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-right-nail1",
+        "path": "M 300 1148 Q 304 1152 309 1148",
+        "width": 0.45,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-nail2",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-right-nail2",
+        "path": "M 315 1151 Q 318 1154 320 1150",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-nail3",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-right-nail3",
+        "path": "M 325 1150 Q 327 1153 329 1149",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-nail4",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-right-nail4",
+        "path": "M 333 1148 Q 335 1150 338 1147",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      },
+      {
+        "id": "shoe-right-nail5",
+        "type": "stroke",
+        "stage": "lineart",
+        "layer": "detail-ink",
+        "part": "局部清线与结构补充",
+        "intent": "shoe-right-nail5",
+        "path": "M 342 1145 L 345 1145",
+        "width": 0.4,
+        "taper": [
+          0.25,
+          0.9,
+          0.15
+        ],
+        "color": "#715666",
+        "pressureFloor": 0.1
+      }
+    ]
+  }
+]

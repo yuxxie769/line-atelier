@@ -43,3 +43,10 @@ test('reference reconstruction generates valid strokes that depend on image pixe
 });
 
 test('vector masks and layer compositing survive import and reject broken references',()=>{const d=blankDocument();d.layers.push({id:'shade',name:'阴影',blend:'multiply',clipTo:'paper'});d.masks=[{id:'selection',polygons:[[[0,0],[40,0],[40,40],[0,40]]]}];d.commands=[{points:[[10,10],[50,10]],mask:'selection',layer:'shade'}];const v=validateDocument(d);assert.equal(v.layers[1].blend,'multiply');assert.equal(v.commands[0].mask,'selection');assert.deepEqual(v.masks[0].polygons,d.masks[0].polygons);assert.throws(()=>validateDocument({...d,masks:[]}),/选区不存在/);assert.throws(()=>validateDocument({...d,layers:[{id:'paper',clipTo:'shade'},d.layers[1]]}),/下方/);});
+
+test('continuous cubic paths retain stable identity, part metadata and tapered pressure',()=>{
+ const d=blankDocument();d.commands=[{id:'eye',path:'M 10 20 C 20 5 30 5 40 20 Q 30 30 20 20',taper:[.1,.9,.2],part:'face',intent:'upper lid'}];
+ const a=validateDocument(d),b=validateDocument(JSON.parse(JSON.stringify(a)));assert.equal(b.commands[0].id,'eye');assert.equal(b.commands[0].part,'face');assert.equal(b.commands[0].points[0][2],.1);assert.equal(b.commands[0].points.at(-1)[2],.2);assert.ok(b.commands[0].points.some(p=>p[2]===.9));
+ assert.throws(()=>validateBatch([{id:'eye',path:'M 0 0 L 2 2'}],a),/ID/);
+ assert.throws(()=>validateBatch([{path:'M 0 0 L 2 2 M 3 3 L 4 4'}],blankDocument()),/落笔/);
+});
