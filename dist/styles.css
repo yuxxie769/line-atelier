@@ -40,5 +40,7 @@
 .stage-view-pictures figcaption{font-size:12px;color:#60717a;padding:12px}
 .stage-view-pictures img,.stage-view-pictures canvas{width:100%;height:58vh;object-fit:contain;display:block;background:#fff}
 .stage-view-pictures.mirrored img,.stage-view-pictures.mirrored canvas{transform:scaleX(-1)}
+#paint{visibility:hidden}
+#paint-view{z-index:0;pointer-events:none}
 #stage-view-seek{width:100%}
 @media(max-width:600px){.stage-viewer{padding:14px}.stage-view-pictures{gap:8px}.stage-view-controls select:first-child{width:100%;min-width:0}}

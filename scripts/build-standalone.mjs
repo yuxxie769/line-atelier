@@ -1,2 +1,2 @@
-// Current v4 drawing release. Historical self-contained HTML remains unchanged.
-import './build-r2-standalone.mjs';
+// Current v4 drawing release. Historical R2 standalone stays archived.
+import './build-r3-standalone.mjs';
