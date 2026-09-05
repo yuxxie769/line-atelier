@@ -30,3 +30,15 @@
 
 /* v4 line-work assistance stays separate from the artwork. */
 #diagnostic-overlay{z-index:4;pointer-events:none}.assist-card{margin:16px 0;padding:14px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px}.assist-card>summary{font-size:14px;font-weight:600;cursor:pointer}.assist-card .caption{font-size:13px;line-height:1.65}.assist-card .field-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}.assist-card input[type=number],.assist-card select,.assist-card textarea{width:100%;min-width:0;font-size:14px}.assist-card select{max-width:100%}.assist-card textarea{font-family:var(--mono);padding:8px;border:1px solid var(--line);border-radius:5px;resize:vertical}.assist-card .field-label{font-size:13px;margin:10px 0}.assist-actions{display:flex;align-items:center;justify-content:space-between;gap:6px}.audit-list{max-height:220px;overflow:auto;display:grid;gap:4px}.audit-issue{font-size:13px;text-align:left;padding:8px;background:#f3f6f6;border-radius:4px;overflow-wrap:anywhere}.audit-issue:hover{background:#e2eeee}.assist-card details{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}#pressure-preview{width:100%;height:75px;background:#fafbfb;border:1px solid var(--line);border-radius:6px;margin:8px 0}.assist-card [hidden]{display:none!important}#leak-pick[aria-pressed=true]{background:#0e6e7b;color:white}
+
+/* Saved drawing stages are viewed without changing the active document. */
+.stage-viewer{width:min(980px,96vw);max-height:94vh;overflow:auto;padding:24px}
+.stage-view-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.stage-view-controls select:first-child{flex:1;min-width:240px}
+.stage-view-pictures{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stage-view-pictures figure{margin:0;min-width:0;text-align:center;background:#fff}
+.stage-view-pictures figcaption{font-size:12px;color:#60717a;padding:12px}
+.stage-view-pictures img,.stage-view-pictures canvas{width:100%;height:58vh;object-fit:contain;display:block;background:#fff}
+.stage-view-pictures.mirrored img,.stage-view-pictures.mirrored canvas{transform:scaleX(-1)}
+#stage-view-seek{width:100%}
+@media(max-width:600px){.stage-viewer{padding:14px}.stage-view-pictures{gap:8px}.stage-view-controls select:first-child{width:100%;min-width:0}}

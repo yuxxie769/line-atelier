@@ -1,8 +1,8 @@
-# Line Atelier · v4 结构修订
+# Line Atelier · v4 R2 全新线稿
 
 基于 v4。v5 仅作为流程与区域叠层理念参考。网页不内置模型；支持 WebMCP 的浏览器可让模型直接操作工具，普通浏览器可手动画或使用 JSON 面板。完整工作规范见仓库 `docs/DRAWING_WORKFLOW.md`。
 
-当前作品是 `structure-repair-study.line.json`，下载 `line-atelier-v4-line-tools.html`。717 条记录包含 67 条人体构造线、328 条保留草稿和 322 条清线记录，32 个物体、37 层、8 个检查点。当前处于 `lineart_review` 且结论为 needs-work；上一轮清线通过已撤回。结构修订记录见仓库 `docs/STRUCTURE_REPAIR.md`。
+当前作品为 `line-atelier-v4-r2.line.json`，独立工作台为 `line-atelier-v4-r2.html`。从空白通过浏览器 WebMCP 绘制：448 条经过点笔迹，包含 53 条人体构造、62 条粗稿、68 条细化草稿和 265 条清线；27 个物体、24 层、7 个检查点。当前位于 1F `lineart_review`，revision 38 的两轮正式审核有效，尚未上色。过程和质量边界见 [r2-drawing-notes.md](r2-drawing-notes.md)。旧结构修订稿另保留，不作为本轮绘画源。
 
 正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、1F 两轮审核、九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
 
@@ -167,4 +167,4 @@ compact 仅省略有源几何的笔迹采样缓存，导入时根据源几何重
 新增工具为 `paint_scan_gaps`、`paint_preview_leak`、`paint_get_diagnostics`、`paint_clear_diagnostics`、`paint_edit_pressure`。页面 JSON 面板同步支持 scan_gaps、preview_leak、edit_pressure、clear_diagnostics action。
 
 
-新画布默认 1200 × 1600；PNG 导出默认 2×，从几何重新渲染，最长边 4096。当前参考工程坐标不变，2× 输出 1172 × 2496。完整说明见 drawing-tools.md。
+新画布默认 1200 × 1600；PNG 导出默认 2×，从几何重新渲染，最长边 4096。R2 画布为 938 × 1997，2× 输出 1876 × 3994。旧工程坐标保持不变。完整说明见 drawing-tools.md。
