@@ -1,14 +1,16 @@
-# Line Atelier · v4 结构修形与清线
+# Line Atelier · v4 人体先行与全身清线
 
 基于 v4。v5 仅作为流程与区域叠层理念参考。网页不内置模型；支持 WebMCP 的浏览器可让模型直接操作工具，普通浏览器可手动画或使用 JSON 面板。完整工作规范见仓库 `docs/DRAWING_WORKFLOW.md`。
 
-**当前作品为细化中的习作，含局部清线试片，不是全身精细线稿成品。** 新文件为 `line-atelier-v4-refine-20260905.html`。353 条记录包含保留的粗稿及 32 条新清线试画；三个检查点分别保存原 v4 粗稿、小腿修稿和局部试片。
+当前作品是 `body-first-study.line.json`，可下载 `line-atelier-v4-body-first-full-lineart.html`。652 条记录包含 29 条人体构造线、328 条保留草稿和 295 条全身独立清线，6 个检查点保留旧稿、结构重画及全身终审。最终阶段为 `lineart_review`；本轮结构与清线检查完成，不代表已经达到原视频的商业插画精度。
 
 ## 绘画纪律
 
 完整线稿 → 头发大色块 → 皮肤底色 → 服装大色块 → 配饰／鞋履底色 → 覆盖阴影 → 高光与整理 → 局部复核。
 
 线稿内部：`layout` 整体定位 → `rough` 完整粗稿 → `structure_review` 结构修稿与全身复核 → `refine` 细化草稿 → `clean` 独立清线 → `lineart_review` 清线后的全身复核。
+
+先建立衣物下的完整人体：头、胸廓、骨盆、肩肘腕、髋膝踝以及足部的落点，再围绕人体画衣服、头发和配饰。人体构造层保留为辅助，最终隐藏。
 
 每个物体也从大形到细节。画完一个小结构就看画布、同位置参考和相邻结构；先修比例和体积，再处理线条轻重、接头和闭合。粗稿允许试探，清线需要选择和重画，不是把所有旧线统一描深。二次元比例以参考风格为准，不套用固定头身比。
 
@@ -80,7 +82,7 @@ frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0
 - `paint_preview_revision({replace:[{id:"cheek-left",through:[...]}],region:[200,220,150,110],scale:3})`：不修改工程的候选试画。可比较 2–3 个方案，查看后用 `paint_revise` 提交选中的方案。
 - `paint_revise({replace:[{id:"cheek-left",through:[...]}],note:"具体修订理由"})`：保留 ID 与顺序替换。也支持 remove ID 列表及 insert `{beforeId,commands}`。整个批次先验证，失败时原画布不变。
 
-闭合的不可见边界使用 scene.regions，每项包含 `id,objectId,through`，可选 space/corners/purpose。遮挡使用 `occlusions:[{id,regionId,back,note}]`；region 所属对象是前景，back 是后景对象。在纯线稿中也会隐藏后方笔迹，不需要先涂底色。本轮用它解决了加宽小腿后尾巴穿线的问题。
+闭合的不可见边界使用 scene.regions，每项包含 `id,objectId,through`，可选 space/corners/purpose。遮挡使用 `occlusions:[{id,regionId,back,note}]`；region 所属对象是前景，back 是后景对象。在纯线稿中也会隐藏后方笔迹，不需要先涂底色。本轮用它处理双腿和鞋遮住尾巴、主发束遮住后卷、发饰遮住发线。
 
 透明镜片不能作为不透明遮挡；镜框与镜片应为不同对象。区域及遮挡由模型明确组织，不能来自参考像素的自动分割。它们独立于图层显隐：隐藏前景线层不会自动移除其物体遮挡；查看被挡原线时需显式改关系或查看旧检查点。
 
@@ -116,6 +118,14 @@ frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0
 
 ## 文件
 
-`paint_export_document` 返回完整工程。PNG 只含当前绘画；JSON 含源几何、图层、对象、复核与检查点，参考图单独保存在当前浏览器。原 v4 草稿保留在 `lineart-study.line.json`，当前示例为 `refine-study.line.json`。
+`paint_export_document` 返回可编辑工程。大工程通过分页读取，避免几何与历史检查点合并后超过浏览器消息限制：
 
-当前仍需继续：手掌与指根体积、刘海与镜片交接、全身细化及独立清线、最终全身复核。禁止先上色掩盖这些未完成的工作。
+1. `paint_export_document({section:"manifest"})` 获取场景、图层、复核和检查点清单。
+2. `paint_export_document({section:"commands",offset:0,limit:80,compact:true})` 获取笔迹；按 `nextOffset` 继续。每页 revision 必须与 manifest 相同，否则重新导出。
+3. 对每个检查点用相同方法附加 `checkpointId` 读取，再组装为该检查点的 doc。
+
+compact 仅省略有源几何的笔迹采样缓存，导入时根据源几何重算；旧笔迹的采样点完整保留。页面的 JSON 下载仍直接导出完整工程。PNG 只包含当前可见绘画，参考图片单独保存。
+
+局部复核窗口保留线稿和原图的全身对照，位置框与图片同步翻转。优先使用“髋—膝—踝—足”预设检查整条腿和鞋；不能只截出小腿判断。点击“整图对照”可切换为完整画面。
+
+下一轮若继续细化，要保持本轮人体与足部关系，重点提高发束曲率、脸手表现和服装线条的审美精度；模型自主观察和选点的规则不变。任何改形都需要重新复核相关局部与整幅。
