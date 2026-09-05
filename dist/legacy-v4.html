@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Line Atelier — AI 绘画工作台</title>
+  <meta name="description" content="让模型用真实笔迹绘画。参考图重绘、逐笔回放、图层、画布反馈与可导出的笔迹工程。">
+  <meta name="theme-color" content="#142b32">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./" aria-label="Line Atelier 首页"><span class="brand-mark">l<span>·</span></span><span>Line <em>Atelier</em></span></a>
+  <div class="top-separator"></div><span class="edition">绘画工作台 <span>04</span></span>
+  <div class="top-actions"><span id="save-status" class="save-state">本机自动保存</span><button id="new-btn" class="quiet" data-icon="plus">新画布</button><button id="import-btn" class="quiet" data-icon="folder">打开工程</button><button id="export-btn" class="export" data-icon="download">导出作品</button></div>
+</header>
+<main class="workspace">
+  <nav class="toolrail" aria-label="绘画工具">
+    <button class="tool active" data-tool="brush" title="画笔 B" aria-label="画笔" aria-pressed="true" data-icon="brush"></button>
+    <button class="tool" data-tool="pencil" title="铅笔 P" aria-label="铅笔" aria-pressed="false" data-icon="pencil"></button>
+    <button class="tool" data-tool="erase" title="橡皮 E" aria-label="橡皮" aria-pressed="false" data-icon="eraser"></button>
+    <div class="rail-rule"></div>
+    <button id="undo" class="tool" title="撤销 Ctrl+Z" aria-label="撤销" data-icon="undo"></button>
+    <button id="redo" class="tool" title="重做 Ctrl+Shift+Z" aria-label="重做" data-icon="redo"></button>
+    <div class="rail-rule"></div>
+    <label class="color-tool" title="画笔颜色"><input id="brush-color" type="color" value="#277f88" aria-label="画笔颜色"><span></span></label>
+    <span id="size-rail" class="rail-meta">6 px</span>
+    <div class="rail-bottom"><button id="help-btn" class="tool" aria-label="使用说明" title="使用说明" data-icon="help"></button></div>
+  </nav>
+  <section class="studio" aria-label="绘画画布">
+    <div class="studio-head"><div><input id="doc-title" aria-label="作品名称" value="潮汐 · 笔迹练习" maxlength="100"><span id="doc-kind">程序笔迹示例</span></div><div class="view-actions"><button id="reference-toggle" class="small-button" title="叠加参考图" aria-pressed="false" disabled data-icon="image">参考图</button><button id="fit-btn" class="small-button" data-icon="maximize">适应</button><select id="view-zoom" aria-label="画布缩放"><option value="0">适应</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option></select><span id="zoom-label">100%</span></div></div>
+    <div class="canvas-viewport" id="viewport"><div id="paper-shell" class="paper-shell"><canvas id="paint" aria-label="绘画作品"></canvas><img id="reference-overlay" alt="叠加参考图" hidden><canvas id="input-canvas" aria-label="在此用鼠标或触笔绘画"></canvas><div id="brush-tip" hidden></div></div><div class="canvas-corner">CANVAS / <span id="dimensions">800 × 1000</span></div><span class="canvas-origin">每一笔，都有迹可循。</span></div>
+    <div class="playback">
+      <div class="playback-main"><button id="step" class="step-button" title="按 1 倍速画完下一笔">下一笔</button><button id="play" class="play-button" data-icon="play">播放过程</button><div class="timeline"><div class="timeline-labels"><span id="current-stage">路径骨架</span><span><b id="percent">100</b>%</span></div><input id="seek" type="range" min="0" max="1000" value="1000" aria-label="绘画回放进度"><div id="stage-ticks" class="stage-ticks"></div></div><label class="speed-label"><span class="sr-only">回放速度</span><select id="speed"><option value=".25">0.25×</option><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option><option value="12">12×</option><option value="40">40×</option><option value="80">80×</option></select></label><button id="finish" class="icon-button" title="显示完成作品" aria-label="显示完成作品" data-icon="skip"></button></div>
+      <div class="playback-meta"><span id="playback-status">点击播放，观察线条如何逐段延伸</span><span><b id="stroke-count">0</b> 笔 / <span id="point-count">0</span> 个轨迹点</span></div>
+    </div>
+  </section>
+  <aside class="inspector">
+    <div class="tabs" role="tablist" aria-label="工作面板"><button id="tab-paint" role="tab" aria-controls="panel-paint" aria-selected="true" data-tab="paint">绘画</button><button id="tab-reference" role="tab" aria-controls="panel-reference" aria-selected="false" data-tab="reference">参考图</button><button id="tab-agent" role="tab" aria-controls="panel-agent" aria-selected="false" data-tab="agent">模型</button></div>
+    <div id="panel-paint" class="panel" role="tabpanel" aria-labelledby="tab-paint">
+      <div class="demo-note"><span>角色 · 分层笔刷 v4</span><p>先起稿，再完整铺色；头发、衣褶和五官分开塑形。草稿、底色、阴影、亮部、线稿可独立显示。1×看落笔，40×看全程。载入可撤销。</p><button id="demo-btn" class="text-button">载入曲线练习 <span>↗</span></button><button id="study-btn" class="text-button">载入 v4 分层绘画 <span>↗</span></button><a class="text-button" href="./method-notes.md" target="_blank" rel="noopener">视频观察与 v4 改动 ↗</a></div>
+      <div class="section-title"><h2>绘画过程</h2><span id="stage-count" class="meta">04 STAGES</span></div>
+      <div id="stages" class="stages"></div>
+      <div class="section-title divided"><h2>笔刷</h2><span id="tool-name" class="meta">画笔</span></div>
+      <label class="range-label">粗细 <output id="brush-size-value">6 px</output><input id="brush-size" type="range" min="1" max="100" value="6"></label>
+      <label class="range-label">不透明度 <output id="brush-opacity-value">100%</output><input id="brush-opacity" type="range" min="5" max="100" value="100"></label>
+      <div class="palette" id="palette" aria-label="常用颜色"></div>
+      <div class="section-title divided"><h2>图层</h2><button id="add-layer" class="icon-button" title="添加图层" aria-label="添加图层" data-icon="plus"></button></div>
+      <div id="layers" class="layers"></div><label class="field-label">当前图层混合<select id="layer-blend"><option value="source-over">正常</option><option value="multiply">正片叠底 · 阴影</option><option value="screen">滤色 · 亮部</option></select></label><label class="range-label">图层不透明度 <output id="layer-opacity-value">100%</output><input id="layer-opacity" type="range" min="0" max="100" value="100"></label><p class="caption" id="mask-count">0 个边界选区</p>
+      <div class="section-title divided"><h2>当前笔迹</h2><span id="command-type" class="meta">STROKE</span></div><pre id="live-code" class="live-code">等待绘图指令</pre>
+
+    </div>
+    <div id="panel-reference" class="panel" role="tabpanel" aria-labelledby="tab-reference" hidden>
+      <div class="section-title"><h2>从一张图开始</h2><span class="meta">REFERENCE</span></div><p class="panel-copy">上传参考图，让模型分析，或先体验逐笔重绘。</p>
+      <label id="dropzone" class="dropzone"><input id="reference-file" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only"><span data-icon="image"></span><strong>选择或拖入参考图</strong><span>PNG、JPG、WebP · 最大 12 MB</span></label>
+      <div id="reference-card" hidden><img id="reference-preview" alt="参考图片预览"><div class="reference-caption"><span id="reference-name"></span><button id="remove-reference" class="icon-button" aria-label="移除参考图" data-icon="x"></button></div></div>
+      <label class="range-label">参考图叠加透明度 <output id="reference-opacity-value">25%</output><input id="reference-opacity" type="range" min="0" max="100" value="25"></label>
+      <div class="section-title divided"><h2>分层铺色 · v4</h2><span class="meta">MATERIAL</span></div><p class="panel-copy">先用宽笔铺满色块，再增加阴影和亮部。边界选区保护轮廓，每一笔仍沿路径绘制。透明背景保持留白。</p><label class="field-label">绘制内容<select id="material-mode"><option value="base">底色 · 正常图层</option><option value="shade">阴影 · 正片叠底图层</option><option value="light">亮部 · 滤色图层</option></select></label><label class="field-label">笔刷尺寸<select id="material-brush"><option value="24">24 px · 大块铺色</option><option value="12">12 px · 塑形</option><option value="5">5 px · 细化</option></select></label><button id="material-pass-btn" class="primary full">追加分层笔迹</button><p class="caption">选中对应图层后使用。模型可指定部位和运笔曲线。图像分析在本地完成，过程可撤销。</p><details class="legacy-tools"><summary>上一版顺形笔触 · 对照用</summary><div class="section-title divided"><h2>顺形笔触</h2><span class="meta">BRUSH PATHS</span></div><p class="panel-copy">沿图像边缘画连贯曲线。模型可进一步指定发束、衣袖等部位的运笔方向。每一笔至少 6 px。</p><label class="field-label">笔刷尺寸<select id="form-brush"><option value="12">12 px · 铺色</option><option value="6" selected>6 px · 塑形</option><option value="2">2 px · 细化</option></select></label><button id="form-pass-btn" class="primary full">追加顺形笔迹</button><p class="caption">需在“模型”面板允许读取参考图。此按钮使用通用方向，模型可通过 paint_form_pass 指定曲线。</p>
+      </details><details class="legacy-tools"><summary>旧版扫描临摹 · 对照用</summary>
+      <div class="section-title divided"><h2>笔刷重绘</h2></div><p class="panel-copy">分析原图颜色与边缘，生成可回放的笔触。此模式使用本地算法，不调用 AI。</p>
+      <label class="field-label">精细程度<select id="trace-detail"><option value="4">轻量 · 更少笔触</option><option value="2" selected>精细 · 更多细节</option></select></label>
+      <button id="trace-btn" class="primary full" disabled data-icon="wand">生成重绘笔迹</button><button id="trace-cancel" class="secondary full" hidden>取消生成</button><p id="trace-status" class="caption" aria-live="polite">上传后可开始。重绘将替换当前笔迹，可撤销。</p>
+      <div class="section-title divided"><h2>分批临摹</h2></div><p class="panel-copy">模型可选择区域、笔刷间距和绘画阶段，逐批调用参考图取色与描线工具。也可在这里手动试一批。</p><label class="field-label">临摹步骤<select id="pass-mode"><option value="outline">轮廓 · 2 px</option><option value="color">底色 · 5 px</option></select></label><button id="pass-btn" class="secondary full">追加这一批笔迹</button><p class="caption">使用当前绘画阶段；在“模型”面板允许读取参考图后可用。</p>
+      </details>
+    </div>
+    <div id="panel-agent" class="panel" role="tabpanel" aria-labelledby="tab-agent" hidden>
+      <div class="section-title"><h2>交给模型绘画</h2><span class="meta">AGENT</span></div>
+      <div class="connection-status"><span id="connection-icon" data-icon="link"></span><div><strong id="connection-label">模型操作接口</strong><p id="connection-description">正在检测浏览器支持</p></div></div>
+      <label class="field-label">绘画要求<textarea id="brief" rows="3" placeholder="例如：参考这张图，先画轮廓，再铺底色，最后补充头发的阴影。"></textarea></label>
+      <label class="check-label"><input id="share-reference" type="checkbox">允许模型读取已上传的参考图</label>
+      <button id="copy-brief" class="primary full" data-icon="copy">复制给模型的指令</button>
+      <p class="caption">将指令交给能操作浏览器的模型。此网页不内置模型，也不会自行发送图片到外部服务。</p>
+      <div class="section-title divided"><h2>提交绘图指令</h2><button id="sample-json" class="text-button">载入示例</button></div>
+      <form id="command-form"><label class="sr-only" for="commands">绘图指令 JSON</label><textarea id="commands" class="code-input" rows="8" spellcheck="false" placeholder='{"commands":[{"type":"stroke","color":"#277f88","width":4,"points":[[100,100],[200,200]]}]}'></textarea><label class="check-label"><input id="animate-submit" type="checkbox" checked>逐笔播放提交的指令</label><button id="submit-commands" type="submit" class="secondary full" data-icon="play">执行指令</button></form>
+      <output id="command-result" class="result" aria-live="polite"></output>
+      <div class="agent-actions"><button id="snapshot-btn" class="text-button" data-icon="image">画布快照</button><button id="api-btn" class="text-button" data-icon="code">接口说明</button></div>
+      <div class="section-title divided"><h2>操作记录</h2><span id="log-count" class="meta">0</span></div><ol id="agent-log" class="agent-log"><li>等待模型或指令操作</li></ol>
+    </div>
+  </aside>
+</main>
+<footer class="statusbar"><span><span class="status-dot"></span><span id="activity">画板就绪</span></span><span id="position">X — / Y —</span><span>逐笔绘制 · 可编辑 · 可回放</span><span class="footer-end">LINE ATELIER · v4</span></footer>
+<dialog id="new-dialog"><form id="new-form"><div class="dialog-heading"><div><span class="eyebrow">A FRESH START</span><h2>新的画布</h2></div><button type="button" class="icon-button" data-close data-icon="x" aria-label="关闭"></button></div><label class="field-label">作品名称<input id="new-title" value="未命名习作" maxlength="100"></label><div class="field-row"><label class="field-label">宽度<input id="new-width" type="number" min="64" max="2048" value="800" required></label><label class="field-label">高度<input id="new-height" type="number" min="64" max="2048" value="1000" required></label></div><label class="field-label">纸张颜色<input id="new-background" type="color" value="#ffffff"></label><p class="caption">当前画布可通过撤销恢复，也可先导出工程。</p><button class="primary full" type="submit">创建画布</button></form></dialog>
+<dialog id="export-dialog"><div class="dialog-heading"><div><span class="eyebrow">KEEP YOUR MARKS</span><h2>导出作品</h2></div><button class="icon-button" data-close data-icon="x" aria-label="关闭"></button></div><button id="download-png" class="export-option"><span data-icon="image"></span><span><strong>作品 PNG</strong><small>导出当前显示的画布，不包含参考图叠加</small></span><span data-icon="download"></span></button><button id="download-json" class="export-option"><span data-icon="code"></span><span><strong>笔迹工程 JSON</strong><small>保留全部笔迹、图层和阶段，可重新打开</small></span><span data-icon="download"></span></button><p class="caption">工程文件不包含参考图片。参考图单独保存在此设备的浏览器中。</p></dialog>
+<dialog id="help-dialog" class="wide-dialog"><div class="dialog-heading"><div><span class="eyebrow">HOW TO PAINT</span><h2>使用绘画工作台</h2></div><button class="icon-button" data-close data-icon="x" aria-label="关闭"></button></div><div class="help-grid"><section><h3>自己画</h3><p>选择画笔、颜色和粗细后直接落笔。鼠标、触屏与触笔均可使用。每一笔都会被记录。</p></section><section><h3>从参考图重绘</h3><p>在参考图面板上传图片，生成本地重绘笔迹，再用时间轴观察过程。这是算法重绘，不是模型推理。</p></section><section><h3>让模型画</h3><p>在模型面板填写要求并复制指令。支持 WebMCP 的浏览器代理可直接调用工具；其他模型可生成 JSON，再提交执行。</p></section><section><h3>保存过程</h3><p>当前工程在此浏览器自动保存。导出 JSON 可以备份或换设备继续；PNG 导出当前画面。</p></section></div><p class="caption">快捷键：B 画笔 · P 铅笔 · E 橡皮 · 空格 播放/暂停 · Ctrl/⌘ Z 撤销</p><a class="text-button" href="./agent-guide.md" target="_blank" rel="noopener">完整模型接口说明 ↗</a></dialog>
+<dialog id="api-dialog" class="wide-dialog"><div class="dialog-heading"><div><span class="eyebrow">MODEL INTERFACE</span><h2>模型可以怎样操作</h2></div><button class="icon-button" data-close data-icon="x" aria-label="关闭"></button></div><p>先读取状态，再提交一批笔迹；查看快照后继续。图层和阶段的 ID 以当前状态返回值为准。</p><pre class="api-code">await window.paint.submit({
+  commands: [{
+    type: "bezier", layer: "paper", stage: "sketch",
+    color: "#277f88", width: 4,
+    control: [[100,100],[200,60],[240,220],[350,260]]
+  }], animate: true
+});
+await window.paint.snapshot();</pre><p>支持 stroke、bezier、erase、fill。WebMCP 工具会在支持的浏览器中自动注册；JSON 表单始终可用。网页不会在后台连接模型。</p><a href="./agent-guide.md" target="_blank" rel="noopener" class="text-button">打开完整接口说明 ↗</a></dialog>
+<dialog id="snapshot-dialog" class="snapshot-dialog"><div class="dialog-heading"><h2>当前画布快照</h2><button class="icon-button" data-close data-icon="x" aria-label="关闭"></button></div><img id="snapshot-image" alt="当前绘画结果快照"><p class="caption">仅绘画内容；模型可使用 paint_snapshot 获取同样的图像。</p></dialog>
+<input id="project-file" type="file" accept="application/json,.json" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./app.js"></script>
+</body></html>

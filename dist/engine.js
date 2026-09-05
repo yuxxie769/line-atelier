@@ -31,6 +31,7 @@ export class PaintEngine extends EventTarget {
   seek(progress){this.pause();this.renderTo(progress*this.index.total);}
   finish(){this.pause();this.renderTo(this.index.total);}
   getTip(){if(!this.playing)return null;const c=this.doc.commands[this.commandIndex],g=this.geometry[this.commandIndex];if(!c||this.unitIndex>=g.drawingUnits)return null;const p=this.positionAt(g,Math.min(g.length,this.unitIndex*PIXELS_PER_UNIT)).point;return {x:p[0],y:p[1],width:c.width*((c.pressureFloor??.2)+(1-(c.pressureFloor??.2))*p[2]),color:c.color};}
+  updateLayer(id,properties){const layer=this.doc.layers.find(l=>l.id===id);if(!layer)throw Error('图层不存在');this.remember();this.pause();Object.assign(layer,properties);this.composite();this.emit('change');}
   mutate(fn){this.remember();this.pause();fn(this.doc);this.load(this.doc);}
   snapshot(maxSize=768){const s=Math.min(1,maxSize/Math.max(this.doc.width,this.doc.height));const c=document.createElement('canvas');c.width=Math.round(this.doc.width*s);c.height=Math.round(this.doc.height*s);c.getContext('2d').drawImage(this.canvas,0,0,c.width,c.height);return {dataUrl:c.toDataURL('image/png'),width:c.width,height:c.height,documentWidth:this.doc.width,documentHeight:this.doc.height,progress:this.state().progress};}
 }

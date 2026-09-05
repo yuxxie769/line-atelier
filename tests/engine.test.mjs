@@ -29,3 +29,11 @@ test('a two-point long stroke visibly advances by distance and holds a separate 
 });
 
 test('one translucent stroke commits opacity once, independent of segment count',async()=>{const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{points:[[10,10],[100,10],[100,90]],opacity:.4}],{animate:false});const commits=e.surfaces.get('paper').ctx.ops;assert.equal(commits.length,1);assert.equal(commits[0].opacity,.4);assert.ok(commits[0].source.every(op=>op.opacity===1));});
+
+test('layer visibility reuses painted surfaces and preserves the replay cursor',async()=>{
+ const e=new PaintEngine(new Canvas(),blankDocument());await e.submit([{points:[[10,10],[210,10]],width:4}],{animate:false});e.seek(.3);
+ const cursor=e.cursor,surfaces=e.surfaces,geometry=e.geometry,paint=structuredClone(states(e));
+ e.load=()=>assert.fail('visibility must not reload or replay the document');
+ e.updateLayer('paper',{visible:false});e.updateLayer('paper',{visible:true,opacity:.6});
+ assert.equal(e.cursor,cursor);assert.equal(e.surfaces,surfaces);assert.equal(e.geometry,geometry);assert.deepEqual(states(e),paint);
+});
