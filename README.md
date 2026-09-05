@@ -1,4 +1,4 @@
-# Line Atelier · v4 结构修订
+# Line Atelier · v4 清线工具
 
 模型通过浏览器 WebMCP 提交自己选定的连续笔迹，画板执行、保留几何并逐笔回放。基于 v4；v5 只参考作画流程和区域叠层理念。
 
@@ -6,6 +6,8 @@
 
 本轮撤回此前的清线通过判断，针对人体体块、袖口返回边、耳根冠发、颈肩、悬空接头及脚鞋混淆实际改线。脚皮肤、鞋帮、足床和两只袖体独立组织。当前为结构修订稿，清线复核 **needs-work**，没有开始上色。
 
+- [清线工具、压感与分辨率说明](docs/DRAWING_TOOLS.md)
+- [用户确认的工作流与质量标准](docs/WORKFLOW_PRINCIPLES.md)
 - [完整工作规范](docs/DRAWING_WORKFLOW.md)
 - [本轮检讨、教程与验证](docs/STRUCTURE_REPAIR.md)
 - [WebMCP 接口说明](dist/agent-guide.md)

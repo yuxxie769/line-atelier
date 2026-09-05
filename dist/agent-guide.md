@@ -2,7 +2,9 @@
 
 基于 v4。v5 仅作为流程与区域叠层理念参考。网页不内置模型；支持 WebMCP 的浏览器可让模型直接操作工具，普通浏览器可手动画或使用 JSON 面板。完整工作规范见仓库 `docs/DRAWING_WORKFLOW.md`。
 
-当前作品是 `structure-repair-study.line.json`，下载 `line-atelier-v4-structure-repair.html`。717 条记录包含 67 条人体构造线、328 条保留草稿和 322 条清线记录，32 个物体、37 层、8 个检查点。当前处于 `lineart_review` 且结论为 needs-work；上一轮清线通过已撤回。结构修订记录见仓库 `docs/STRUCTURE_REPAIR.md`。
+当前作品是 `structure-repair-study.line.json`，下载 `line-atelier-v4-line-tools.html`。717 条记录包含 67 条人体构造线、328 条保留草稿和 322 条清线记录，32 个物体、37 层、8 个检查点。当前处于 `lineart_review` 且结论为 needs-work；上一轮清线通过已撤回。结构修订记录见仓库 `docs/STRUCTURE_REPAIR.md`。
+
+正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、三轮审核、九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
 
 ## 绘画纪律
 
@@ -136,3 +138,33 @@ compact 仅省略有源几何的笔迹采样缓存，导入时根据源几何重
 `paint_check_connections({objectId:"right-arm",tolerance:1.25,limit:80})` 只检查可见清线已声明相接或遮挡的端点，返回坐标、距离和邻近笔迹。省略 objectId 检查全图。开放的发丝、衣褶和缝线另计，仍须目视检查；隐藏线不能充当可见接头。该工具不修改几何，不输入参考像素，也不自动判定艺术质量。页面有同名检查入口，可点提示进入局部对照。
 
 最新有效的全身 needs-work 会撤回旧 pass，即使没有改坐标也会阻止上色。不能为了继续流程而伪造通过记录。脚皮肤、鞋帮、足床及两只衣袖均有独立对象与图层；绘画时要延续这些真实结构关系，不能只修改标签。
+
+
+## 新增清线工具与分辨率
+
+
+
+1. 读取 `paint_get_state`、`paint_get_scene`，确认图层、阶段与坐标。
+2. `paint_playback({action:"finish"})` 显示全部笔迹。
+3. `paint_scan_gaps({maxGap:10,angle:65,limit:120,subphases:["clean"]})`。
+4. `paint_preview_leak({seed:[x,y],targets:[[outsideX,outsideY]],threshold:24})`。
+5. `paint_get_diagnostics({includeImage:true,region:[x,y,w,h],scale:2})` 查看带标注局部；另看原图和全身。
+6. 用 `paint_revise` 修形或补线；用 `paint_edit_pressure` 修改轻重。
+7. 修改后重新检查，记录实际观察，不把工具返回成功当作线稿通过。
+
+局部线宽示例：
+
+```json
+{
+  "ids": ["existing-stroke-id"],
+  "range": [0.3,0.6],
+  "factor": 1.5,
+  "feather": 0.05,
+  "note": "加强这个接触边缘的中段，保留两端轻线和原有形状"
+}
+```
+
+新增工具为 `paint_scan_gaps`、`paint_preview_leak`、`paint_get_diagnostics`、`paint_clear_diagnostics`、`paint_edit_pressure`。页面 JSON 面板同步支持 scan_gaps、preview_leak、edit_pressure、clear_diagnostics action。
+
+
+新画布默认 1200 × 1600；PNG 导出默认 2×，从几何重新渲染，最长边 4096。当前参考工程坐标不变，2× 输出 1172 × 2496。完整说明见 drawing-tools.md。
