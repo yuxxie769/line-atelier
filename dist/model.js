@@ -1,5 +1,5 @@
 // Pure document model. Every visible mark is reconstructible from these records.
-export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048};
+export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000};
 const color = /^#[0-9a-f]{6}$/i;
 export function number(value, min, max, label) {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < min || value > max) throw Error(`${label} 必须在 ${min}–${max} 之间`);
@@ -33,7 +33,8 @@ export function validateBatch(input, doc, defaults={}) {
     if(!Array.isArray(points)||points.length<(type==='fill'?3:1)||points.length>4096)throw Error('每笔需要 1–4096 个坐标点（填色至少 3 点）');
     points=points.map(p=>{if(!Array.isArray(p)||p.length<2)throw Error('坐标格式为 [x,y] 或 [x,y,pressure]');const a=[number(p[0],-doc.width,doc.width*2,'x'),number(p[1],-doc.height,doc.height*2,'y')];if(p.length>2)a.push(number(p[2],0,1,'pressure'));return a;});
     total+=points.length;if(total>LIMITS.points)throw Error('轨迹点数量超过上限');
-    return {id:raw.id||`c-${Date.now()}-${doc.commands.length+i}`,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed};
+    if(raw.mask&&!doc.masks?.some(m=>m.id===raw.mask))throw Error(`选区不存在：${raw.mask}`);
+    return {id:raw.id||`c-${Date.now()}-${doc.commands.length+i}`,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{})};
   });
   return commands;
 }
@@ -45,10 +46,14 @@ export function validateDocument(raw) {
   if(!Array.isArray(raw.layers)||!raw.layers.length||raw.layers.length>12)throw Error('需要 1–12 个图层');
   if(!Array.isArray(raw.stages)||!raw.stages.length||raw.stages.length>24)throw Error('需要 1–24 个绘画阶段');
   const ids=new Set();const safeId=id=>{if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,64}$/.test(id)||ids.has(id))throw Error('ID 重复或格式错误');ids.add(id);return id;};
-  const layers=raw.layers.map(l=>({id:safeId(l.id),name:String(l.name||'图层').slice(0,60),visible:l.visible!==false,opacity:number(l.opacity??1,0,1,'图层透明度'),locked:!!l.locked}));
+  const layers=raw.layers.map(l=>{if(l.blend&&!['source-over','multiply','screen'].includes(l.blend))throw Error('不支持的图层混合模式');return {id:safeId(l.id),name:String(l.name||'图层').slice(0,60),visible:l.visible!==false,opacity:number(l.opacity??1,0,1,'图层透明度'),locked:!!l.locked,blend:l.blend||'source-over',...(l.clipTo?{clipTo:String(l.clipTo)}:{}),...(l.hideAtStage?{hideAtStage:String(l.hideAtStage)}:{})};});
+  layers.forEach((l,i)=>{if(l.clipTo&&!layers.slice(0,i).some(b=>b.id===l.clipTo))throw Error('裁切图层必须引用下方已有图层');});
   ids.clear();const stages=raw.stages.map(s=>({id:safeId(s.id),name:String(s.name||'阶段').slice(0,60),description:String(s.description||'').slice(0,160)}));
+  layers.forEach(l=>{if(l.hideAtStage&&!stages.some(s=>s.id===l.hideAtStage))throw Error('草稿隐藏阶段不存在');});
+  ids.clear();let maskPoints=0;if(raw.masks&&(!Array.isArray(raw.masks)||raw.masks.length>LIMITS.masks))throw Error('选区数量超过上限');
+  const masks=(raw.masks||[]).map(m=>{if(!Array.isArray(m.polygons)||!m.polygons.length)throw Error('选区需要多边形边界');return {id:safeId(m.id),name:String(m.name||'色块选区').slice(0,80),polygons:m.polygons.map(poly=>{if(!Array.isArray(poly)||poly.length<3)throw Error('选区轮廓至少三个点');maskPoints+=poly.length;if(maskPoints>LIMITS.maskPoints)throw Error('选区边界点超过上限');return poly.map(p=>{if(!Array.isArray(p)||p.length!==2)throw Error('选区点需要 [x,y]');return [number(p[0],-width,width*2,'选区 x'),number(p[1],-height,height*2,'选区 y')];});})};});
   if(!Array.isArray(raw.commands)||raw.commands.length>LIMITS.commands)throw Error('笔迹列表格式错误或数量过多');
-  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,commands:[]};
+  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,commands:[]};
   for(let i=0;i<raw.commands.length;i+=LIMITS.batch)doc.commands.push(...validateBatch(raw.commands.slice(i,i+LIMITS.batch),doc,{importing:true}));
   doc.commands.forEach((c,i)=>c.id=`c-${i}`);return doc;
 }

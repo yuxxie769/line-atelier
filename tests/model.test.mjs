@@ -41,3 +41,5 @@ test('reference reconstruction generates valid strokes that depend on image pixe
  const white=new Uint8ClampedArray(pixels.length).fill(255);const blank=run(white);assert.notDeepEqual(result.commands.map(c=>c.color),blank.commands.map(c=>c.color));
  assert.ok(result.stages.every(s=>typeof s.description==='string'));
 });
+
+test('vector masks and layer compositing survive import and reject broken references',()=>{const d=blankDocument();d.layers.push({id:'shade',name:'阴影',blend:'multiply',clipTo:'paper'});d.masks=[{id:'selection',polygons:[[[0,0],[40,0],[40,40],[0,40]]]}];d.commands=[{points:[[10,10],[50,10]],mask:'selection',layer:'shade'}];const v=validateDocument(d);assert.equal(v.layers[1].blend,'multiply');assert.equal(v.commands[0].mask,'selection');assert.deepEqual(v.masks[0].polygons,d.masks[0].polygons);assert.throws(()=>validateDocument({...d,masks:[]}),/选区不存在/);assert.throws(()=>validateDocument({...d,layers:[{id:'paper',clipTo:'shade'},d.layers[1]]}),/下方/);});
