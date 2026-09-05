@@ -1,71 +1,121 @@
-# Line Atelier · v4 线稿研究
+# Line Atelier · v4 结构修形与清线
 
-这是在 v4 工作台上改进的模型绘画接口。v5 仅参考流程和分区叠层理念；当前示例由模型观察参考并分批提交，按最新规范归类为待修正的第一轮结构草稿，尚未完成第一阶段验收。仓库内完整规范为 `docs/DRAWING_WORKFLOW.md`；下列接口说明只描述已实现能力。
+基于 v4。v5 仅作为流程与区域叠层理念参考。网页不内置模型；支持 WebMCP 的浏览器可让模型直接操作工具，普通浏览器可手动画或使用 JSON 面板。完整工作规范见仓库 `docs/DRAWING_WORKFLOW.md`。
 
-## 绘画流程
+**当前作品为细化中的习作，含局部清线试片，不是全身精细线稿成品。** 新文件为 `line-atelier-v4-refine-20260905.html`。353 条记录包含保留的粗稿及 32 条新清线试画；三个检查点分别保存原 v4 粗稿、小腿修稿和局部试片。
+
+## 绘画纪律
 
 完整线稿 → 头发大色块 → 皮肤底色 → 服装大色块 → 配饰／鞋履底色 → 覆盖阴影 → 高光与整理 → 局部复核。
 
-完整线稿内部：整体定位 → 完整粗稿 → 结构修稿与全身复核 → 细化草稿 → 独立精细清线 → 清线后的整体复核。每个物体也从大形到细节推进；每完成一个小部分，查看该部分及相邻结构，修正比例、体积和遮挡。草稿允许试探线和暂未闭合，闭合与线条表现的精修放在细化／清线阶段。清线中发现大形错误，返回结构修稿。
+线稿内部：`layout` 整体定位 → `rough` 完整粗稿 → `structure_review` 结构修稿与全身复核 → `refine` 细化草稿 → `clean` 独立清线 → `lineart_review` 清线后的全身复核。
 
-参考线稿提取已获准仅用来辅助观察。提取结果不直接贴入画布，不自动转换成画布路径、区域或颜色；该参考准备功能当前尚未接入。保持模型观察、组织并提交几何的路线。
+每个物体也从大形到细节。画完一个小结构就看画布、同位置参考和相邻结构；先修比例和体积，再处理线条轻重、接头和闭合。粗稿允许试探，清线需要选择和重画，不是把所有旧线统一描深。二次元比例以参考风格为准，不套用固定头身比。
 
-全身复核须在完整草稿和精细清线结束后分别进行，检查姿态、头身、关节、四肢长宽、负形、遮挡与临摹一致性。重点回查用户指出的画面左侧小腿过细；二次元比例以参考风格为准，人体知识用于检查结构自洽。颜色、草稿和参考关闭后，最终线稿应独立成立。子阶段状态、同步翻转和对象关联编辑仍是待开发能力，不要向当前接口提交不存在的参数。
+参考线稿提取仅用于观察。禁止把提取像素、轮廓或分区自动转换为画布路径、选区和上色轨迹。模型根据观察自行选择几何；算法只负责这些几何的插值、编辑与渲染。上色也应组织连续宽笔与区域叠层，不进行像素差值补丁。
 
-## 连接与观察
+## 先了解工作台与参考
 
-支持的浏览器通过 `document.modelContext.registerTool` 注册 WebMCP 工具。网页本身不调用模型 API；模型在支持 WebMCP 的浏览器里调用这些工具。普通浏览器可以手动画，或通过 JSON 面板及 `window.paint` 接口提交笔迹。
+- `paint_get_state({})`：画布尺寸、工作流、对象、图层、检查点、复核、回放状态。
+- `paint_get_scene({})`：完整对象、锚点、区域、遮挡及基础线端提示。
+- `paint_get_reference({})`：读取已授权参考的缩略图。
+- `paint_prepare_reference({})`：本地提取亮度边缘／局部对比度参考线稿。该滤镜可能包含阴影伪边，不是 Anime2Sketch，不产生任何绘画指令。
+- `paint_snapshot_region({region:[x,y,w,h],scale:3,source:"drawing",mirror:false})`：按目标分辨率重绘几何；不会移动时间轴。`source:"reference"` 裁切原始参考，`"reference-lines"` 裁切提取参考。参考访问需要页面勾选许可。scale 为 0.25–4，单边输出最多 4096 像素。返回坐标换算；翻转不改变文档坐标。
+- `paint_snapshot({maxSize:1024})`：整图缩略图。
 
-- `paint_get_state({})`：读取画布尺寸、当前阶段、图层、参考图权限和绘制状态。坐标始终是画布坐标。
-- `paint_get_reference({})`：读取已允许访问的参考图。
-- `paint_snapshot_region({region:[x,y,width,height],scale:1,source:"drawing"})`：原尺寸截图；`source:"reference"` 读取同位置参考，需要勾选允许读取。`scale:2` 只放大观察，不会创造原图不存在的细节。返回坐标换算。
-- `paint_snapshot({maxSize:1024})`：整图缩略快照。
+经过点、贝塞尔原件会重新采样；旧工程只剩采样点的笔迹按折线重绘，不声称恢复已经丢失的控制点。
 
-## 提交笔迹
+## 建立物体与局部坐标
 
-`paint_submit({commands:[...],animate:true})`。
+`paint_set_scene` 原子替换传入的集合，未传入的集合保留。已有引用的 ID 必须保留。
+
+```json
+{
+  "objects": [
+    {"id":"face","name":"脸部","frame":[200,190,150,140],"phase":"rough"}
+  ],
+  "anchors": [
+    {"id":"chin","objectId":"face","point":[0.48,0.93],"corner":false}
+  ],
+  "note":"观察脸部占位与下巴，建立模型选择的空间坐标"
+}
+```
+
+frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0–1 局部坐标；程序换算为文档坐标。对象 parent 仅表达结构上下文，不叠加另一重变换。锚点可带 `tangent:[dx,dy]` 指定共享切线方向，或 `corner:true` 保留尖角。
+
+对象、图层和时间阶段是三件不同的事。一个物体可以有粗稿、底色、阴影、高光和清线多层；一个发束穿插到不同深度时，应由模型拆成可判断的片段。标签不代表空间判断已经正确。
+
+## 用经过点提交一笔
+
+`paint_submit({commands:[...],animate:true})`；先读取现有 layer/stage ID。
 
 ```json
 {
   "commands": [{
-    "id": "face-jaw-01",
-    "type": "stroke",
-    "layer": "head-ink",
-    "stage": "lineart",
-    "part": "下颌",
-    "intent": "沿下颌转折收笔；在前发遮挡处结束",
-    "path": "M 220 301 C 236 314 255 321 271 323 C 290 317 310 305 324 294",
-    "color": "#715666",
-    "width": 1.2,
-    "taper": [0.2, 0.9, 0.1]
+    "id":"cheek-left",
+    "type":"stroke", "layer":"head-ink", "stage":"lineart",
+    "objectId":"face", "subphase":"refine", "space":"face",
+    "through":[[0.1,0.62,0.4],[0.25,0.8,1],{"anchor":"chin"}],
+    "corners":[], "tension":0.8,
+    "color":"#6b495d", "width":1.1,
+    "endpoints":["occluded","joined"],
+    "intent":"脸颊从手指遮挡处延伸至共享下巴节点"
   }],
-  "animate": true
+  "animate":true
 }
 ```
 
-一条 path 是一次落笔，只允许一个 M，支持绝对坐标 M、L、Q、C、Z。曲线控制点由模型决定，引擎只插值与渲染。`taper` 为起笔、中段、收笔压力。也支持 `points:[[x,y,pressure],...]` 或单段 `control`。笔迹 ID 保存在导出的工程中。
+经过点在曲线上。拟合保留各点，`corners:[索引]` 保留模型标记的转折。点可带压力；也可使用 `taper:[起笔,中段,收笔]` 按弧长分配压力。线条轻重应体现材质、轮廓与遮挡作用，不要每根线都套同一种压力模板。
 
-绘制以真实路径长度推进，有独立抬笔时间。`animate:false` 立即执行所提交的笔迹；之后仍可逐段回放这些笔迹。回放是已记录操作的重放，不表示模型在播放期间重新推理。
+仍支持 `path`（绝对 M/L/Q/C/Z，一条 path 只能有一次 M）、`control` 和手动 `points`。每次提交保留原始几何及稳定 ID。`closed` 用于模型明确选择的闭合曲线，不要给衣褶、发丝或遮挡处开放线强制闭合。`endpoints` 可为 open / occluded / joined / corner / contact。
 
-## 检查与修正
+回放沿弧长逐段运笔，有独立抬笔时间。`animate:false` 立即显示已提交的笔迹，之后仍可回放。播放期间不会重新调用模型推理。
 
-每完成一个有意义的小部分，`paint_playback({action:"finish"})`，查看该部分、同位置参考和相邻结构，再决定下一批。先修大形，再细化线条。粗稿与清线都执行这个循环；画遍全身不能代替整体复核。可用 note 记录阶段、对象、具体观察、问题、修订 ID 和修后复查结论。
+## 局部修形、候选与遮挡
 
-- `paint_get_strokes({region:[x,y,w,h],layer:"head-ink",limit:200})` 找到待修改的 ID 和轨迹。可按 part 或 ids 筛选。
-- `paint_revise({replace:[{id:"face-jaw-01",path:"M ...",width:1.1}],note:"说明实际观察到的问题"})` 替换指定笔迹，不更换其 ID 或绘制顺序。remove 为 ID 列表；insert 为 `{beforeId,commands}` 列表。整个批次先验证，失败不修改画布；成功只重绘受影响图层。会先完成正在播放的已提交笔迹。
-- `paint_record_review({region:[x,y,w,h],note:"实际观察",kind:"observation"})` 保存观察；`lineart-checkpoint` 表示人工或模型记录的检查节点，不是自动质量评分。请在 note 明确是草稿复核还是清线终审，不能把记录存在视为验收通过。
-- `paint_undo({})` 撤销最近操作。
+- `paint_get_strokes({objectId:"face",limit:200})`：读取笔迹 ID、原几何、采样结果、意图。也可按 region、layer、part、ids 筛选。
+- `paint_edit_geometry({id:"cheek-left",index:1,point:[0.27,0.79,1],note:"修正脸颊中段弧度"})`：只移动一个源点，坐标仍属于原空间。
+- `paint_edit_geometry({anchorId:"chin",point:[0.5,0.92],note:"调整下巴，保留相接关系"})`：共享点关联曲线一起更新。不要对引用锚点的槽位单独覆盖。
+- `paint_edit_geometry({id:"cheek-left",trim:[0.05,0.95],note:"两端进入遮挡，保留中段"})`：按源曲线弧长裁切可见区间，保留源几何；这与把两段硬接起来不同。
+- `paint_preview_revision({replace:[{id:"cheek-left",through:[...]}],region:[200,220,150,110],scale:3})`：不修改工程的候选试画。可比较 2–3 个方案，查看后用 `paint_revise` 提交选中的方案。
+- `paint_revise({replace:[{id:"cheek-left",through:[...]}],note:"具体修订理由"})`：保留 ID 与顺序替换。也支持 remove ID 列表及 insert `{beforeId,commands}`。整个批次先验证，失败时原画布不变。
 
-## 部位与叠层
+闭合的不可见边界使用 scene.regions，每项包含 `id,objectId,through`，可选 space/corners/purpose。遮挡使用 `occlusions:[{id,regionId,back,note}]`；region 所属对象是前景，back 是后景对象。在纯线稿中也会隐藏后方笔迹，不需要先涂底色。本轮用它解决了加宽小腿后尾巴穿线的问题。
 
-`paint_set_plan({layers,stages,masks})` 定义图层、顺序和模型给出的区域轮廓。已有笔迹引用的 ID 需要保留。layers 数组从下到上排列，最多 64 层；时间顺序由 commands 决定。
+透明镜片不能作为不透明遮挡；镜框与镜片应为不同对象。区域及遮挡由模型明确组织，不能来自参考像素的自动分割。它们独立于图层显隐：隐藏前景线层不会自动移除其物体遮挡；查看被挡原线时需显式改关系或查看旧检查点。
 
-`group` 区分后发、前发、身体、外套、手等前后部位；`role` 记录草稿、底色、阴影、高光、线稿用途。每个部位内可按底色 → 阴影 → 高光 → 线稿叠加。阴影使用 `blend:"multiply"`、`clipTo:"对应底色层ID"`。底色层必须在剪贴层下方。前发与后发需要分开。
+基础关系提示不能发现所有漏口、错误交接、自交或人体形态问题，必须实际查看。
 
-`paint_set_layers({layers:[{id:"head-ink",visible:false}]})` 修改显隐、锁定、透明度等。显隐只合成缓存，不重新执行笔迹，保留时间轴位置。图层分组支持折叠和整组显隐。`hideAtCommand` 可在指定笔迹开始时自动隐藏结构稿；用户主动显示该层会取消这一自动规则。
+## 复核与检查点
 
-区域 masks 为模型规划的多边形边界，不从参考像素自动提取。底色仍使用宽笔沿形状涂抹；区域只约束边缘。当前纯线稿示例不需要颜色区域，也未执行后续上色阶段。
+每次局部完成后，先 `paint_playback({action:"finish"})`，再看画布和参考，记录具体观察。发现问题就修，修后再次查看。
 
-## 保存
+```json
+{
+  "scope":"local", "kind":"observation", "objectIds":["face"],
+  "region":[200,220,150,110], "status":"needs-work",
+  "evidence":["drawing","reference","context"],
+  "note":"下巴位置合理，但脸颊与发束交接偏窄，下一步调整中段经过点。",
+  "issues":["脸颊与发束的负形偏窄"]
+}
+```
 
-`paint_export_document({})` 返回完整工程及复核记录。界面可导出 PNG 和工程 JSON。参考图单独保存，PNG 不包含参考叠加。示例含 321 条记录，其中 9 条是辅助定位，312 条为当前可见草稿笔迹；数量不代表已经达到精细线稿质量。
+交给 `paint_record_review`。scope 为 local/global；kind 为 observation / structure-checkpoint / lineart-checkpoint；status 为 pass/needs-work。改动会令相关复核 stale，历史仍保留。
+
+`paint_set_phase({phase:"refine"})` 启用规范流程；进入 refine/clean 前需有效的全身 structure-checkpoint。完整清线后进入 lineart_review，实际查看无草稿的全身、参考与翻转视图，再记录全身 lineart-checkpoint。未通过前颜色提交会拒绝。记录不是自动质量评分，不能为了让接口通过而编造观察。
+
+`paint_checkpoint({action:"save",name:"结构修正后"})` 保存阶段；list 返回列表；restore 加 id 可恢复，恢复可撤销。最多 8 个检查点，工程中保留几何、图层和复核，不含参考像素。`paint_undo` 撤销文档操作。
+
+## 区域与叠层
+
+`paint_set_plan({layers,stages,masks})` 配置图层，layers 从下到上排列，最多 64 层。每个部位内可以依次放粗稿、底色、阴影、高光与清线层；真正层序由物体前后关系决定，绘画时间由 commands 决定。
+
+阴影可用 `blend:"multiply"`、`clipTo:"下方底色层ID"`。masks 是模型规划的多边形选区；宽笔在选区内连续涂抹，不能靠参考逐像素补齐。
+
+`paint_set_layers({layers:[{id:"head-ink",visible:false}]})` 只合成缓存，不重新执行笔迹或跳动时间轴。`hideAtCommand` 在该对象开始清线时自动隐藏对应粗稿；手动显示会取消该层自动隐藏规则。请不要把第一根清线出现当作全身粗稿验收。
+
+## 文件
+
+`paint_export_document` 返回完整工程。PNG 只含当前绘画；JSON 含源几何、图层、对象、复核与检查点，参考图单独保存在当前浏览器。原 v4 草稿保留在 `lineart-study.line.json`，当前示例为 `refine-study.line.json`。
+
+当前仍需继续：手掌与指根体积、刘海与镜片交接、全身细化及独立清线、最终全身复核。禁止先上色掩盖这些未完成的工作。

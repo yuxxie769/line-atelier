@@ -1,3 +1,4 @@
+import {LINE_PHASES,normalizeScene,normalizeThrough,throughGeometry} from './geometry.js';
 // Pure document model. Every visible mark is reconstructible from these records.
 export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000, layers:64};
 export const PAINT_STAGES = [
@@ -12,13 +13,13 @@ export const PAINT_STAGES = [
 ].map(([id,name,description])=>({id,name,description}));
 // Curves express the agent's pen trajectory, never image-derived contours.
 // One path is one pen-down gesture. A second M is rejected to prevent hidden lifts.
-export function pathPoints(path){
+export function pathPoints(path,quality=1){
   if(typeof path!=='string'||path.length>40000)throw Error('path 格式错误');
   const tokens=path.match(/[MLQCZ]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g)||[];
   if(path.replace(/[MLQCZ]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?|[\s,]/g,''))throw Error('path 仅支持绝对坐标 M L Q C Z');
   let i=0,p=null,start=null;const out=[];
   const pair=()=>{const a=Number(tokens[i++]),b=Number(tokens[i++]);number(a,-8192,8192,'path x');number(b,-8192,8192,'path y');return [a,b];};
-  while(i<tokens.length){const op=tokens[i++];if(op==='M'){if(p)throw Error('每条 path 只允许一次落笔，请分成多条笔迹');p=pair();start=p;out.push(p);}else if(!p)throw Error('path 必须以 M 开始');else if(op==='L'){p=pair();out.push(p);}else if(op==='Q'||op==='C'){const control=[p,pair(),pair()];if(op==='C')control.push(pair());let length=0;for(let j=1;j<control.length;j++)length+=Math.hypot(control[j][0]-control[j-1][0],control[j][1]-control[j-1][1]);out.push(...curvePoints(control,Math.max(4,Math.min(256,Math.ceil(length/1.5)))).slice(1));p=control.at(-1);}else if(op==='Z'){out.push([...start]);p=start;}else throw Error('path 坐标数量错误');if(out.length>4096)throw Error('单笔过长，请在自然断点抬笔');}
+  while(i<tokens.length){const op=tokens[i++];if(op==='M'){if(p)throw Error('每条 path 只允许一次落笔，请分成多条笔迹');p=pair();start=p;out.push(p);}else if(!p)throw Error('path 必须以 M 开始');else if(op==='L'){p=pair();out.push(p);}else if(op==='Q'||op==='C'){const control=[p,pair(),pair()];if(op==='C')control.push(pair());let length=0;for(let j=1;j<control.length;j++)length+=Math.hypot(control[j][0]-control[j-1][0],control[j][1]-control[j-1][1]);out.push(...curvePoints(control,Math.max(4,Math.min(256,Math.ceil(length*quality/1.5)))).slice(1));p=control.at(-1);}else if(op==='Z'){out.push([...start]);p=start;}else throw Error('path 坐标数量错误');if(out.length>4096*quality)throw Error('单笔过长，请在自然断点抬笔');}
   if(!out.length)throw Error('path 不能为空');return out;
 }
 function pressurePoints(points,taper){
@@ -43,6 +44,17 @@ export function curvePoints(control, steps=32) {
   for(let i=0;i<=steps;i++){let row=control.map(p=>p.slice(0,2));const t=i/steps;while(row.length>1)row=row.slice(1).map((p,j)=>[row[j][0]*(1-t)+p[0]*t,row[j][1]*(1-t)+p[1]*t]);out.push(row[0]);}
   return out;
 }
+export function renderPoints(c,doc,quality=1){
+  const g=c.geometry;if(!g)return c.points;
+  let ps=g.kind==='through'?throughGeometry(g,doc.scene,quality).points:g.kind==='path'?pathPoints(g.path,quality):g.kind==='polyline'?g.points:curvePoints(g.control,Math.min(256,Math.ceil((g.steps||32)*quality)));
+  if(g.taper)ps=pressurePoints(ps,g.taper);return g.trim?trimPoints(ps,g.trim):ps;
+}
+export function trimPoints(points,range){
+  if(!Array.isArray(range)||range.length!==2||range[0]>=range[1])throw Error('trim 需要有效的 [起点比例,终点比例]');range.forEach(v=>number(v,0,1,'trim'));
+  const lengths=[0];for(let i=1;i<points.length;i++)lengths.push(lengths.at(-1)+Math.hypot(points[i][0]-points[i-1][0],points[i][1]-points[i-1][1]));const total=lengths.at(-1);if(!total)throw Error('零长度笔迹不能裁剪');
+  const at=t=>{const d=t*total;let i=1;while(i<lengths.length-1&&lengths[i]<d)i++;const a=points[i-1],b=points[i],v=(d-lengths[i-1])/(lengths[i]-lengths[i-1]||1);return [a[0]+(b[0]-a[0])*v,a[1]+(b[1]-a[1])*v,(a[2]??1)+((b[2]??1)-(a[2]??1))*v];};
+  return [at(range[0]),...points.filter((p,i)=>lengths[i]>range[0]*total&&lengths[i]<range[1]*total),at(range[1])];
+}
 export function validateBatch(input, doc, defaults={}) {
   if(!Array.isArray(input)||!input.length||input.length>LIMITS.batch)throw Error(`每批需要 1–${LIMITS.batch} 条指令`);
   if(doc.commands.length+input.length>LIMITS.commands)throw Error('笔迹数量达到上限，请保存后新建画布');
@@ -56,18 +68,24 @@ export function validateBatch(input, doc, defaults={}) {
     if(layerObj.locked&&!defaults.importing)throw Error(`图层已锁定：${layerObj.name}`);
     const stage=raw.stage||defaults.stage||doc.stages[0].id;if(!doc.stages.some(s=>s.id===stage))throw Error(`阶段不存在：${stage}`);
     const hex=raw.color||'#142832';if(typeof hex!=='string'||!color.test(hex))throw Error('颜色需要 #RRGGBB 格式');
-    let points=raw.path?pathPoints(raw.path):raw.control?curvePoints(raw.control,raw.steps||32):raw.points;
-    if(raw.taper)points=pressurePoints(points,raw.taper);
+    const geometry=raw.geometry?structuredClone(raw.geometry):raw.through?{kind:'through',through:normalizeThrough(raw.through),space:raw.space||null,corners:raw.corners||[],tension:raw.tension??.8,closed:!!raw.closed}:raw.path?{kind:'path',path:raw.path}:raw.control?{kind:'control',control:raw.control,steps:raw.steps||32}:null;
+    if(geometry&&!['through','path','control','polyline'].includes(geometry.kind))throw Error('未知曲线原件类型');
+    let points=geometry?.kind==='through'?throughGeometry(geometry,doc.scene).points:geometry?.kind==='path'?pathPoints(geometry.path):geometry?.kind==='control'?curvePoints(geometry.control,geometry.steps||32):geometry?.kind==='polyline'?geometry.points:raw.points;
+    const taper=raw.taper||geometry?.taper;if(taper){points=pressurePoints(points,taper);if(geometry)geometry.taper=[...taper];}
+    if(geometry?.trim)points=trimPoints(points,geometry.trim);
     if(!Array.isArray(points)||points.length<(type==='fill'?3:1)||points.length>4096)throw Error('每笔需要 1–4096 个坐标点（填色至少 3 点）');
     points=points.map(p=>{if(!Array.isArray(p)||p.length<2)throw Error('坐标格式为 [x,y] 或 [x,y,pressure]');const a=[number(p[0],-doc.width,doc.width*2,'x'),number(p[1],-doc.height,doc.height*2,'y')];if(p.length>2)a.push(number(p[2],0,1,'pressure'));return a;});
     total+=points.length;if(total>LIMITS.points)throw Error('轨迹点数量超过上限');
     if(raw.mask&&!doc.masks?.some(m=>m.id===raw.mask))throw Error(`选区不存在：${raw.mask}`);
+    if(raw.objectId&&!doc.scene?.objects.some(o=>o.id===raw.objectId))throw Error('笔迹所属物体不存在');
+    const subphase=raw.subphase||doc.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===subphase))throw Error('线稿子阶段不存在');
+    if(raw.endpoints&&(!Array.isArray(raw.endpoints)||raw.endpoints.length!==2||raw.endpoints.some(e=>!['open','occluded','joined','corner','contact'].includes(e))))throw Error('endpoints 需要两个线端关系');
     const id=raw.id||`c-${Date.now()}-${doc.commands.length+i}`;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id)||commandIds.has(id))throw Error('笔迹 ID 重复或格式错误');commandIds.add(id);
-    return {id,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
+    return {id,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...(geometry?{geometry}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
   });
   return commands;
 }
-export function validateDocument(raw) {
+export function validateDocument(raw,{includeCheckpoints=true}={}) {
   if(!raw||raw.version!==1)throw Error('需要 Line Atelier version 1 工程文件');
   const width=number(raw.width,64,LIMITS.side,'宽度'),height=number(raw.height,64,LIMITS.side,'高度');
   if(!Number.isInteger(width)||!Number.isInteger(height))throw Error('画布尺寸必须是整数');
@@ -82,9 +100,11 @@ export function validateDocument(raw) {
   ids.clear();let maskPoints=0;if(raw.masks&&(!Array.isArray(raw.masks)||raw.masks.length>LIMITS.masks))throw Error('选区数量超过上限');
   const masks=(raw.masks||[]).map(m=>{if(!Array.isArray(m.polygons)||!m.polygons.length)throw Error('选区需要多边形边界');return {id:safeId(m.id),name:String(m.name||'色块选区').slice(0,80),polygons:m.polygons.map(poly=>{if(!Array.isArray(poly)||poly.length<3)throw Error('选区轮廓至少三个点');maskPoints+=poly.length;if(maskPoints>LIMITS.maskPoints)throw Error('选区边界点超过上限');return poly.map(p=>{if(!Array.isArray(p)||p.length!==2)throw Error('选区点需要 [x,y]');return [number(p[0],-width,width*2,'选区 x'),number(p[1],-height,height*2,'选区 y')];});})};});
   if(!Array.isArray(raw.commands)||raw.commands.length>LIMITS.commands)throw Error('笔迹列表格式错误或数量过多');
-  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,commands:[]};
+  const phase=raw.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===phase))throw Error('工作流子阶段不存在');
+  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,commands:[],scene:normalizeScene(raw.scene),revision:Number.isInteger(raw.revision)?Math.max(0,raw.revision):0,workflow:{enabled:!!raw.workflow?.enabled,phase},events:(raw.events||[]).slice(-300).map(e=>({revision:Number(e.revision)||0,kind:String(e.kind||'edit').slice(0,40),note:String(e.note||'').slice(0,1000),ids:(e.ids||[]).slice(0,1000).map(String)}))};
   for(let i=0;i<raw.commands.length;i+=LIMITS.batch)doc.commands.push(...validateBatch(raw.commands.slice(i,i+LIMITS.batch),doc,{importing:true}));
-  doc.reviews=Array.isArray(raw.reviews)?raw.reviews.slice(-100).map(r=>({at:Number(r.at)||0,region:Array.isArray(r.region)?r.region.slice(0,4).map(Number):[],note:String(r.note||'').slice(0,1000),kind:String(r.kind||'observation').slice(0,40),ids:Array.isArray(r.ids)?r.ids.slice(0,200).map(String):[]})):[];return doc;
+  doc.reviews=Array.isArray(raw.reviews)?raw.reviews.slice(-100).map(r=>({at:Number(r.at)||0,region:Array.isArray(r.region)?r.region.slice(0,4).map(Number):[],note:String(r.note||'').slice(0,1500),kind:String(r.kind||'observation').slice(0,40),ids:Array.isArray(r.ids)?r.ids.slice(0,200).map(String):[],scope:r.scope==='global'?'global':'local',objectIds:(r.objectIds||[]).slice(0,128).map(String),status:['pass','needs-work'].includes(r.status)?r.status:'needs-work',stale:!!r.stale,revision:Number(r.revision)||0,evidence:(r.evidence||[]).slice(0,5).map(String),issues:(r.issues||[]).slice(0,20).map(s=>String(s).slice(0,500))})):[];
+  doc.checkpoints=includeCheckpoints?(raw.checkpoints||[]).slice(-8).map(c=>({id:String(c.id).slice(0,100),name:String(c.name).slice(0,100),revision:Number(c.revision)||0,doc:validateDocument({...c.doc,checkpoints:[]},{includeCheckpoints:false})})):[];return doc;
 }
 // Replay uses physical arc length, independent of how many points the sender sampled.
 // Each unit moves the brush by 2 document pixels; 18 quiet units lift the pen.
