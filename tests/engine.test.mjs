@@ -52,6 +52,23 @@ test('construction automatically hides when clean linework starts',async()=>{
  assert.equal(e.layerVisible(e.doc.layers[0]),false);e.seek(0);assert.equal(e.layerVisible(e.doc.layers[0]),true);e.finish();e.setLayers([{id:'paper',visible:true}]);assert.equal(e.layerVisible(e.doc.layers[0]),true);
 });
 
+test('playback skips hidden drafts without discarding their cached ink or editing the document',()=>{
+ const d=blankDocument();d.layers[0].visible=false;d.layers.push({id:'ink',name:'ink'});
+ d.commands=[{id:'draft',points:[[10,10],[700,10]]},{id:'clean',layer:'ink',points:[[10,20],[100,20]]}];
+ const e=new PaintEngine(new Canvas(),d),before=JSON.stringify(e.doc),draft=structuredClone(e.surfaces.get('paper').ctx.ops);
+ e.play();assert.equal(e.commandIndex,1);assert.equal(e.state().current.id,'clean');assert.equal(e.playing,true);
+ assert.equal(e.metrics.skippedPlaybackCommands,1);assert.equal(JSON.stringify(e.doc),before);assert.deepEqual(e.surfaces.get('paper').ctx.ops,draft);e.pause();
+});
+test('playback keeps a currently visible construction stage and skips hidden strokes when stepping',()=>{
+ const d=blankDocument();d.layers[0].hideAtCommand='clean';d.layers.push({id:'ink',name:'ink'});
+ d.commands=[{id:'draft',points:[[10,10],[30,10]]},{id:'clean',layer:'ink',points:[[10,20],[40,20]]}];
+ const e=new PaintEngine(new Canvas(),d);e.play();assert.equal(e.commandIndex,0);e.pause();e.finish();e.setLayers([{id:'paper',visible:false}]);e.step();assert.equal(e.state().current.id,'clean');assert.equal(e.playing,true);e.pause();
+});
+test('all-hidden playback terminates without scheduling an empty animation',()=>{
+ const d=blankDocument();d.layers[0].visible=false;d.commands=[{points:[[10,10],[700,10]]}];const e=new PaintEngine(new Canvas(),d);
+ e.play();assert.equal(e.playing,false);assert.equal(e.cursor,e.index.total);assert.equal(e.commandIndex,1);
+});
+
 test('shared local anchor edits rebuild connected curves, preserve unrelated cache and invalidate reviews',async()=>{
  const d=blankDocument();d.layers.push({id:'other',name:'other'});d.scene={objects:[{id:'face',frame:[100,200,100,100]}],anchors:[{id:'chin',objectId:'face',point:[.5,.9]}]};const e=new PaintEngine(new Canvas(),d);
  await e.submit([{id:'a',objectId:'face',space:'face',through:[[0,.3],{anchor:'chin'}]},{id:'b',objectId:'face',space:'face',through:[{anchor:'chin'},[1,.3]]},{id:'untouched',layer:'other',points:[[10,10],[20,10]]}],{animate:false});

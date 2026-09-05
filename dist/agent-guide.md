@@ -4,6 +4,8 @@
 
 当前作品为 `line-atelier-v4-r2.line.json`，独立工作台为 `line-atelier-v4-r2.html`。从空白通过浏览器 WebMCP 绘制：448 条经过点笔迹，包含 53 条人体构造、62 条粗稿、68 条细化草稿和 265 条清线；27 个物体、24 层、7 个检查点。当前位于 1F `lineart_review`，revision 38 的两轮正式审核有效，尚未上色。过程和质量边界见 [r2-drawing-notes.md](r2-drawing-notes.md)。旧结构修订稿另保留，不作为本轮绘画源。
 
+回放修复：播放和下一笔会跳过隐藏图层的动画等待，保留其笔迹与可重新显示的缓存。R2 的前 183 条草稿在最终线稿视图中隐藏，旧回放会空白等待约 139 秒。查看完整起稿请使用七个阶段查看器，或恢复相应检查点。
+
 正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、1F 两轮审核、九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
 
 ## 绘画纪律
