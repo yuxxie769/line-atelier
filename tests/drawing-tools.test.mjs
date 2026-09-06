@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {blankDocument,validateDocument,renderPoints} from '../dist/model.js';
-import {scanLineGaps,floodLineRegion} from '../dist/diagnostics.js';
-import {pressureWidth,validatePressureProfile,localWidthProfile} from '../dist/pressure.js';
+import {blankDocument,validateDocument,renderPoints} from '../app/model.js';
+import {scanLineGaps,floodLineRegion} from '../app/diagnostics.js';
+import {pressureWidth,validatePressureProfile,localWidthProfile} from '../app/pressure.js';
 const drawing=commands=>validateDocument({...blankDocument(100,100),commands:commands.map(c=>({subphase:'clean',width:1,...c}))});
 test('active scan finds gaps even when both ends declare open and reports intentional open tips separately',()=>{
  const d=drawing([{id:'a',points:[[10,20],[40,20]],endpoints:['open','open']},{id:'b',points:[[45,20],[80,20]],endpoints:['open','open']}]);const before=JSON.stringify(d),r=scanLineGaps(d);

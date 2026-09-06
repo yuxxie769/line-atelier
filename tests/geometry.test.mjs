@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {throughGeometry,normalizeScene} from '../dist/geometry.js';
-import {validateDocument,blankDocument} from '../dist/model.js';
+import {throughGeometry,normalizeScene} from '../app/geometry.js';
+import {validateDocument,blankDocument} from '../app/model.js';
 test('through curves pass through all model points, keep endpoints and preserve declared corners',()=>{
  const source={through:[[0,0],[30,40],[60,0],[90,20]],corners:[1]};const g=throughGeometry(source);for(const p of source.through)assert.ok(g.points.some(q=>Math.hypot(q[0]-p[0],q[1]-p[1])<1e-8));const incoming=g.segments[0],outgoing=g.segments[1];assert.notEqual(Math.sign(incoming[3][1]-incoming[2][1]),Math.sign(outgoing[1][1]-outgoing[0][1]));assert.equal(g.points.at(-1)[0],90);
 });

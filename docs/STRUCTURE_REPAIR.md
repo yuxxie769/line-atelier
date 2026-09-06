@@ -45,4 +45,4 @@
 
 仍有差距：手指与五官精度、头发与衣褶的形状取舍、鞋底的圆转、轮廓轻重和材质表现仍偏概括。当前是可继续编辑的结构修订稿，清线复核为 **needs-work**，不能宣传为已经达到最初视频的商业插画效果。
 
-工程：`dist/structure-repair-study.line.json`。有效模型坐标、物体关系与事件另存于 `studies/structure-repair-execution-inputs.json`；主要修订的构造函数为 `studies/structure-repair.mjs`。
+工程：`archive/data/structure-repair-study.line.json`。有效模型坐标、物体关系与事件另存于 `studies/structure-repair-execution-inputs.json`；主要修订的构造函数为 `studies/structure-repair.mjs`。

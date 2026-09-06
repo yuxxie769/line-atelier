@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
-import {validateDocument,blankDocument} from '../dist/model.js';
-import {collectDrawingContext,inspectDrawingContext} from '../dist/drawing-context.js';
-import {PaintEngine} from '../dist/engine.js';
+import {validateDocument,blankDocument} from '../app/model.js';
+import {collectDrawingContext,inspectDrawingContext} from '../app/drawing-context.js';
+import {PaintEngine} from '../app/engine.js';
 const require=createRequire(import.meta.url);
 let native;try{native=require('@napi-rs/canvas');}catch{native=createRequire(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/package.json')('@napi-rs/canvas');}
 globalThis.document={createElement:()=>native.createCanvas(1,1)};globalThis.Path2D=native.Path2D;globalThis.cancelAnimationFrame=()=>{};globalThis.requestAnimationFrame=()=>1;
@@ -39,7 +39,7 @@ test('rendered packet reveals hidden guides without changing canvas, layers, his
  assert.equal(JSON.stringify(e.doc),before);assert.equal(e.cursor,cursor);assert.equal(e.undoStack.length,history);assert.deepEqual(e.canvas.toBuffer('image/png'),pixels);
 });
 test('actual R3 left eye returns construction guides assigned to figure, not only eye-owned lines',()=>{
- const doc=validateDocument(JSON.parse(readFileSync(new URL('../dist/line-atelier-v4-r3.line.json',import.meta.url))));
+ const doc=validateDocument(JSON.parse(readFileSync(new URL('../app/data/r3-study.line.json',import.meta.url))));
  const c=collectDrawingContext(doc,{query:'左眼'});assert.equal(c.target.id,'eye-l');assert.ok(c.commands.some(c=>c.id==='r3-layout-eye-perspective'));assert.ok(c.commands.some(c=>c.id==='r3-layout-eye-left-mass'));
  const e=new PaintEngine(native.createCanvas(doc.width,doc.height),doc);const packet=inspectDrawingContext(e,{query:'左眼',maxSize:512,detail:'full'});assert.ok(packet.images.guides.dataUrl.length>1000);assert.equal(packet.referenceStatus,'missing');
 });

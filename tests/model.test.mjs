@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {blankDocument,validateBatch,validateDocument,curvePoints,createDemo,planIndex} from '../dist/model.js';
+import {blankDocument,validateBatch,validateDocument,curvePoints,createDemo,planIndex} from '../app/model.js';
 
 test('batch validation is atomic and rejects unknown or locked layers',()=>{
  const d=blankDocument();const a={points:[[10,20],[30,40]],color:'#277f88'};
@@ -33,7 +33,7 @@ test('existing references cannot be removed by stage or layer reconfiguration',(
  assert.throws(()=>validateDocument({...d,layers:[{id:'other'}]}),/图层不存在/);
 });
 test('reference reconstruction generates valid strokes that depend on image pixels',async()=>{
- const source=await readFile(new URL('../dist/trace-worker.js',import.meta.url),'utf8');
+ const source=await readFile(new URL('../app/trace-worker.js',import.meta.url),'utf8');
  function run(pixels){const outputs=[];const self={postMessage:o=>outputs.push(o)};vm.runInNewContext(source,{self,Math,Error});self.onmessage({data:{pixels,width:32,height:40,canvasWidth:800,canvasHeight:1000,detail:2}});return outputs.at(-1);}
  const pixels=new Uint8ClampedArray(32*40*4);for(let y=0;y<40;y++)for(let x=0;x<32;x++){const i=(y*32+x)*4;pixels[i]=x<16?30:220;pixels[i+1]=y<20?100:180;pixels[i+2]=120;pixels[i+3]=255;}
  const result=run(pixels);assert.ok(result.done);assert.ok(result.commands.length>0);assert.ok(result.commands.every(c=>c.type==='stroke'));

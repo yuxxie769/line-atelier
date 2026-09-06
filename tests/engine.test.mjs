@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {PaintEngine} from '../dist/engine.js';
-import {blankDocument} from '../dist/model.js';
+import {PaintEngine} from '../app/engine.js';
+import {blankDocument} from '../app/model.js';
 // A recording canvas verifies draw order across seeking and document transactions.
 class Context {constructor(){this.ops=[];}beginPath(){this.path=[];}moveTo(...p){this.path.push(['M',...p]);}lineTo(...p){this.path.push(['L',...p]);}closePath(){this.path.push(['Z']);}arc(...p){this.path.push(['A',...p]);}stroke(){this.ops.push({path:this.path,type:'stroke',color:this.strokeStyle,width:this.lineWidth,opacity:this.globalAlpha,blend:this.globalCompositeOperation});}fill(){this.ops.push({path:this.path,type:'fill',color:this.fillStyle,opacity:this.globalAlpha,blend:this.globalCompositeOperation});}fillRect(){}setTransform(){}save(){}restore(){}clip(){}clearRect(){this.ops=[];}drawImage(canvas,...args){this.ops.push({type:'composite',source:structuredClone(canvas.ctx.ops),opacity:this.globalAlpha,blend:this.globalCompositeOperation,args});}}
 class Canvas {constructor(){this.ctx=new Context();}getContext(){return this.ctx;}}

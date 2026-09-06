@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {referencePass} from '../dist/reference-passes.js';
-import {blankDocument,validateBatch} from '../dist/model.js';
+import {referencePass} from '../app/reference-passes.js';
+import {blankDocument,validateBatch} from '../app/model.js';
 
 test('reference passes honor the requested region and produce editable brush paths',()=>{
   const data=new Uint8ClampedArray(64*64*4).fill(255);

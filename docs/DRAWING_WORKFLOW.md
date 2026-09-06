@@ -70,7 +70,7 @@
 
 **两轮正式审核都在 1F 完成。** 1C 保留结构修稿，作画中仍随时对照整体，但不要求先提交正式通过记录才能细化或清线。1F 第一轮为“结构与造型”，第二轮为“清线质量”。审核发现问题时返回相应阶段修正，随后复查受影响项；不依赖用户再次批准，也不把两轮记录数量当作质量证明。
 
-历史 `dist/lineart-study.line.json` 和 `dist/refine-study.line.json` 原样保留。当前为 `dist/structure-repair-study.line.json`：717 条记录（67 条人体构造、328 条草稿、322 条清线），32 个物体、37 层、8 个检查点。旧 `body-first-study.line.json` 保留。上一轮全身通过判断已撤回，当前 `lineart_review` 为 needs-work。详细检讨与修订见 [STRUCTURE_REPAIR.md](STRUCTURE_REPAIR.md)。
+历史 `archive/data/lineart-study.line.json` 和 `archive/data/refine-study.line.json` 原样保留。结构修订工程为 `archive/data/structure-repair-study.line.json`：717 条记录（67 条人体构造、328 条草稿、322 条清线），32 个物体、37 层、8 个检查点。旧 `archive/data/body-first-study.line.json` 保留。上一轮全身通过判断已撤回，当前 `lineart_review` 为 needs-work。详细检讨与修订见 [STRUCTURE_REPAIR.md](STRUCTURE_REPAIR.md)。
 
 ## 4. 每个物体也要从大形到细节
 

@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {PaintEngine} from '../dist/engine.js';
-import {blankDocument} from '../dist/model.js';
-import {renderLineMask} from '../dist/renderer.js';
-import {floodLineRegion,scanLineGaps} from '../dist/diagnostics.js';
+import {PaintEngine} from '../app/engine.js';
+import {blankDocument} from '../app/model.js';
+import {renderLineMask} from '../app/renderer.js';
+import {floodLineRegion,scanLineGaps} from '../app/diagnostics.js';
 let native;try{native=createRequire(import.meta.url)('@napi-rs/canvas');}catch{if(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES)native=createRequire(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/package.json')('@napi-rs/canvas');}
 if(native){globalThis.document={createElement:()=>native.createCanvas(1,1)};globalThis.Path2D=native.Path2D;globalThis.cancelAnimationFrame=()=>{};globalThis.requestAnimationFrame=()=>1;}
 const testRaster=(name,fn)=>test(name,{skip:!native},fn);
@@ -47,7 +47,7 @@ testRaster('new canvases are larger, while legacy study coordinates and high-res
 });
 
 testRaster('diagnostic UI tools return reports and annotated crops, and invalidate on edits without changing artwork',async()=>{
- const {createDrawingAssist}=await import('../dist/drawing-assist.js');
+ const {createDrawingAssist}=await import('../app/drawing-assist.js');
  const oldDocument=globalThis.document;
  class Field extends EventTarget {constructor(){super();this.value='';this.checked=false;this.hidden=false;this.children=[];}replaceChildren(...items){this.children=items;this.value=items.some(x=>x.value===this.value)?this.value:items[0]?.value||'';}setAttribute(){}getBoundingClientRect(){return {width:100};}}
  const fields=new Map();for(const id of ['diagnostic-overlay','pressure-preview']){const c=native.createCanvas(100,id==='pressure-preview'?75:100);c.getBoundingClientRect=()=>({width:100});fields.set(id,c);}

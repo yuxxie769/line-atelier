@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
-import {smoothStrokePoints} from '../dist/smoothing.js';
-import {blankDocument,validateDocument,renderPoints} from '../dist/model.js';
-import {PaintEngine} from '../dist/engine.js';
-import {renderRegion} from '../dist/renderer.js';
+import {smoothStrokePoints} from '../app/smoothing.js';
+import {blankDocument,validateDocument,renderPoints} from '../app/model.js';
+import {PaintEngine} from '../app/engine.js';
+import {renderRegion} from '../app/renderer.js';
 const drawing=commands=>validateDocument({...blankDocument(),commands});
 test('reduces small waviness, bounds displacement and keeps endpoint pressures',()=>{
   const ps=Array.from({length:301},(_,x)=>[x,50+2*Math.sin(x/7),x/300]);
@@ -35,7 +35,7 @@ test('retained source survives save/load, repeated settings, zero restore and ex
   assert.throws(()=>drawing([{id:'fill',type:'fill',points:[[0,0],[10,0],[10,10]],smoothing:.5}]));
 });
 test('R3 clean strokes can be smoothed without editing their retained source or point overflow',async()=>{
-  const d=JSON.parse(await readFile(new URL('../dist/line-atelier-v4-r3.line.json',import.meta.url)));d.checkpoints=[];
+  const d=JSON.parse(await readFile(new URL('../app/data/r3-study.line.json',import.meta.url)));d.checkpoints=[];
   const before=validateDocument(d),after=validateDocument({...d,commands:d.commands.map(c=>c.subphase==='clean'&&c.type==='stroke'?{...c,smoothing:.5}:c)});
   for(let i=0;i<before.commands.length;i++){const a=before.commands[i],b=after.commands[i];assert.deepEqual(b.geometry,a.geometry);assert.deepEqual(b.points[0],a.points[0]);assert.deepEqual(b.points.at(-1),a.points.at(-1));assert.ok(b.points.length<=4096);}
 });

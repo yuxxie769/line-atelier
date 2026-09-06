@@ -18,7 +18,7 @@ let toastTimer;function toast(message){$('#toast').textContent=message;$('#toast
 const safe=fn=>(...args)=>Promise.resolve().then(()=>fn(...args)).catch(e=>{toast(e.message||'操作未完成');console.error(e);});
 const dbPromise=new Promise(resolve=>{try{const req=indexedDB.open('line-atelier-v4-r3',1);req.onupgradeneeded=()=>req.result.createObjectStore('workspace');req.onsuccess=()=>resolve(req.result);req.onerror=()=>resolve(null);}catch{resolve(null);}});
 async function readSaved(){const db=await dbPromise;if(!db)return null;return new Promise(resolve=>{const r=db.transaction('workspace').objectStore('workspace').get('current');r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>resolve(null);});}
-let initial=blankDocument(1200,2000),saved;initial.stages=PAINT_STAGES;try{const r=await fetch('./line-atelier-v4-r3.line.json');if(r.ok)initial=validateDocument(await r.json());}catch{}try{saved=await readSaved();if(saved?.doc)initial=validateDocument(saved.doc);}catch{toast('上次工程未能恢复，已载入示例');}
+let initial=blankDocument(1200,2000),saved;initial.stages=PAINT_STAGES;try{const r=await fetch('./data/r3-study.line.json');if(r.ok)initial=validateDocument(await r.json());}catch{}try{saved=await readSaved();if(saved?.doc)initial=validateDocument(saved.doc);}catch{toast('上次工程未能恢复，已载入示例');}
 const engine=new PaintEngine($('#paint'),initial);
 let activeLayer=initial.layers.find(l=>l.visible&&l.role==='ink')?.id||initial.layers.find(l=>l.visible)?.id||initial.layers[0].id,activeStage=initial.stages[0].id,brush={type:'brush',color:'#277f88',width:6,opacity:1},reference=null,traceWorker=null,dirty=false,saveTimer,kind=saved?.kind||'v4 · R3 初音未来线稿';
 const input=$('#input-canvas'),inputCtx=input.getContext('2d'),logs=[];
@@ -165,7 +165,7 @@ $('#save-checkpoint').onclick=safe(async()=>{await api.checkpoint({action:'save'
 $('#restore-checkpoint').onclick=safe(async()=>{await api.checkpoint({action:'restore',id:$('#checkpoint-select').value});toast('已恢复，可撤销本次恢复');});
 $('#save-review').onclick=safe(async()=>{const scope=$('#review-scope').value,objectId=$('#object-select').value;await api.recordReview({region:['crop-x','crop-y','crop-w','crop-h'].map(id=>Number($('#'+id).value)),note:$('#review-note').value,scope,objectIds:scope==='local'&&objectId?[objectId]:[],kind:$('#review-kind').value,status:$('#review-status').value,evidence:['drawing',...(reference?['reference']:[]),...($('#crop-mirror').checked?['mirrored']:[]),'context']});toast('观察记录已保存');});
 
-async function loadStudy(){const r=await fetch('./line-atelier-v4-r3.line.json');if(!r.ok)throw Error('线稿文件尚未保存');const d=validateDocument(await r.json());engine.remember();kind='v4 · R3 初音未来线稿';engine.load(d);clearReference();await setReference('./reference-r3.jpg','绘画参考');engine.speed=4;$('#speed').value='4';activeLayer=d.layers.find(l=>l.role==='ink')?.id||d.layers[0].id;activeStage='lineart';updateDocument();scheduleSave();record('载入 v4 · R3 初音未来线稿');}
+async function loadStudy(){const r=await fetch('./data/r3-study.line.json');if(!r.ok)throw Error('线稿文件尚未保存');const d=validateDocument(await r.json());engine.remember();kind='v4 · R3 初音未来线稿';engine.load(d);clearReference();await setReference('./assets/reference-r3.jpg','绘画参考');engine.speed=4;$('#speed').value='4';activeLayer=d.layers.find(l=>l.role==='ink')?.id||d.layers[0].id;activeStage='lineart';updateDocument();scheduleSave();record('载入 v4 · R3 初音未来线稿');}
 $('#study-btn').onclick=safe(loadStudy);
 $('#anatomy-study-btn').onclick=safe(()=>openStageViewer(0));
 $('#stages-study-btn').onclick=safe(()=>openStageViewer());
@@ -246,7 +246,7 @@ let toolCalls=0;const toolLifecycle=new AbortController();window.addEventListene
 async function registerTools(){const mc=document.modelContext||navigator.modelContext;if(!mc?.registerTool){$('#connection-label').textContent='指令接口已就绪';$('#connection-description').textContent='此浏览器未提供 WebMCP，可使用 JSON 或页面接口。';return;}try{for(const t of tools){await mc.registerTool({...t,execute:async args=>{toolCalls++;$('#connection-label').textContent='已收到模型工具调用';$('#connection-description').textContent=`本页共 ${toolCalls} 次 · 最近：${t.name}`;record(`WebMCP 调用：${t.name}`);try{return JSON.stringify({ok:true,result:await t.execute(args||{})});}catch(e){return JSON.stringify({ok:false,error:e.message});}}},{signal:toolLifecycle.signal});}$('#connection-label').textContent='浏览器工具已注册';$('#connection-description').textContent=`等待模型调用 · ${tools.length} 个工具`;}catch(e){$('#connection-label').textContent='JSON 指令接口已就绪';$('#connection-description').textContent='浏览器工具注册未完成，可使用 JSON 或页面接口。';console.warn('WebMCP registration failed',e.message);}}
 await registerTools();
 if(saved?.brief)$('#brief').value=saved.brief;
-if(!saved?.reference){try{await setReference('./reference-r3.jpg','绘画参考');}catch{}}
+if(!saved?.reference){try{await setReference('./assets/reference-r3.jpg','绘画参考');}catch{}}
 if(saved?.reference){try{await setReference(saved.reference.dataUrl,saved.reference.name);}catch{toast('参考图未能恢复，请重新上传');}}
 activeLayer=engine.doc.layers.find(l=>l.role==='ink')?.id||engine.doc.layers[0].id;updateDocument();$('#command-type').textContent='STROKE';
 document.addEventListener('visibilitychange',()=>{if(document.hidden)engine.pause();});

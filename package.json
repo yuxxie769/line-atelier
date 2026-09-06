@@ -1,1 +1,1 @@
-{"name":"line-atelier","private":true,"type":"module","scripts":{"dev":"vite","test":"node --test tests/*.test.mjs"},"devDependencies":{"vite":"8.0.13"}}
+{"name":"line-atelier","private":true,"type":"module","scripts":{"dev":"vite","build":"node scripts/build-site.mjs","test":"node --test tests"},"devDependencies":{"vite":"8.0.13"}}

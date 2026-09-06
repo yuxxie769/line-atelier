@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {blankDocument, validateDocument} from '../dist/model.js';
-import {exportDocumentData} from '../dist/document-export.js';
+import {blankDocument, validateDocument} from '../app/model.js';
+import {exportDocumentData} from '../app/document-export.js';
 
 test('paged compact exports reconstruct current geometry and preserved checkpoints without drift', () => {
   const raw = blankDocument();

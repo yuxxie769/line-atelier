@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {formPass} from '../dist/form-passes.js';
-import {blankDocument,validateBatch} from '../dist/model.js';
+import {formPass} from '../app/form-passes.js';
+import {blankDocument,validateBatch} from '../app/model.js';
 
 test('form brushes follow a curved guide and never substitute dots or horizontal scans',()=>{
  const width=100,height=160,data=new Uint8ClampedArray(width*height*4).fill(255),painted={data:data.slice()};
