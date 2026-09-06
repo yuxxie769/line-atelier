@@ -4,7 +4,7 @@ const read=p=>readFile(new URL(p,root),'utf8');
 const doc=JSON.parse(await read('dist/line-atelier-v4-r3.line.json'));
 const reference='data:image/jpeg;base64,'+(await readFile(new URL('dist/reference-r3.jpg',root))).toString('base64');
 let script='const EMBEDDED_STUDY='+JSON.stringify(doc).replace(/</g,'\\u003c')+';\nconst EMBEDDED_REFERENCE='+JSON.stringify(reference)+';\n';
-for(const file of ['geometry.js','pressure.js','model.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','viewport-renderer.js','app.js']){
+for(const file of ['geometry.js','pressure.js','model.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','drawing-context.js','viewport-renderer.js','app.js']){
   script+=(await read('dist/'+file)).replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+'\n';
 }
 script=script.replaceAll("fetch('./line-atelier-v4-r3.line.json')","Promise.resolve({ok:true,json:async()=>structuredClone(EMBEDDED_STUDY)})")
