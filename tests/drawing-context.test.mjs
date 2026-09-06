@@ -54,3 +54,16 @@ test('model default is one image and compact usable coordinates; data-only query
  const old=document.createElement;document.createElement=()=>{throw Error('must not render');};
  try{const data=inspectDrawingContext(e,{query:'左眼',includeImage:false});assert.equal(data.image,undefined);assert.ok(data.strokes.length);}finally{document.createElement=old;}
 });
+
+test('integrated context distinguishes retained source points from smoothed ink without state mutation',()=>{
+ const d=fixture();d.commands=d.commands.map(c=>c.id==='lid-guide'?{...c,smoothing:.8}:c);
+ const e=new PaintEngine(native.createCanvas(200,200),d);e.finish();
+ const before=JSON.stringify(e.doc),cursor=e.cursor,history=e.undoStack.length;
+ const compact=inspectDrawingContext(e,{query:'左眼',includeImage:false}),line=compact.strokes.find(s=>s.id==='lid-guide');
+ assert.equal(line.smoothing,.8);assert.equal(line.kind,'through');
+ assert.deepEqual(line.points,[[50,90],[80,70],[110,90]]);
+ const ink=e.doc.commands.find(c=>c.id===line.id);assert.deepEqual(line.renderedEndpoints,[ink.points[0],ink.points.at(-1)]);
+ assert.ok(!ink.points.some(p=>Math.hypot(p[0]-80,p[1]-70)<1e-5));
+ const full=inspectDrawingContext(e,{query:'左眼',includeImage:false,detail:'full'});assert.equal(full.commands.find(c=>c.id===line.id).smoothing,.8);
+ assert.equal(JSON.stringify(e.doc),before);assert.equal(e.cursor,cursor);assert.equal(e.undoStack.length,history);
+});

@@ -1,20 +1,20 @@
-# Line Atelier · v4 清线工具
+# Line Atelier · v4 R3 底稿与平滑整合版
 
-模型通过浏览器 WebMCP 提交自己选定的连续笔迹，画板执行、保留几何并逐笔回放。基于 v4；v5 只参考作画流程和区域叠层理念。
+模型通过浏览器工具观察参考、读取底稿坐标、提交自己选择的笔迹，并根据实际渲染修订。页面负责几何、平滑、压力、Canvas 合成、编辑与回放，不内置模型推理服务。
 
-当前作品 `dist/structure-repair-study.line.json` 有 717 条记录：67 条人体构造线、328 条保留草稿、322 条清线；32 个物体、37 层、8 个检查点。旧版本原样保留。
+当前主入口为 `dist/index.html`，独立工作台为 `dist/line-atelier-v4-r3.html`。默认 R3 半身线稿保留 361 条笔迹及七个检查点；R2 和旧结构修订稿入口保留。本轮工具整合没有重画或重新验收作品。
 
-本轮撤回此前的清线通过判断，针对人体体块、袖口返回边、耳根冠发、颈肩、悬空接头及脚鞋混淆实际改线。脚皮肤、鞋帮、足床和两只袖体独立组织。当前为结构修订稿，清线复核 **needs-work**，没有开始上色。
+## 当前文档
 
-- [清线工具、压感与分辨率说明](docs/DRAWING_TOOLS.md)
+- [实际绘画交互流程](docs/ACTUAL_DRAWING_WORKFLOW.md)
+- [全部平台功能与 29 个 WebMCP 工具](docs/PLATFORM_FEATURES.md)
+- [正式指令与落笔依据实施规划](docs/DRAWING_IMPLEMENTATION_PLAN.md)
 - [用户确认的工作流与质量标准](docs/WORKFLOW_PRINCIPLES.md)
-- [完整工作规范](docs/DRAWING_WORKFLOW.md)
-- [本轮检讨、教程与验证](docs/STRUCTURE_REPAIR.md)
-- [WebMCP 接口说明](dist/agent-guide.md)
-- `studies/structure-repair-execution-inputs.json`：最终有效几何与修订记录。
+- [既有绘画工作规范](docs/DRAWING_WORKFLOW.md)
+- [模型接口使用说明](dist/agent-guide.md)
 
-程序增加接头检查、提示定位、人体底稿快捷查看、针对头顶肩袖足鞋的复核预设。新版复核撤回会立即阻止上色，旧通过记录不再覆盖新的待修记录。仍保留经过点拟合、局部坐标、共享节点、对象遮挡、高清几何重绘、图层缓存和检查点。
+`paint_inspect_context` 默认一张对照图与精简坐标，`detail:"full"` 按需获取完整内容；不增加人工入口，不限制如何绘画。新笔迹可附带 `smoothing`，旧笔迹用 `paint_smooth_strokes` 单次调整，设为 0 恢复源轨迹。
 
-参考图可以提取线稿供观察；禁止把参考像素、自动轮廓或分区直接导入绘画路径。当前作品全部可见线条由模型选择几何，程序只插值和渲染。仓库历史 trace 文件不在当前应用入口执行。
+正式规范的固定加载及完整按组执行证据尚属实施规划。现有意图、复核文字和功能测试均不能替代真实读图—落笔—复看记录。
 
-验证：31 项相关测试通过，覆盖几何、回放、缓存、分页导出、遮挡接头与撤回复核。网页使用 `npm run dev` 启动；`node scripts/build-standalone.mjs` 生成内嵌工程与参考的独立 HTML。实际浏览器与 WebMCP 已检查。
+构建独立版：`node scripts/build-r3-standalone.mjs`。现有测试入口为 `npm test`。当前入口不运行仓库历史自动描图实验。

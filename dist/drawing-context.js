@@ -57,7 +57,7 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     if(g?.kind==='through'){kind='through';points=g.through.map(p=>scenePoint(p,g.space,doc.scene));}
     else if(g?.kind==='control'){kind='bezier-control';points=g.control;}
     else {kind='sampled-trajectory';points=ps.length<=32?ps:Array.from({length:32},(_,j)=>ps[Math.round(j*(ps.length-1)/31)]);}
-    return {label:offset+i+1,id:c.id,name:c.part||c.id,intent:c.intent||'',objectId:c.objectId||null,layer:{id:l.id,name:l.name,visible:l.visible,opacity:l.opacity},subphase:c.subphase,draft,relationship,bounds:bounds(ps),
+    return {label:offset+i+1,id:c.id,name:c.part||c.id,intent:c.intent||'',objectId:c.objectId||null,layer:{id:l.id,name:l.name,visible:l.visible,opacity:l.opacity},subphase:c.subphase,draft,relationship,smoothing:c.smoothing??0,trim:g?.trim||null,bounds:bounds(ps),
       coordinates:{kind,document:points,localToCrop:points.map(p=>[p[0]-x,p[1]-y,...p.slice(2)]),normalizedToTarget:target?points.map(p=>[(p[0]-target.frame[0])/target.frame[2],(p[1]-target.frame[1])/target.frame[3],...p.slice(2)]):null,originalTrajectoryPointCount:ps.length,sampled:kind==='sampled-trajectory'&&ps.length>32},
       geometry:g?structuredClone(g):null,endpoints:[ps[0],ps.at(-1)]};
   });
@@ -68,14 +68,14 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     objects:objects.filter(o=>ancestors.includes(o.id)||overlaps(o.frame,crop)).map(o=>structuredClone(o)),anchors,commands,
     total:candidates.length,offset,nextOffset:offset+limit<candidates.length?offset+limit:null,
     guideStatus:candidates.some(c=>c.draft)?'available':'none-found',
-    notes:['Spatial matches are candidate guides, not a claim of anatomical relevance. Select or correct them yourself.','Guide views reveal retained draft stroke geometry, including hidden layers, without masks or occlusion; they are observation aids, not the exported drawing.','Coordinates describe saved geometry; drawing images show the current playback position.']};
+    notes:['Spatial matches are candidate guides, not a claim of anatomical relevance. Select or correct them yourself.','Guide views reveal retained draft stroke geometry, including hidden layers, without masks or occlusion; they are observation aids, not the exported drawing.','Through/control coordinates describe source geometry; smoothing and trim can change the rendered trajectory. Drawing images show current playback.']};
 }
 
 function compactContext(data,engine,referenceStatus){
   return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,region:data.region,
-    referenceStatus,guideStatus:data.guideStatus,coordinates:'Absolute canvas pixels. Use points for through strokes, control points only for bezier-control. Image panel transforms include panel offsets.',
+    referenceStatus,guideStatus:data.guideStatus,coordinates:'Absolute canvas pixels. Through points are source landmarks (may differ from smoothed/trimmed ink); bezier-control points are handles. Sampled points describe the processed trajectory. Image transforms include panel offsets.',
     playback:{commandIndex:engine.commandIndex,unitIndex:engine.unitIndex,playing:engine.playing},
-    strokes:data.commands.map(c=>({label:c.label,id:c.id,name:c.name,objectId:c.objectId,layer:c.layer.id,draft:c.draft,relation:c.relationship,kind:c.coordinates.kind,points:c.coordinates.document,sampled:c.coordinates.sampled})),
+    strokes:data.commands.map(c=>({label:c.label,id:c.id,name:c.name,objectId:c.objectId,layer:c.layer.id,draft:c.draft,relation:c.relationship,kind:c.coordinates.kind,points:c.coordinates.document,sampled:c.coordinates.sampled,...(c.smoothing?{smoothing:c.smoothing}:{}),...(c.trim?{trim:c.trim}:{}),...(c.smoothing||c.trim?{renderedEndpoints:c.endpoints}:{})})),
     anchors:data.anchors.map(a=>({id:a.id,point:a.document})),total:data.total,nextOffset:data.nextOffset,
     notes:['Guides are retained geometry, including hidden drafts; model decides relevance and corrections.','Drawing follows playback; guide coordinates refer to saved strokes.','Read nextOffset with the same query to see more candidates; guideIds adds specific strokes.']};
 }
