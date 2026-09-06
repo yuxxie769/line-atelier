@@ -38,6 +38,13 @@ export class PaintEngine extends EventTarget {
     this.rendered=this.cursor=this.index.total;this.commandIndex=this.doc.commands.length;this.unitIndex=0;this.inkActive=false;
     const ids=[...replaceMap.keys(),...deleted,...insert.flatMap(i=>i.commands.map(c=>c.id))];this.changed('revision',note,ids,[...new Set(ids.flatMap(id=>[known.get(id)?.objectId,this.doc.commands.find(c=>c.id===id)?.objectId]).filter(Boolean))]);this.composite();this.metrics.lastEditMs=performance.now()-start;this.emit('change');return {changed:replace.length+remove.length+insert.reduce((n,i)=>n+i.commands.length,0),repaintedLayers:[...affected],elapsedMs:this.metrics.lastEditMs,revision:this.doc.revision};
   }
+  smoothStrokes({ids,smoothing=.5,note='平滑所选笔迹'}={}){
+    if(!Array.isArray(ids)||!ids.length||ids.length>50||new Set(ids).size!==ids.length)throw Error('请选择 1–50 条不同笔迹');
+    if(!Number.isFinite(smoothing)||smoothing<0||smoothing>1)throw Error('smoothing 必须在 0–1 之间');
+    const replace=ids.map(id=>{const c=this.doc.commands.find(c=>c.id===id);if(!c||c.type!=='stroke')throw Error('只能平滑已有画笔笔迹');return {id,smoothing};});
+    if(replace.every(p=>(this.doc.commands.find(c=>c.id===p.id).smoothing??0)===smoothing))return {changed:0,revision:this.doc.revision};
+    return {...this.revise({replace,note}),smoothing};
+  }
   editPressure({ids,pressureCurve,pressureProfile,pressureFloor,width,range,factor,feather,note}={}){
     if(!Array.isArray(ids)||!ids.length||ids.length>50||new Set(ids).size!==ids.length)throw Error('请选择 1–50 条不同笔迹');
     if(typeof note!=='string'||!note.trim())throw Error('请说明线条轻重的修改理由');

@@ -1,5 +1,6 @@
+import {smoothStrokePoints} from './smoothing.js';
 import {validatePressureProfile,applyPressureProfile,validateWidthEdits,insertWidthKnots} from './pressure.js';
-import {LINE_PHASES,normalizeScene,normalizeThrough,throughGeometry} from './geometry.js';
+import {LINE_PHASES,normalizeScene,normalizeThrough,throughGeometry,scenePoint} from './geometry.js';
 // Pure document model. Every visible mark is reconstructible from these records.
 export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000, layers:64};
 export const PAINT_STAGES = [
@@ -45,10 +46,16 @@ export function curvePoints(control, steps=32) {
   for(let i=0;i<=steps;i++){let row=control.map(p=>p.slice(0,2));const t=i/steps;while(row.length>1)row=row.slice(1).map((p,j)=>[row[j][0]*(1-t)+p[0]*t,row[j][1]*(1-t)+p[1]*t]);out.push(row[0]);}
   return out;
 }
+function smoothCommandPoints(ps,g,smoothing,scene,closed=false){
+  if(!smoothing)return ps;
+  const fixed=g?.kind==='through'?g.through.flatMap((p,i)=>p.anchor||(g.corners||[]).includes(i)?[scenePoint(p,g.space,scene)]:[]):[];
+  if(closed&&(ps[0][0]!==ps.at(-1)[0]||ps[0][1]!==ps.at(-1)[1]))ps=[...ps,[...ps[0]]];
+  return smoothStrokePoints(ps,smoothing,fixed);
+}
 export function renderPoints(c,doc,quality=1){
   const g=c.geometry;if(!g)return c.points;
   let ps=g.kind==='through'?throughGeometry(g,doc.scene,quality).points:g.kind==='path'?pathPoints(g.path,quality):g.kind==='polyline'?g.points:curvePoints(g.control,Math.min(256,Math.ceil((g.steps||32)*quality)));
-  if(g.taper)ps=pressurePoints(ps,g.taper);return insertWidthKnots(applyPressureProfile(g.trim?trimPoints(ps,g.trim):ps,c.pressureProfile),c.widthEdits);
+  if(g.taper)ps=pressurePoints(ps,g.taper);if(g.trim)ps=trimPoints(ps,g.trim);ps=smoothCommandPoints(ps,g,c.smoothing,doc.scene,c.closed);return insertWidthKnots(applyPressureProfile(ps,c.pressureProfile),c.widthEdits);
 }
 export function trimPoints(points,range){
   if(!Array.isArray(range)||range.length!==2||range[0]>=range[1])throw Error('trim 需要有效的 [起点比例,终点比例]');range.forEach(v=>number(v,0,1,'trim'));
@@ -72,12 +79,15 @@ export function validateBatch(input, doc, defaults={}) {
     let geometry=raw.geometry?structuredClone(raw.geometry):raw.through?{kind:'through',through:normalizeThrough(raw.through),space:raw.space||null,corners:raw.corners||[],tension:raw.tension??.8,closed:!!raw.closed}:raw.path?{kind:'path',path:raw.path}:raw.control?{kind:'control',control:raw.control,steps:raw.steps||32}:null;
     if(geometry&&!['through','path','control','polyline'].includes(geometry.kind))throw Error('未知曲线原件类型');
     let points=geometry?.kind==='through'?throughGeometry(geometry,doc.scene).points:geometry?.kind==='path'?pathPoints(geometry.path):geometry?.kind==='control'?curvePoints(geometry.control,geometry.steps||32):geometry?.kind==='polyline'?geometry.points:raw.points;
+    const smoothing=number(raw.smoothing??0,0,1,'smoothing');if(smoothing&&type!=='stroke')throw Error('平滑仅用于画笔笔迹');
+    if(raw.smoothing!==undefined&&!geometry)geometry={kind:'polyline',points:structuredClone(points)};
     const taper=raw.taper||geometry?.taper;if(taper){points=pressurePoints(points,taper);if(geometry)geometry.taper=[...taper];}
     if(geometry?.trim)points=trimPoints(points,geometry.trim);
     const pressureProfile=raw.pressureProfile?validatePressureProfile(raw.pressureProfile):null,pressureCurve=raw.pressureCurve?validatePressureProfile(raw.pressureCurve,'压感响应'):null;
     // Retain sampled originals so editing pressure remains non-destructive on legacy strokes.
     const widthEdits=raw.widthEdits?validateWidthEdits(raw.widthEdits,raw.width??4):null;
     if((pressureProfile||widthEdits?.length)&&!geometry)geometry={kind:'polyline',points:structuredClone(points)};
+    points=smoothCommandPoints(points,geometry,smoothing,doc.scene,!!raw.closed);
     points=insertWidthKnots(applyPressureProfile(points,pressureProfile),widthEdits);
     if(!Array.isArray(points)||points.length<(type==='fill'?3:1)||points.length>4096)throw Error('每笔需要 1–4096 个坐标点（填色至少 3 点）');
     points=points.map(p=>{if(!Array.isArray(p)||p.length<2)throw Error('坐标格式为 [x,y] 或 [x,y,pressure]');const a=[number(p[0],-doc.width,doc.width*2,'x'),number(p[1],-doc.height,doc.height*2,'y')];if(p.length>2)a.push(number(p[2],0,1,'pressure'));return a;});
@@ -87,7 +97,7 @@ export function validateBatch(input, doc, defaults={}) {
     const subphase=raw.subphase||doc.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===subphase))throw Error('线稿子阶段不存在');
     if(raw.endpoints&&(!Array.isArray(raw.endpoints)||raw.endpoints.length!==2||raw.endpoints.some(e=>!['open','occluded','joined','corner','contact'].includes(e))))throw Error('endpoints 需要两个线端关系');
     const id=raw.id||`c-${Date.now()}-${doc.commands.length+i}`;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id)||commandIds.has(id))throw Error('笔迹 ID 重复或格式错误');commandIds.add(id);
-    return {id,type,layer,stage,color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
+    return {id,type,layer,stage,...(raw.smoothing!==undefined?{smoothing}:{}),color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
   });
   return commands;
 }
