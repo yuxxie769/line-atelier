@@ -29,10 +29,10 @@ test('rendered packet reveals hidden guides without changing canvas, layers, his
  const e=new PaintEngine(native.createCanvas(200,200),fixture());e.seek(.5);
  const before=JSON.stringify(e.doc),pixels=e.canvas.toBuffer('image/png'),cursor=e.cursor,history=e.undoStack.length;
  const original=native.createCanvas(100,100);original.getContext('2d').fillRect(0,0,100,100);const reference={original,placement:[0,0,2]};
- const denied=inspectDrawingContext(e,{objectId:'eye',padding:0,maxSize:256},{reference,referenceAllowed:false});
+ const denied=inspectDrawingContext(e,{objectId:'eye',padding:0,maxSize:256,detail:'full'},{reference,referenceAllowed:false});
  assert.equal(denied.referenceStatus,'access-disabled');assert.equal(denied.images.reference,null);
  assert.notEqual(denied.images.guides.dataUrl,denied.images.drawing.dataUrl);
- const allowed=inspectDrawingContext(e,{objectId:'eye',padding:0,maxSize:256},{reference,referenceAllowed:true});
+ const allowed=inspectDrawingContext(e,{objectId:'eye',padding:0,maxSize:256,detail:'full'},{reference,referenceAllowed:true});
  assert.equal(allowed.referenceStatus,'available');assert.deepEqual(allowed.images.reference.region,allowed.images.drawing.region);
  assert.equal(allowed.images.reference.width,allowed.images.drawing.width);assert.equal(allowed.images.reference.scale,allowed.images.drawing.scale);
  assert.deepEqual(allowed.images.drawing.imageToDocument,[.25,0,0,.25,50,70]);
@@ -41,5 +41,16 @@ test('rendered packet reveals hidden guides without changing canvas, layers, his
 test('actual R3 left eye returns construction guides assigned to figure, not only eye-owned lines',()=>{
  const doc=validateDocument(JSON.parse(readFileSync(new URL('../dist/line-atelier-v4-r3.line.json',import.meta.url))));
  const c=collectDrawingContext(doc,{query:'左眼'});assert.equal(c.target.id,'eye-l');assert.ok(c.commands.some(c=>c.id==='r3-layout-eye-perspective'));assert.ok(c.commands.some(c=>c.id==='r3-layout-eye-left-mass'));
- const e=new PaintEngine(native.createCanvas(doc.width,doc.height),doc);const packet=inspectDrawingContext(e,{query:'左眼',maxSize:512});assert.ok(packet.images.guides.dataUrl.length>1000);assert.equal(packet.referenceStatus,'missing');
+ const e=new PaintEngine(native.createCanvas(doc.width,doc.height),doc);const packet=inspectDrawingContext(e,{query:'左眼',maxSize:512,detail:'full'});assert.ok(packet.images.guides.dataUrl.length>1000);assert.equal(packet.referenceStatus,'missing');
+});
+
+test('model default is one image and compact usable coordinates; data-only query skips rendering',()=>{
+ const e=new PaintEngine(native.createCanvas(200,200),fixture());
+ const c=inspectDrawingContext(e,{query:'左眼',padding:0,maxSize:256});
+ assert.ok(c.image.dataUrl);assert.equal(c.images,undefined);assert.equal(c.commands,undefined);
+ assert.deepEqual(c.strokes.find(s=>s.id==='lid-guide').points,[[50,90],[80,70],[110,90]]);
+ const panel=c.image.panels.guides,[x,y]=panel.rect,[a,b,d,f,tx,ty]=panel.imageToDocument;
+ assert.equal(x*a+y*d+tx,50);assert.equal(x*b+y*f+ty,70);
+ const old=document.createElement;document.createElement=()=>{throw Error('must not render');};
+ try{const data=inspectDrawingContext(e,{query:'左眼',includeImage:false});assert.equal(data.image,undefined);assert.ok(data.strokes.length);}finally{document.createElement=old;}
 });

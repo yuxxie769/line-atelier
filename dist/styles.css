@@ -44,5 +44,3 @@
 #paint-view{z-index:0;pointer-events:none}
 #stage-view-seek{width:100%}
 @media(max-width:600px){.stage-viewer{padding:14px}.stage-view-pictures{gap:8px}.stage-view-controls select:first-child{width:100%;min-width:0}}
-
-.context-inspect-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.context-inspect-grid figure{margin:0;min-width:0}.context-inspect-grid img{display:block;max-width:100%;max-height:420px;object-fit:contain;margin:8px auto;background:white}.context-inspect-grid img[hidden]{display:none}.context-inspect-grid figcaption{font-size:14px}.context-coordinate-table{overflow:auto;max-height:320px;margin:16px 0}.context-coordinate-table table{width:100%;border-collapse:collapse;font-size:14px}.context-coordinate-table th,.context-coordinate-table td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #dce3e6;overflow-wrap:anywhere;white-space:pre-line}.context-coordinate-table th{position:sticky;top:0;background:#fff}.context-coordinate-table td:last-child{min-width:240px;font-family:monospace}#drawing-context-dialog p{font-size:14px;line-height:1.6}

@@ -18,7 +18,7 @@ function crosses(ps,r){
 function integer(n,min,max,name){if(!Number.isInteger(n)||n<min||n>max)throw Error(`${name} 需要 ${min}–${max} 的整数`);return n;}
 
 // Reads existing model-authored geometry only. No reference pixels are analyzed.
-export function collectDrawingContext(doc,{objectId,query,region,padding=40,offset=0,limit=80,guideIds=[]}={}){
+export function collectDrawingContext(doc,{objectId,query,region,padding=40,offset=0,limit=24,guideIds=[]}={}){
   integer(offset,0,60000,'offset');integer(limit,1,200,'limit');
   if(!Number.isFinite(padding)||padding<0||padding>400)throw Error('padding 需要 0–400 画布像素');
   if(!Array.isArray(guideIds)||guideIds.length>200||guideIds.some(id=>typeof id!=='string'))throw Error('guideIds 格式错误');
@@ -71,8 +71,22 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     notes:['Spatial matches are candidate guides, not a claim of anatomical relevance. Select or correct them yourself.','Guide views reveal retained draft stroke geometry, including hidden layers, without masks or occlusion; they are observation aids, not the exported drawing.','Coordinates describe saved geometry; drawing images show the current playback position.']};
 }
 
+function compactContext(data,engine,referenceStatus){
+  return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,region:data.region,
+    referenceStatus,guideStatus:data.guideStatus,coordinates:'Absolute canvas pixels. Use points for through strokes, control points only for bezier-control. Image panel transforms include panel offsets.',
+    playback:{commandIndex:engine.commandIndex,unitIndex:engine.unitIndex,playing:engine.playing},
+    strokes:data.commands.map(c=>({label:c.label,id:c.id,name:c.name,objectId:c.objectId,layer:c.layer.id,draft:c.draft,relation:c.relationship,kind:c.coordinates.kind,points:c.coordinates.document,sampled:c.coordinates.sampled})),
+    anchors:data.anchors.map(a=>({id:a.id,point:a.document})),total:data.total,nextOffset:data.nextOffset,
+    notes:['Guides are retained geometry, including hidden drafts; model decides relevance and corrections.','Drawing follows playback; guide coordinates refer to saved strokes.','Read nextOffset with the same query to see more candidates; guideIds adds specific strokes.']};
+}
+
 export function inspectDrawingContext(engine,options={}, {reference=null,referenceAllowed=false}={}){
+  if(options.detail!==undefined&&!['compact','full'].includes(options.detail))throw Error('detail 需要 compact 或 full');
+  if(options.includeImage!==undefined&&typeof options.includeImage!=='boolean')throw Error('includeImage 需要 boolean');
   const data=collectDrawingContext(engine.doc,options);if(data.status!=='ready')return data;
+  const referenceStatus=!reference?'missing':referenceAllowed?'available':'access-disabled';
+  const summary=compactContext(data,engine,referenceStatus);
+  if(options.includeImage===false)return options.detail==='full'?{...data,referenceStatus}:summary;
   const maxSize=integer(options.maxSize??640,256,1024,'maxSize'),r=data.region,scale=Math.max(.25,Math.min(4,maxSize/Math.max(r[2],r[3])));
   const drawing=renderRegion(engine,{region:r,scale}),overlay=document.createElement('canvas');overlay.width=drawing.width;overlay.height=drawing.height;
   const ox=overlay.getContext('2d');ox.drawImage(drawing,0,0);ox.fillStyle='rgba(255,255,255,.68)';ox.fillRect(0,0,overlay.width,overlay.height);
@@ -85,10 +99,29 @@ export function inspectDrawingContext(engine,options={}, {reference=null,referen
       const p=ps.find(p=>inside(p,r));if(p){ctx.font=`${12/scale}px sans-serif`;ctx.fillStyle='#005d74';ctx.fillText(String(entry.label),p[0]+3/scale,p[1]-3/scale);}
     }ctx.restore();
   }
-  let ref=null;const referenceStatus=!reference?'missing':referenceAllowed?'available':'access-disabled';
-  if(referenceStatus==='available')ref=referenceCrop(reference,{region:r,scale:Math.max(.25,scale),documentWidth:engine.doc.width,documentHeight:engine.doc.height});
+  let ref=null;
+  if(referenceStatus==='available'&&options.detail==='full')ref=referenceCrop(reference,{region:r,scale,documentWidth:engine.doc.width,documentHeight:engine.doc.height});
   const full=[0,0,engine.doc.width,engine.doc.height],fullScale=maxSize/Math.max(full[2],full[3]),overview=renderRegion(engine,{region:full,scale:fullScale});
   const vx=overview.getContext('2d');vx.strokeStyle='#dc6635';vx.lineWidth=2;vx.strokeRect(r[0]*fullScale,r[1]*fullScale,r[2]*fullScale,r[3]*fullScale);
   const encode=(canvas,region,scale)=>({dataUrl:canvas.toDataURL('image/png'),width:canvas.width,height:canvas.height,region,scale,documentToImage:[scale,0,0,scale,-region[0]*scale,-region[1]*scale],imageToDocument:[1/scale,0,0,1/scale,region[0],region[1]]});
+  if(options.detail!=='full'){
+    const size=Math.max(drawing.width,drawing.height,overview.width,overview.height),gap=12,header=28;
+    const sheet=document.createElement('canvas');sheet.width=size*2+gap;sheet.height=(size+header)*2+gap;
+    const ctx=sheet.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,sheet.width,sheet.height);const panels={};
+    for(const [key,label,col,row,source,region,ratio] of [
+      ['reference','REFERENCE',0,0,null,r,scale],['drawing','CURRENT DRAWING',1,0,drawing,r,scale],
+      ['guides','DRAFT GUIDES + DRAWING',0,1,overlay,r,scale],['overview','LOCATION ON CANVAS',1,1,overview,full,fullScale]]){
+      const px=col*(size+gap),py=row*(size+header+gap);ctx.fillStyle='#182e38';ctx.font='14px sans-serif';ctx.fillText(label,px+5,py+19);
+      const iy=py+header;
+      if(source)ctx.drawImage(source,px,iy);
+      else if(referenceStatus==='available'){
+        // Same placement and crop transform as referenceCrop, without another PNG encoding.
+        const [rx,ry,rs]=reference.placement;ctx.save();ctx.beginPath();ctx.rect(px,iy,drawing.width,drawing.height);ctx.clip();
+        ctx.setTransform(scale,0,0,scale,px-r[0]*scale,iy-r[1]*scale);ctx.drawImage(reference.original,rx,ry,reference.original.width*rs,reference.original.height*rs);ctx.restore();
+      }else ctx.fillText(referenceStatus,px+5,iy+22);
+      panels[key]={rect:[px,iy,source?.width||drawing.width,source?.height||drawing.height],region,scale:ratio,imageToDocument:[1/ratio,0,0,1/ratio,region[0]-px/ratio,region[1]-iy/ratio]};
+    }
+    return {...summary,image:{dataUrl:sheet.toDataURL('image/png'),width:sheet.width,height:sheet.height,panels}};
+  }
   return {...data,playback:engine.state(),referenceStatus,images:{reference:ref,drawing:encode(drawing,r,scale),drawingWithGuides:encode(overlay,r,scale),guides:encode(guides,r,scale),overview:encode(overview,full,fullScale)}};
 }
