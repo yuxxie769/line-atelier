@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "6ca3d7cb9add73c460638a87f50f459ff21947a132225328ecb9de99e598b84c",
+  "sessionId": "ddd0bf37-0e2b-49f2-b924-8f37b8cabea4",
+  "revision": 27,
+  "commands": 360,
+  "changedStrokeIds": [
+    "r3-clean-eyelid-left-main",
+    "r3-clean-eyelash-left-up",
+    "r3-clean-eyelash-left-high"
+  ],
+  "removedStrokeIds": [
+    "r3-clean-eyelash-left-mid"
+  ],
+  "originalCheckpointsPreserved": 7,
+  "newCheckpoint": "checkpoint-1788717604875",
+  "imageHashesVerified": 7,
+  "readEventsPreserveDocumentState": true,
+  "noGuideTrialRestored": true,
+  "checkpointAssembly": "Original seven checkpoint documents copied unchanged; new checkpoint document equals current checkpoint-specific browser export."
+}

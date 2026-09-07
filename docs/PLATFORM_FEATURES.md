@@ -12,7 +12,7 @@
 | 历史入口 | R2 全身线稿、旧结构修订稿与相应独立 HTML |
 | 独立文件 | R3 HTML 内嵌程序、样式、R3 工程和参考，可单独打开；外部链接的旧版另行打开 |
 | 网页模型 | 不内置模型、API Key 或模型推理后端 |
-| 本轮美术结果 | 没有重画或新验收；工具整合不等于作品达到质量标准 |
+| 本轮美术结果 | 左眼独立副本完成实际试画与复看；原 R3 保留，整幅未重新验收 |
 | 保存与发布 | 源代码、可下载版和网站保存版本分别维护；保存网站版本不等于更新线上页面 |
 
 ## 2. 输入、画布和显示
@@ -113,7 +113,7 @@
 
 | 工具 | 主要作用 |
 |---|---|
-| `paint_get_state` | 读取工程、图层、阶段、参考许可和播放状态 |
+| `paint_get_state` | 读取工程、图层、阶段、参考许可和播放状态，默认附正式规范全文及哈希；已读同版本可用 includeProtocol:false 省略全文 |
 | `paint_get_scene` | 读取对象、锚点、区域、遮挡及基础提示 |
 | `paint_get_reference` | 读取已授权参考缩略图 |
 | `paint_snapshot` | 读取当前画布整图缩略图 |
@@ -166,8 +166,12 @@
 
 这些是容量与参数校验，不能保证在极限规模下仍有流畅性能。没有承诺实时多人协作、模型自动调度、完整操作审计、跨设备作品同步、SVG 原生导出、专业纹理笔刷或自动参考描摹。
 
-## 11. 尚未实施的两项规范
+## 11. 规范入口与实际调用证据
 
-固定加载绘画正式指令，以及每组一句 basis 关联读图—坐标—落笔—结果图，均见 `DRAWING_IMPLEMENTATION_PLAN.md`。当前没有 basis 批次字段、持久会话证据日志或相关查询工具。不得把规划示例当作现有接口调用。
+正式规范统一维护于 `WORKFLOW_PRINCIPLES.md`；项目 AGENTS 指向正文，`paint_get_state` 默认返回 `drawingProtocol` 的来源、哈希和全文，`includeProtocol:false` 可在已读同版本后省略全文。网页规范和复制要求由主文件生成，未增加新工具或提交门槛。加载验证见 `DRAWING_PROTOCOL_VALIDATION.md`。
+
+`paint_submit` / `paint_revise` 已支持可选 `basis:{guideIds,note}`。独立会话记录关联实际返回 ID、源几何、revision 和 PNG 引用，保存到浏览器 IndexedDB；具名页面 API 和 WebMCP 共用记录层，手动画笔和直接 UI 编辑不属于完整模型调用日志。`paint_export_document({section:"evidence",compact:true,limit:100})` 可分页读取，includeImages/imageIds 选择原图，sessionId 指定旧会话。导出框可选附带本次记录，证据图片可能含参考局部。
+
+左眼副本已完成实际观察—修线—复看以及无底稿落笔验证，详见 [R3_LEFT_EYE_TRIAL.md](R3_LEFT_EYE_TRIAL.md)。候选图片关联和记录文字不自动证明模型理解或整幅美术质量。
 
 本次测试验证程序能力和状态一致性，不证明模型在实际绘画中每次都会主动遵循，也不证明当前示例线稿已达到精修标准。

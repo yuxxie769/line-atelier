@@ -1,6 +1,6 @@
 # Line Atelier v4：清线工具与分辨率
 
-> 当前整合版的交互与能力汇总见 `ACTUAL_DRAWING_WORKFLOW.md`、`PLATFORM_FEATURES.md`；后续正式加载规范与证据记录见 `DRAWING_IMPLEMENTATION_PLAN.md`。本文保留历史工作规范，历史作品状态不代表 R3 当前重新验收。
+> 正式作画规则仅在 [WORKFLOW_PRINCIPLES.md](WORKFLOW_PRINCIPLES.md) 维护。当前接口与能力见 `ACTUAL_DRAWING_WORKFLOW.md`、`PLATFORM_FEATURES.md`；入口加载和后续证据计划见 `DRAWING_PROTOCOL_VALIDATION.md`、`DRAWING_IMPLEMENTATION_PLAN.md`。本文保留工具说明与历史背景，历史作品状态不代表 R3 当前重新验收。
 
 更新：2026-09-05。基于 v4 开发；v5 只参考流程和区域叠层理念。
 
@@ -155,6 +155,10 @@ PNG 导出可选 1×、2×、3×，默认 2×；最长边不超过 4096，超过
 
 使用习惯：先看图，再读相关线的坐标，自行决定沿用、偏移或修订底稿；小批落笔后复看。此工具不建立自动追随底稿的关系，不把候选线变为强制约束。这是模型接口，不增加人工按钮或面板。默认返回一张四格对照图（参考、当前画布、底稿叠图、整图位置）和精简笔迹坐标；`detail:"full"` 按需读取原始几何、多种坐标及独立图片，`includeImage:false` 只读取坐标。图片各面板的 `imageToDocument` 已包含面板偏移，模型无需自行推断截图布局。
 
+
+## 批次依据与会话记录
+
+`paint_submit` / `paint_revise` 支持可选 `basis:{guideIds,note}`，省略或没有底稿仍可落笔。实际调用独立记录，返回 `callEvidence`；用 `paint_export_document({section:"evidence",compact:true,limit:100})` 分页读取，按需 includeImages/imageIds，或用 sessionId 读取旧会话。参数与记录边界详见 [模型接口](../app/docs/agent-guide.md)。真实左眼验证见 [试画记录](R3_LEFT_EYE_TRIAL.md)。
 
 ## 原子化笔迹平滑
 

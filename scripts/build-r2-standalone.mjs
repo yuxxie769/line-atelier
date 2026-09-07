@@ -1,10 +1,12 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {syncDrawingProtocol} from './sync-drawing-protocol.mjs';
+await syncDrawingProtocol();
 const root=new URL('../',import.meta.url);
 const read=p=>readFile(new URL(p,root),'utf8');
 const doc=JSON.parse(await read('archive/data/line-atelier-v4-r2.line.json'));
 const reference='data:image/png;base64,'+(await readFile(new URL('archive/images/reference.png',root))).toString('base64');
 let script='const EMBEDDED_STUDY='+JSON.stringify(doc).replace(/</g,'\\u003c')+';\nconst EMBEDDED_REFERENCE='+JSON.stringify(reference)+';\n';
-for(const file of ['smoothing.js','geometry.js','pressure.js','model.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','drawing-context.js','viewport-renderer.js','app.js']){
+for(const file of ['drawing-protocol.generated.js','drawing-protocol.js','session-evidence.js','smoothing.js','geometry.js','pressure.js','model.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','drawing-context.js','viewport-renderer.js','app.js']){
   script+=(await read('app/'+file)).replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')+'\n';
 }
 script=script.replaceAll("fetch('./data/r3-study.line.json')","Promise.resolve({ok:true,json:async()=>structuredClone(EMBEDDED_STUDY)})")

@@ -1,24 +1,30 @@
 # Line Atelier · v4 R3 模型绘画接口（底稿与平滑整合版）
 
-网页不内置模型。模型通过支持 WebMCP 的浏览器调用页面工具；普通浏览器仍可使用手动画笔和 JSON 面板。当前主入口载入 R3 半身线稿（361 条笔迹、211 条清线、7 个阶段检查点），保留 R2 和旧结构修订稿入口。工具更新不等于作品重新验收，本次未重画或上色。
+网页不内置模型。模型通过支持 WebMCP 的浏览器调用页面工具；普通浏览器仍可使用手动画笔和 JSON 面板。当前主入口载入 R3 半身线稿（361 条笔迹、211 条清线、7 个阶段检查点），保留 R2 和旧结构修订稿入口。另有左眼独立副本真实试画，未覆盖默认 R3，未重新验收整幅或上色。
 
 本版整合 `paint_inspect_context` 和 `smoothing` / `paint_smooth_strokes`。默认一张对照图与精简整图坐标，完整几何和独立图片按需读取；无新增人工底稿操作入口。整合保留上传版本的隐藏底稿、锚点与多坐标能力。
 
-实际交互说明和完整功能表见仓库 `docs/ACTUAL_DRAWING_WORKFLOW.md`、`docs/PLATFORM_FEATURES.md`。正式指令固定加载和按组执行证据的待实施方案见 `docs/DRAWING_IMPLEMENTATION_PLAN.md`；网页说明不能保证模型自动加载这些规范。
+实际交互说明和完整功能表见仓库 `docs/ACTUAL_DRAWING_WORKFLOW.md`、`docs/PLATFORM_FEATURES.md`。加载验证见 `docs/DRAWING_PROTOCOL_VALIDATION.md`；批次 basis、独立会话证据和真实试画已完成，见 `docs/R3_LEFT_EYE_TRIAL.md`。
 
-正式工作流与质量标准见 [workflow-principles.md](workflow-principles.md)，包含八项原则、1F 两轮审核和九项质量要求。工具说明见 [drawing-tools.md](drawing-tools.md)。
+## 批次依据与实际调用记录
 
-## 绘画纪律
+`paint_submit` / `paint_revise` 可附带 `basis:{guideIds:["已有笔迹ID"],note:"本组沿用端点，略抬弧顶"}`；一组一句。省略依据、空 guideIds 或没有底稿都不阻止落笔。结果中的 `callEvidence` 返回 sessionId、callId、groupId、实际笔迹 ID、前后 revision 和图片 ID。
 
-完整线稿 → 头发大色块 → 皮肤底色 → 服装大色块 → 配饰／鞋履底色 → 覆盖阴影 → 高光与整理 → 局部复核。
+WebMCP、具名 `window.paint` 方法及 JSON 提交共用独立记录层。每次页面加载开始新会话，记录保存在当前来源的 IndexedDB；不进入作品撤销栈。手动画笔和直接 UI 编辑不属于完整模型调用日志。存储失败时记录暂留内存，响应标明 persistence，不影响已经成功的落笔。
 
-线稿内部：`layout` 整体定位 → `rough` 完整粗稿 → `structure_review` 结构修稿 → `refine` 细化草稿 → `clean` 独立清线 → `lineart_review` 两轮整体审核（结构与造型 → 清线质量）。
+读取记录：`paint_export_document({section:"evidence",compact:true,offset:0,limit:100})`，limit 为 1–100，按 nextOffset 翻页。`compact:true` 仅在保留完整源几何时省略重复采样点。默认图片只返回 ID 与 SHA-256；`includeImages:true` 返回 PNG，`imageIds:[…]` 可单独选择图片；`sessionId` 可指定已保存的旧会话。大图请分批读取。
 
-先建立衣物下的完整人体：头、胸廓、骨盆、肩肘腕、髋膝踝以及足部的落点，再围绕人体画衣服、头发和配饰。人体构造层保留为辅助，最终隐藏。
+普通工程导出默认不附带证据；`includeEvidence:true` 或导出框勾选可附带当前完整会话和图片。证据图可能含已读取的参考局部。组与复看图的关联只是 revision／范围候选，须结合图像实际呈现和视觉判断，不能自动认证绘画质量。
 
-每个物体也从大形到细节。画完一个小结构就看画布、同位置参考和相邻结构；先修比例和体积，再处理线条轻重、接头和闭合。粗稿允许试探，清线需要选择和重画，不是把所有旧线统一描深。二次元比例以参考风格为准，不套用固定头身比。
+## 正式规范与开始任务
 
-参考线稿提取仅用于观察。禁止把提取像素、轮廓或分区自动转换为画布路径、选区和上色轨迹。模型根据观察自行选择几何；算法只负责这些几何的插值、受限平滑、编辑与渲染。上色也应组织连续宽笔与区域叠层，不进行像素差值补丁。
+正式作画流程和质量标准仅维护在仓库 `docs/WORKFLOW_PRINCIPLES.md`，网页 [workflow-principles.md](workflow-principles.md) 为自动生成的同源正文。工具用法见本接口指南和 [drawing-tools.md](drawing-tools.md)，不在接口说明里维护另一套作画标准。
+
+开始绘画先调用 `paint_get_state({})`（页面 API 为 `window.paint.state()`）。返回的 `drawingProtocol` 包含 `source`、`sha256` 和完整 `text`；实际读取正文后再作画。状态仍包含当前图层、阶段、播放与参考信息。用户当前明确要求优先，规范适用于实际作画，不要求维护代码时执行绘画。
+
+已读同一版本后可调用 `paint_get_state({includeProtocol:false})` 或 `window.paint.state({includeProtocol:false})`，仅省略规范正文，保留来源和哈希；哈希改变后重新取全文。参数必须是布尔值。不在页面保存“某模型已读”的全局状态，新模型接手同一页面仍能默认取得全文；正文进入工具结果不代表它已被正确理解或执行。
+
+每个部位的观察—坐标—小组落笔—实际复看、无底稿处理、阶段和审核要求均以正式规范为准。下面说明完成这些动作的现有工具参数。
 
 ## 一次查看部位底稿与定位依据
 

@@ -1,0 +1,13 @@
+{
+  "revision": 45,
+  "commands": 443,
+  "checkpoints": 8,
+  "commandsFNV": "f91e2e96",
+  "colorsFNV": "df1f0b30",
+  "colorRowsFNV": "53510526",
+  "regionCoordinatesRoundedTo1e9FNV": "3aa65b4b",
+  "commandsSHA256": "29fc5e507d31503476f31546fe3c04156f412879b4f9c042d72cc18495f8eafe",
+  "source": "WebMCP http://127.0.0.1:5173/",
+  "sessionId": "f37ea726-00d0-47b5-b8bf-69410d2819bf",
+  "note": "Exact complete command records match the browser export. Region coordinates reconstructed from those same authored paths match at 1e-9 pixels; differences in unrounded values are floating point evaluation differences between runtimes. This validates preservation, not artistic quality."
+}

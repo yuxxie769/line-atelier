@@ -2,7 +2,7 @@
 
 适用版本：Line Atelier v4 · R3 底稿与平滑整合版。
 
-本文说明模型怎样与平台交互完成绘画，同时区分程序已经提供的能力、需要模型执行的动作和仍待实现的保证机制。本轮完成工具整合与文档整理，没有重画 R3，也没有重新验收线稿。
+本文说明模型怎样与平台交互完成绘画，区分程序能力、模型动作和验证边界。工具整合后已在 R3 独立副本完成左眼真实试画，见 [试画记录](R3_LEFT_EYE_TRIAL.md)；原 R3 保留，整幅线稿未重新验收。
 
 ## 1. 谁负责什么
 
@@ -19,11 +19,11 @@
 
 ## 2. 开始任务
 
-先确认当前作品、画布大小、参考权限和任务阶段：`paint_get_state`、必要时 `paint_get_scene`。状态包含图层、对象、工作流、复核与播放信息；不要直接假定旧会话里的坐标仍有效。
+先确认当前作品、画布大小、参考权限和任务阶段：`paint_get_state`、必要时 `paint_get_scene`。状态默认包含 `drawingProtocol.text` 正式规范全文、`source` 与 `sha256`，以及图层、对象、工作流、复核与播放信息；读取规范后再作画，不要直接假定旧会话里的坐标仍有效。
 
 新作品使用 `paint_new_document` 与 `paint_set_plan` 建立画布、层次和阶段，再用 `paint_set_scene` 组织对象与共享锚点。新建画布会清除当前参考，须重新准备参考。已有作品继续修改时保留其尺寸和坐标，先读取当前状态。
 
-当前规范主要存在于项目文档、网页接口指南和复制出的绘画要求。它们不会因页面打开而必然加载到模型；正式 skill／项目指令加载机制的规划见 `DRAWING_IMPLEMENTATION_PLAN.md`。
+唯一维护的规范正文为 [WORKFLOW_PRINCIPLES.md](WORKFLOW_PRINCIPLES.md)。项目 AGENTS 指向正文；网页状态接口和复制绘画要求使用从正文生成的模块。同一版本已读后可用 `paint_get_state({includeProtocol:false})` 省略正文，哈希改变时重新读取。仅打开页面不等于模型已加载；实际验证见 [DRAWING_PROTOCOL_VALIDATION.md](DRAWING_PROTOCOL_VALIDATION.md)。
 
 ## 3. 每个部位的基本循环
 
@@ -89,8 +89,10 @@
 
 ## 6. 当前记录能证明到什么程度
 
-单笔 `intent`、工程 `events`、`reviews`、检查点和回放能解释几何来源及部分修订历史，但没有自动完整关联每组的读图、坐标查询、落笔和复看。
+`paint_submit` / `paint_revise` 可附带每组一句 `basis:{guideIds,note}`。独立会话记录保存实际参数、读取 ID、接受的源几何、前后 revision 和 PNG 引用；WebMCP、具名 `window.paint` 方法及 JSON 提交入口共用记录层。手动画笔及直接 UI 编辑不属于完整模型调用日志。
+
+每次页面加载创建新会话，保存在浏览器 IndexedDB，与工程撤销历史分开。`paint_export_document({section:"evidence",compact:true,limit:100})` 分页读取，返回 sessionId 对应的 `id`；用 `sessionId` 可读取同一浏览器来源中已保存的旧会话。默认不含图片本体，`includeImages:true` 可带图。存储失败时仍保留当前内存记录并报告，不把已成功落笔改报失败。普通工程导出默认不含证据，导出框可勾选附带本次记录及图片；对照证据图可能含参考局部。
 
 仓库 R3 执行记录包含提交、修订、场景、阶段、检查点等操作；其中没有完整保存本次所要求的 `inspect → submit → result image` 链。因此不能用它证明 R3 每组都按新规范读取并利用了底稿。新工具的功能测试也不能替代模型行为验证。
 
-本次没有执行新的绘画循环。正式加载规范、每组简短依据与独立会话证据的补齐步骤，详见实施规划。
+新左眼试画已完成并保存独立证据，详见 [R3_LEFT_EYE_TRIAL.md](R3_LEFT_EYE_TRIAL.md)。图像和笔画组按 revision、范围与文档恢复分段建立候选关联；日志自身不证明模型实际看过或看懂，仍须结合实际图像呈现与可核对改动。

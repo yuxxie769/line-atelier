@@ -1,6 +1,6 @@
 # Line Atelier · v4 模型绘画规范与改进计划
 
-> 当前整合版的交互与能力汇总见 `ACTUAL_DRAWING_WORKFLOW.md`、`PLATFORM_FEATURES.md`；后续正式加载规范与证据记录见 `DRAWING_IMPLEMENTATION_PLAN.md`。本文保留历史工作规范，历史作品状态不代表 R3 当前重新验收。
+> 正式规则仅在 [WORKFLOW_PRINCIPLES.md](WORKFLOW_PRINCIPLES.md) 维护。本文保留历史工作规范、研究依据和作品记录，重复的规则段落不再单独维护，差异以正式规范为准。当前接口见 `ACTUAL_DRAWING_WORKFLOW.md`、`PLATFORM_FEATURES.md`；加载验证和后续证据计划见 `DRAWING_PROTOCOL_VALIDATION.md`、`DRAWING_IMPLEMENTATION_PLAN.md`。历史作品状态不代表 R3 当前重新验收。
 
 更新日期：2026-09-05。适用项目：Line Atelier；开发基线为 v4。v5 仅提供绘画流程和区域叠层的参考思想。
 
