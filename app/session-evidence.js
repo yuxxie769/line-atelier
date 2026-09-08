@@ -13,6 +13,10 @@ function basisValue(value){
   if(value.note!==undefined&&(typeof value.note!=='string'||value.note.length>1000))throw Error('basis.note 需要最多 1000 字的简短说明');
   return {guideIds:[...new Set(value.guideIds||[])],note:value.note||''};
 }
+function referenceCardValue(value){
+  if(!value||typeof value!=='object'||typeof value.id!=='string')return null;
+  return {id:value.id,title:value.title,purpose:value.purpose,source:value.source,sha256:value.sha256,phases:copy(value.phases||[]),totalImages:value.totalImages,images:(value.images||[]).map(image=>({index:image.index,name:image.name,source:image.source,publicPath:image.publicPath}))};
+}
 async function pngHash(dataUrl){
   const bytes=Uint8Array.from(atob(dataUrl.slice(dataUrl.indexOf(',')+1)),c=>c.charCodeAt(0));
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
@@ -42,7 +46,14 @@ export function createSessionEvidence(engine,{save=async()=>{},now=()=>new Date(
   }
   async function invoke(tool,args,execute,entryPoint){
     const grouped=['paint_submit','paint_revise'].includes(tool);
-    const event={id:session.id+'-call-'+(session.events.length+1),tool,entryPoint,startedAt:now(),epoch,before:state(),status:'running',arguments:copy(args||{}),images:[]};
+    const startedAt=now();
+    const event={id:session.id+'-call-'+(session.events.length+1),tool,entryPoint,startedAt,epoch,before:state(),status:'running',arguments:copy(args||{}),images:[]};
+    const previousImageRead=[...session.events].reverse().find(candidate=>candidate.imageRead&&!candidate.nextAction);
+    if(previousImageRead){
+      const delayMs=Math.max(0,Date.parse(startedAt)-Date.parse(previousImageRead.imageRead.completedAt));
+      previousImageRead.nextAction={callId:event.id,tool,entryPoint,startedAt,delayMs};
+      event.sinceImageRead={callId:previousImageRead.id,tool:previousImageRead.tool,completedAt:previousImageRead.imageRead.completedAt,delayMs};
+    }
     if(grouped)event.groupId=session.id+'-group-'+(session.events.filter(e=>e.groupId).length+1);
     session.events.push(event);
     let result,error;
@@ -54,6 +65,7 @@ export function createSessionEvidence(engine,{save=async()=>{},now=()=>new Date(
       }
       result=await execute(args||{});
       event.status='succeeded';event.after=state();
+      if(tool==='paint_get_reference_card')event.referenceCard=referenceCardValue(result);
       if(grouped){
         event.acceptedStrokes=engine.doc.commands.filter(c=>!oldCommands.has(c.id)||JSON.stringify(c)!==JSON.stringify(oldCommands.get(c.id))).map(copy);
         event.strokeIds=event.acceptedStrokes.map(c=>c.id);
@@ -65,17 +77,24 @@ export function createSessionEvidence(engine,{save=async()=>{},now=()=>new Date(
       event.returnedAnchorIds=(result?.anchors||[]).map(a=>a.id);
       event.resultRegion=result?.region||args?.region||null;
       event.referenceStatus=result?.referenceStatus;
-      event.result=await summarize(result,event);
+      event.result=await summarize(event.referenceCard?{referenceCard:event.referenceCard}:result,event);
     }catch(e){
       if(event.status==='succeeded'){event.evidenceError=e.message;}
       else {error=e;event.status='failed';event.error=e.message;event.after=state();}
     }
     event.finishedAt=now();
+    const referenceImages=event.referenceCard?.images||[];
+    if(event.status==='succeeded'&&(event.images.length||referenceImages.length))event.imageRead={
+      completedAt:event.finishedAt,
+      imageCount:event.images.length+referenceImages.length,
+      imageIds:event.images.map(image=>image.id),
+      referenceCardImages:referenceImages.map(image=>({index:image.index,name:image.name,source:image.source,publicPath:image.publicPath}))
+    };
     // A restored/changed document starts another association epoch, even if revisions repeat.
     if(tool==='paint_new_document'||tool==='paint_undo'||tool==='paint_checkpoint'&&args?.action==='restore')epoch++;
     try{session.persistence='saved';await save(copy(session));}catch(e){session.persistence='memory';event.persistenceError=e.message;}
     if(error)throw error;
-    return result&&typeof result==='object'&&!Array.isArray(result)?{...result,callEvidence:{sessionId:session.id,callId:event.id,...(event.groupId?{groupId:event.groupId,strokeIds:event.strokeIds,removedStrokeIds:event.removedStrokeIds}:{}),revisionBefore:event.before.revision,revisionAfter:event.after.revision,imageIds:event.images.map(i=>i.id),persistence:session.persistence}}:result;
+    return result&&typeof result==='object'&&!Array.isArray(result)?{...result,callEvidence:{sessionId:session.id,callId:event.id,...(event.groupId?{groupId:event.groupId,strokeIds:event.strokeIds,removedStrokeIds:event.removedStrokeIds}:{}),...(event.referenceCard?{referenceCard:copy(event.referenceCard)}:{}),revisionBefore:event.before.revision,revisionAfter:event.after.revision,imageIds:event.images.map(i=>i.id),persistence:session.persistence}}:result;
   }
   return {
     run(tool,args,execute,entryPoint='page-api'){

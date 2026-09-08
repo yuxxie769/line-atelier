@@ -1,0 +1,7 @@
+﻿call,revision,target,observationIds,criterion,reference,drawing,conclusion
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-62,2,whole,7bb8f0f0-933d-4014-bf6a-e256ac1aaae3,proportion,大头短躯干和屈膝长腿；右下踝足转折约在y650–673，足尖约y738–752。,"头胸骨盆整体比例接近；交叉腿踝连接约(382,684)，小腿偏长、足块偏短。",different
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-62,2,whole,7bb8f0f0-933d-4014-bf6a-e256ac1aaae3,pose,坐姿两膝向左，一手抬至下巴，另一手垂向右下踝边。,动作端点整体接近；右下踝比参考偏低约15–25像素，具体中心因遮挡存在不确定性。,different
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-62,2,whole,7bb8f0f0-933d-4014-bf6a-e256ac1aaae3,negative-space,两腿间白色楔形向右下展开，在踝足附近收束。,楔形方向与开合接近，右侧收束随踝偏低而下移；与前两项属于同一局部问题。,different
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-73,3,whole,ecdfdfa2-44b6-4e3f-a1bb-8d6ab617a0b9,proportion,大头短躯干坐姿；头底约y250，较高膝部外缘转折约y490–510，脚端约y820/y750。骨盆、大腿根被衣裙遮挡。,头底、脚端接近；较高膝部弧转约y505–530，目测略低10–20像素，两膝纵向错位略收紧。交叉腿踝足比例较前版改善。,different
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-73,3,whole,ecdfdfa2-44b6-4e3f-a1bb-8d6ab617a0b9,pose,两大腿朝左，一小腿近竖直另一腿斜向右下；一手抬下巴、另一手靠近斜腿踝部。,上述方向和动作、抬手高度、垂手与踝部邻接及双脚方向已建立；遮衣关节精确倾角仍为区间判断。,aligned
+7e05da61-4b8b-4695-8e12-dfad75cac499-call-73,3,whole,ecdfdfa2-44b6-4e3f-a1bb-8d6ab617a0b9,negative-space,两小腿间形成向下扩大的三角负形；斜腿与垂臂间空隙受衣袖裙摆影响。,腿间负形总体方向与下方开口相近，膝部偏下影响上方入口；裸体构造空白不能与衣袖边缘逐像素等同。,aligned

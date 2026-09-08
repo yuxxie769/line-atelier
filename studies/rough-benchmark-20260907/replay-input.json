@@ -1,0 +1,2486 @@
+{
+  "new_document": {
+    "height": 849,
+    "title": "白发坐姿 · 0到粗稿测试 · 20260907",
+    "width": 600
+  },
+  "accepted_batches": [
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [],
+        "note": "拆开两侧颈线后重新提交空白起稿；先体块与关节，后续衣发依这些底稿展开。"
+      },
+      "commands": [
+        {
+          "color": "#7095b3",
+          "id": "axis",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 330 84 C 310 210 356 272 344 332 C 335 385 327 416 313 454",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "head",
+          "intent": "head",
+          "layer": "paper",
+          "part": "head",
+          "path": "M 326 83 C 263 84 257 132 269 189 C 279 223 309 241 335 249 C 368 242 396 213 398 169 C 399 119 373 80 326 83",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "faceaxis",
+          "intent": "head",
+          "layer": "paper",
+          "part": "head",
+          "path": "M 322 91 C 318 143 322 202 335 249",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "eyeline",
+          "intent": "head",
+          "layer": "paper",
+          "part": "head",
+          "path": "M 269 187 Q 331 211 393 183",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "neckleft",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 320 243 L 319 270",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "shoulders",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 284 290 Q 343 264 407 294",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "ribcage",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 303 283 Q 350 264 390 292 C 395 331 377 369 345 386 Q 313 385 296 358 Q 286 324 303 283",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "ribcross",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 295 331 Q 341 348 384 329",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "pelvis",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 302 400 Q 334 392 365 414 L 367 448 Q 341 474 306 476 L 269 449 Z",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "hipaxis",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 278 425 Q 323 423 364 445",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "raisedaxis",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 297 302 L 268 369 L 286 278 L 310 256",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "raisedupper",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 286 296 Q 269 317 257 364 Q 262 383 278 370 L 309 309",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "raisedfore",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 258 363 L 275 280 Q 282 271 291 280 L 279 365",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "handblock",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 276 278 L 281 253 L 305 242 L 333 251 L 325 263 L 304 262 L 291 287 Z",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "downaxis",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 399 301 L 402 454 L 389 622 L 389 653",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "downupper",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 388 293 Q 380 372 386 448 Q 398 467 415 455 L 420 311",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "downfore",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 387 456 Q 383 533 380 612 L 398 619 Q 418 535 415 454",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "downhand",
+          "intent": "arms",
+          "layer": "paper",
+          "part": "arms",
+          "path": "M 380 611 L 378 641 L 387 658 L 396 648 L 398 619",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "farlegaxis",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 288 447 L 165 495 L 181 739 L 157 794",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "farthigh",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 282 428 Q 204 434 152 473 Q 124 498 148 528 Q 171 541 192 525 L 312 481",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "farshin",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 147 516 Q 153 614 160 685 L 165 745 L 190 745 Q 196 675 199 603 L 193 535",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "nearthigh",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 325 460 Q 269 468 189 510 Q 147 526 163 553 Q 180 573 215 561 L 298 526",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "nearlegaxis",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 328 467 L 187 535 L 373 670 L 393 736",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "nearshin",
+          "intent": "legs",
+          "layer": "paper",
+          "part": "legs",
+          "path": "M 165 551 Q 223 609 294 640 L 374 696 L 391 674 Q 337 622 280 583 L 226 544",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "nearfoot",
+          "intent": "feet",
+          "layer": "paper",
+          "part": "feet",
+          "path": "M 374 679 Q 370 697 383 728 L 394 750 Q 402 742 397 728 L 395 694 L 389 676",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "farfoot",
+          "intent": "feet",
+          "layer": "paper",
+          "part": "feet",
+          "path": "M 165 737 L 194 735 L 212 763 L 196 790 Q 175 816 146 817 Q 129 805 143 785 Z",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        },
+        {
+          "color": "#7095b3",
+          "id": "neckright",
+          "intent": "body",
+          "layer": "paper",
+          "part": "body",
+          "path": "M 366 238 L 365 267",
+          "stage": "lineart",
+          "subphase": "layout",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.3
+        }
+      ]
+    },
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [
+          "head",
+          "faceaxis",
+          "eyeline",
+          "neckleft",
+          "neckright"
+        ],
+        "note": "承接头体块与眼位；保留遮住左眼的刘海、右侧可见眼、斜光环及左上蝴蝶结，脸颈只做粗稿结构。"
+      },
+      "commands": [
+        {
+          "color": "#514c65",
+          "id": "face",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 287 202 Q 295 232 335 247 Q 370 238 386 211",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "haircap",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 277 237 C 243 222 233 170 259 119 C 278 77 309 69 347 74 C 388 77 415 122 420 174",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "fringeleft",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 302 90 C 266 111 256 166 280 210 L 294 224 C 273 187 271 156 282 130",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "fringe1",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 287 127 C 286 165 300 196 323 207 L 329 198 L 332 137",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "fringe2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 299 128 Q 295 182 311 207 L 298 213",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "fringe3",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 334 131 Q 342 174 370 181 Q 384 182 393 176",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sidehair",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 343 87 C 382 116 408 179 387 218 Q 377 244 359 277 C 361 246 370 232 371 215",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sideouter",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 389 114 Q 421 177 405 213 Q 399 238 394 253",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bandtop",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 273 143 Q 280 106 314 105 L 346 106",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bandbottom",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 273 143 Q 311 116 358 126 L 349 108",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "eyeupper",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 338 200 Q 352 184 372 190 L 368 186",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "eyelower",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 345 201 Q 356 210 367 202",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "iris",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 350 192 Q 348 206 359 205 Q 369 204 367 191",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "brow",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 337 166 Q 350 163 362 171",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "nose",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 319 217 L 317 222 L 321 224",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "mouth",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 331 233 L 337 233",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "ear",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 402 190 Q 414 187 406 205 L 401 211",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "choker",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 339 247 Q 367 254 389 237 L 390 247 Q 367 263 341 254",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "neckrough",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 367 253 L 360 270",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bowup",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 260 109 L 247 70 L 258 9 Q 286 33 295 65 Q 288 87 266 111",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bowleft",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 258 112 Q 221 120 185 164 Q 215 170 247 157",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bowknot",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 255 103 L 266 107 L 260 121 L 249 116 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "bowfold",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 259 60 Q 269 77 264 101",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "halo",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 351 36 C 314 38 361 84 402 94 C 462 109 415 53 375 39 C 365 36 357 35 351 36",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        }
+      ]
+    },
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [
+          "shoulders",
+          "ribcage",
+          "ribcross",
+          "raisedaxis",
+          "raisedupper",
+          "raisedfore",
+          "handblock",
+          "downaxis",
+          "downupper",
+          "downfore",
+          "downhand"
+        ],
+        "note": "领口围绕颈根与胸廓，袖子放大包住屈臂和下垂臂；手指依手块概括，宽袖口在掌上方结束。"
+      },
+      "commands": [
+        {
+          "color": "#514c65",
+          "id": "collar",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 302 270 Q 315 281 339 285 L 394 252 Q 419 273 443 303 L 316 329 L 296 287",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "collartrim",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 302 284 L 316 324 Q 379 315 439 303",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "collarunder",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 319 332 Q 360 352 417 316",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tiekn",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 309 325 L 320 326 L 320 335 L 310 336 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tieleft",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 311 336 Q 294 362 278 405 Q 304 383 310 361",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tieright",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 318 336 Q 337 378 337 427 L 311 384 Q 307 361 318 336",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "blouse",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 321 336 Q 351 347 391 334 L 377 417 Q 351 423 339 416",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "blouseleft",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 298 354 Q 287 384 285 411 L 310 414",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "blousefold",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 365 360 Q 363 390 371 413",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "button",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 332 286 C 325 284 324 294 331 295 C 338 296 338 286 332 286",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "raisedcoat",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 272 264 L 249 278 L 239 306 Q 246 330 247 353 Q 254 378 273 389 L 288 367 L 298 337 L 297 291",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "raisedcuff",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 272 277 Q 281 283 296 281 L 296 298 Q 281 310 273 300 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "raisedsleevefold",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 260 291 L 259 343 L 270 363 L 280 346 L 274 309",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "raisedsleevefold2",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 283 315 L 285 335 L 293 339",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "handpalm",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 279 276 Q 280 259 288 251 L 304 244 Q 312 244 319 247 L 332 254 Q 325 257 318 253 L 305 251",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "handfinger1",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 299 256 Q 314 253 330 261 Q 333 264 328 264 L 314 260 L 303 262",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "handfinger2",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 301 264 Q 315 260 325 268 Q 324 271 318 269 L 304 268 Q 299 273 290 275 L 288 282",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "thumb",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 285 253 Q 274 258 276 268 L 283 268",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "rightshoulder",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 441 310 Q 459 328 456 360 Q 451 398 422 433 L 350 478",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleeveouter",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 453 357 L 473 381 Q 496 396 487 424 L 471 461 Q 467 493 449 530 L 432 609 L 430 625 Q 402 639 367 627 L 366 595 Q 356 551 344 514 L 350 478",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleevecuff",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 367 613 Q 397 625 433 612",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleevefold1",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 477 409 Q 426 431 351 478 Q 407 465 457 454",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleevefold2",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 350 487 L 387 509 L 364 533",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleevefold3",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 432 503 Q 408 529 374 550 L 411 559",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sleevefold4",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 372 568 L 396 586 L 428 574",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "downpalm",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 376 632 Q 377 645 384 650 L 390 654 Q 398 645 400 633",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "downfingers",
+          "intent": "arms",
+          "layer": "rough",
+          "part": "arms",
+          "path": "M 383 633 L 385 643 L 388 644 L 392 634",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        }
+      ]
+    },
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [
+          "farthigh",
+          "farshin",
+          "nearthigh",
+          "nearshin",
+          "farfoot",
+          "nearfoot",
+          "farlegaxis",
+          "nearlegaxis"
+        ],
+        "note": "把直段构造转为圆膝与逐渐收窄的小腿；交叉脚袜口比原楔块上沿抬高，脚跟与前掌转折仍承接脚部占位。鞋履包覆左脚楔形。"
+      },
+      "commands": [
+        {
+          "color": "#514c65",
+          "id": "farknee",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 195 454 C 156 455 130 473 139 515 Q 149 552 149 601 C 151 656 160 700 161 740",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "farinner",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 199 578 Q 193 626 191 681 L 190 731",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "farfold",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 185 489 L 184 500",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "crosstop",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 233 478 C 204 489 174 503 163 526 C 146 557 187 579 221 596 Q 282 631 333 665 L 369 692",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "crossinside",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 273 528 Q 258 534 238 541 C 262 558 284 581 306 597 Q 342 632 368 648 Q 377 654 387 649",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sockfoot",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 387 649 Q 402 652 394 676 Q 388 695 395 717 L 399 733 L 394 746 Q 391 752 386 741 Q 378 724 370 705 Q 365 696 369 692",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "foottop",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 391 675 Q 386 695 390 709",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sockhole",
+          "intent": "legs",
+          "layer": "rough",
+          "part": "legs",
+          "path": "M 295 589 Q 308 590 329 621 Q 333 632 320 624 Q 292 609 295 589",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "sockpull",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 386 653 Q 373 656 382 665 Q 394 671 395 658",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoeoutline",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 161 741 Q 150 744 153 761 L 151 778 Q 138 787 138 803 Q 140 826 156 826 Q 185 819 195 796 L 201 780 L 215 767 Q 216 756 202 737 L 192 730",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoeopening",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 160 743 Q 177 737 184 760 Q 194 751 197 737",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoetongue",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 156 751 Q 174 741 178 766",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoeband1",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 154 762 Q 167 758 183 769 L 181 777 Q 165 767 153 771 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoeband2",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 152 775 Q 165 773 178 782 L 174 790 Q 163 782 149 784 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoetoe",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 149 787 Q 139 801 150 805 Q 168 811 179 789",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "shoesole",
+          "intent": "feet",
+          "layer": "rough",
+          "part": "feet",
+          "path": "M 139 806 Q 161 821 184 799 Q 193 788 195 777 L 212 764",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        }
+      ]
+    },
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [
+          "pelvis",
+          "hipaxis",
+          "farthigh",
+          "nearthigh",
+          "blouse",
+          "blouseleft",
+          "sleeveouter",
+          "sleevefold1",
+          "farknee",
+          "crossinside"
+        ],
+        "note": "裙子包覆骨盆与大腿并遮住近侧大腿根；左右外套尾片承担坐姿的水平展开，袖子位于前景。"
+      },
+      "commands": [
+        {
+          "color": "#514c65",
+          "id": "waistband",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 287 411 Q 309 420 377 417 L 369 440 Q 322 447 274 436 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "skirtoutline",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 285 412 L 269 427 Q 234 436 196 449 L 185 454 Q 245 461 267 510 L 276 532 Q 306 566 347 576 L 362 591",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "skirtside",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 350 478 L 339 519 L 308 561",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat1",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 292 418 L 282 443 L 306 441 L 314 424",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat2",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 325 424 L 319 448 L 337 466 L 345 432",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat3",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 359 423 L 355 453 L 366 447",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat4",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 277 437 L 248 457 L 306 454 L 284 518",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat5",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 258 470 Q 282 474 299 482 L 318 453 L 331 497 L 306 551",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "pleat6",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 322 512 L 332 529 L 317 549",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "coatleft",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 267 381 Q 218 375 169 383 L 146 396 L 110 414 L 102 442 L 113 463 L 143 472",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "coatleftfold1",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 168 386 Q 166 413 212 433 L 264 407",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "coatleftfold2",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 131 405 L 121 428 Q 139 450 171 457",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "coatleftfold3",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 105 429 L 119 446 L 123 466",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "coattail",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 481 486 L 491 510 Q 525 525 562 546 L 581 588 L 560 627 L 532 657 Q 468 665 425 639 L 444 623",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tailfold1",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 475 513 L 469 537 L 516 531",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tailfold2",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 453 551 L 548 570 L 438 580",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tailfold3",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 439 597 L 552 596 L 563 565",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tailfold4",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 441 616 L 521 639 L 532 657",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "tailfold5",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 459 608 L 554 616",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "backcoat",
+          "intent": "body",
+          "layer": "rough",
+          "part": "body",
+          "path": "M 489 389 Q 510 401 514 431 L 524 454 L 496 452",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        }
+      ]
+    },
+    {
+      "animate": false,
+      "basis": {
+        "guideIds": [
+          "head",
+          "haircap",
+          "sideouter",
+          "sidehair",
+          "shoulders",
+          "raisedcoat",
+          "coatleft",
+          "rightshoulder",
+          "sleeveouter",
+          "backcoat"
+        ],
+        "note": "长发从头盖延续，左侧向外飘散后收回肩后，右侧沿袖前后分束；辫子跨在抬手边并以小结连接。保留少量粗稿交叉线待终点检查。"
+      },
+      "commands": [
+        {
+          "color": "#514c65",
+          "id": "hairrightback",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 413 145 C 439 205 439 267 462 303 Q 478 339 500 377 Q 488 382 478 364",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairrightfront",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 407 204 C 410 269 449 305 469 338 C 504 390 489 463 459 488 Q 443 506 435 528 C 468 490 511 423 491 370",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "rightlock",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 479 396 C 485 440 448 491 432 480 Q 426 480 426 470",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "rightlocklow",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 471 453 Q 461 519 416 533",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairbacklow",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 500 450 Q 514 486 498 510 L 481 526",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairbacklow2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 505 454 Q 510 482 503 496",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairleftback",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 247 164 Q 245 205 249 230 Q 225 265 210 313",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairleftinner",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 253 196 Q 252 241 263 254",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "haircurl",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 250 282 C 220 312 186 335 163 319 C 148 306 159 288 178 290 Q 188 291 185 299 C 173 286 167 306 175 317 C 192 337 226 317 247 307",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairleftflow",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 246 319 C 213 351 178 375 127 380 Q 80 387 50 371 L 50 363 Q 90 369 130 360",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairleftlower",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 244 341 Q 205 376 164 389 L 141 397 Q 93 414 45 397 Q 17 390 24 381",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairloose1",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 121 357 C 78 365 40 357 28 346 Q 47 333 77 337 Q 98 338 92 343 Q 72 335 48 345 C 39 356 91 358 121 351",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairloose2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 128 358 C 110 345 156 349 168 356 Q 172 362 143 369 Q 178 372 195 362",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairloose3",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 50 378 C 18 374 3 391 24 398 Q 62 416 123 401",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairbundle",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 243 330 C 198 381 115 405 58 389",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairbundle2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 245 351 Q 219 370 209 379 L 222 373",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braid1",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 276 216 L 286 223 L 277 237 L 265 231 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braid2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 277 236 L 294 229 L 298 239 L 279 254 L 274 247 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braid3",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 279 252 L 292 244 L 295 254 L 282 267 L 276 261 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braid4",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 280 265 L 290 260 L 292 270 L 281 277 L 275 272 Z",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braidbow",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 281 277 C 263 263 268 285 281 280 C 299 266 301 282 282 281",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braidtail",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 278 281 Q 269 300 292 309 Q 279 291 285 282",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "braidtail2",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 286 285 Q 290 299 301 305",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        },
+        {
+          "color": "#514c65",
+          "id": "hairshoulder",
+          "intent": "head",
+          "layer": "rough",
+          "part": "head",
+          "path": "M 395 252 Q 389 296 409 288",
+          "stage": "lineart",
+          "subphase": "rough",
+          "taper": [
+            0.5,
+            0.85,
+            0.4
+          ],
+          "type": "stroke",
+          "width": 1.7
+        }
+      ]
+    }
+  ],
+  "layer_updates": [
+    {
+      "layers": [
+        {
+          "id": "paper",
+          "name": "1A 人体构造",
+          "opacity": 1
+        },
+        {
+          "id": "rough",
+          "name": "1B 粗稿",
+          "opacity": 1
+        }
+      ]
+    },
+    {
+      "layers": [
+        {
+          "id": "paper",
+          "opacity": 0.25
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "enabled": true,
+    "phase": "rough"
+  }
+}

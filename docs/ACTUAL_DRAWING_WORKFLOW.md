@@ -31,10 +31,10 @@
 |---|---|---|
 | 看部位与底稿 | `paint_inspect_context({query:"左眼"})` | 一张四格图：参考局部、当前画布局部、带编号底稿叠图、整图位置；同时读取精简 ID 与整图坐标 |
 | 确定定位与走势 | 通常无需额外工具；不足时按需读取下一页、完整几何或场景 | 找到可用占位、轴线、端点和锚点；判断沿用、偏移还是修订；不是盲目贴着任何底稿画 |
-| 提交小组笔画 | `paint_submit({commands:[…],animate:false})`，或修改时 `paint_revise` | 模型给出实际坐标、层、物体、粗细与压力；平滑随命令参数一起完成 |
-| 看实际结果 | 再调用同部位 `paint_inspect_context`，或用 `paint_snapshot_region` | 观察执行后的渲染图、参考和相邻部位；必要时看整幅或翻转图，再修订或继续 |
+| 提交小组笔画 | `paint_submit({commands:[…],animate:false})`，或修改时 `paint_revise` | 每批 1–3 笔，只解决一个轮廓或连接关系；按参考保留宽窄、曲率、转向和遮挡 |
+| 看实际结果 | 再调用同部位 `paint_inspect_context` 或 `paint_observe_review`，然后 `paint_record_inspection` | 记录本批实际对照；有偏差先返修、复看并解决问题，再向其他部位新增 |
 
-这里的判断发生在模型内部，不新增思考表单。一组相关笔画通常是观察—提交—复看的循环；不要求每根睫毛单独重复整套步骤。同一部位的有效上下文可以复用；有相关改形或遮挡变化后应更新观察。
+运行循环为观察—提交 1–3 笔—复看并记录。记录使用既有逐项检查接口；每批不另建思考表单。当前批次没有完成图像绑定检查时，下一次绘画修改会被拒绝；检查登记明确偏差后，向无关部位新增笔迹会被拒绝，直至返修、复看并处理问题。
 
 若使用 `animate:true`，提交返回后画面可能尚未画完。看完成结果前调用 `paint_playback({action:"finish"})`。`paint_inspect_context` 是只读工具，不会替模型完成播放；其坐标来自已保存笔迹，而当前画面遵循播放位置。
 
@@ -96,3 +96,23 @@
 仓库 R3 执行记录包含提交、修订、场景、阶段、检查点等操作；其中没有完整保存本次所要求的 `inspect → submit → result image` 链。因此不能用它证明 R3 每组都按新规范读取并利用了底稿。新工具的功能测试也不能替代模型行为验证。
 
 新左眼试画已完成并保存独立证据，详见 [R3_LEFT_EYE_TRIAL.md](R3_LEFT_EYE_TRIAL.md)。图像和笔画组按 revision、范围与文档恢复分段建立候选关联；日志自身不证明模型实际看过或看懂，仍须结合实际图像呈现与可核对改动。
+
+
+## 阶段性规范加载
+
+正式规范由 `docs/WORKFLOW_PRINCIPLES.md` 核心原则和 `docs/workflow-stages/` 六个阶段文件组成。首次阅读核心即可，不预加载全部阶段正文。
+
+- `paint_get_state` 默认返回 `drawingProtocol.text`（核心）及 `drawingProtocol.stage`（当前阶段的 phase、source、sha256、text）。开始或恢复任务使用默认完整返回。
+- `includeProtocol:false` 只省略核心正文，不省略当前阶段正文；仅用于连续操作中已读同一核心版本的情况。
+- `paint_set_phase` 成功后自动返回完整核心及所选阶段要求，即使再次进入同一阶段也重新返回。
+- `paint_checkpoint` 恢复检查点后按恢复的阶段返回完整要求。
+- 核心和阶段各有独立哈希；更改后运行 `npm run sync:protocol`。网页副本及内嵌模块由源文件生成，不直接维护。
+
+加载发生在工具返回中，不会主动启动新的模型调用，也不证明模型执行了观察或达到美术质量。保持 1A–1F 和 1F 两轮审核，不增加审批轮次。
+
+
+## 底稿承接与局部修图说明的加载
+
+底稿利用、局部修图步骤与底稿 ID、`basis`、坐标换算、控制柄和平滑等相关工具操作合并维护在 `docs/workflow-actions/local-revision.md`。`paint_inspect_context` 每次返回 `operationGuide`（source、sha256、text），包含该文件完整正文；在后续落笔或修订前读取。compact、full 和仅坐标返回均包含全文，不需另行加载两份文档。说明加载本身不创建新审核节点；实际绘画仍受逐批检查与先返修再继续的门槛约束。返回正文不代表模型已经实际看图或利用了底稿。
+
+阶段推进前的实际检查：读取 localFeedback.inspection，取得目标图片后用 paint_record_inspection 逐项记录参考形状、当前形状与结论。取图本身不能解锁推进；different/uncertain 自动登记问题。检查记录随 visualChecks 保存，恢复后需要新的图像绑定记录。底稿查询取消数量分页，全部匹配候选一次返回。

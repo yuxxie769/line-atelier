@@ -1,0 +1,1578 @@
+[
+  {
+    "tool": "paint_scan_gaps",
+    "arguments": {
+      "angle": 65,
+      "limit": 120,
+      "maxGap": 10,
+      "subphases": [
+        "clean"
+      ]
+    },
+    "result": {
+      "revision": 76,
+      "checked": 168,
+      "connected": 87,
+      "occluded": 0,
+      "total": 81,
+      "counts": {
+        "gap": 61,
+        "dangling": 20,
+        "short-stroke": 0
+      },
+      "issues": [
+        {
+          "id": "issue-0",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-fringe",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            286,
+            130
+          ],
+          "target": [
+            283.67767882792305,
+            123.90519965527147
+          ],
+          "targetStrokeId": "ink-band",
+          "distance": 6.52,
+          "gap": 5.59
+        },
+        {
+          "id": "issue-1",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-fringe",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            393,
+            175
+          ],
+          "target": [
+            395.23649436264475,
+            175.0660193858379
+          ],
+          "targetStrokeId": "ink-crown-fiber",
+          "distance": 2.24,
+          "gap": 1.77
+        },
+        {
+          "id": "issue-2",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-left-lock",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            277,
+            107
+          ],
+          "target": [
+            274.45679012345676,
+            99.74074074074073
+          ],
+          "targetStrokeId": "ink-bow",
+          "distance": 7.69,
+          "gap": 6.56
+        },
+        {
+          "id": "issue-3",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-left-lock",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            251,
+            211
+          ],
+          "target": [
+            247.54632017456854,
+            207.0890696290419
+          ],
+          "targetStrokeId": "ink-left-curl",
+          "distance": 5.22,
+          "gap": 4.33
+        },
+        {
+          "id": "issue-4",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-band",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            278,
+            130
+          ],
+          "target": [
+            281.2675018310547,
+            138.30360794067383
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 8.92,
+          "gap": 8.01
+        },
+        {
+          "id": "issue-5",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-upper-lid",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            338,
+            198
+          ],
+          "target": [
+            331.786703601108,
+            199.42382271468145
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 6.37,
+          "gap": 5.29
+        },
+        {
+          "id": "issue-6",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-upper-lid",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            371,
+            185
+          ],
+          "target": [
+            373.8611111111111,
+            175.62860082304528
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 9.8,
+          "gap": 8.86
+        },
+        {
+          "id": "issue-7",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-iris",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            367,
+            191
+          ],
+          "target": [
+            366.9001737585574,
+            188.03516062915443
+          ],
+          "targetStrokeId": "ink-upper-lid",
+          "distance": 2.97,
+          "gap": 1.18
+        },
+        {
+          "id": "issue-8",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-pupil",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            359,
+            200
+          ],
+          "target": [
+            362.1551246537396,
+            203.49307479224376
+          ],
+          "targetStrokeId": "ink-iris",
+          "distance": 4.71,
+          "gap": 3.41
+        },
+        {
+          "id": "issue-9",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-eye-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            339,
+            191
+          ],
+          "target": [
+            332.75900277008316,
+            191.97783933518008
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 6.32,
+          "gap": 5.59
+        },
+        {
+          "id": "issue-10",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-eye-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            368,
+            183
+          ],
+          "target": [
+            371,
+            185
+          ],
+          "targetStrokeId": "ink-upper-lid",
+          "distance": 3.61,
+          "gap": 2.98
+        },
+        {
+          "id": "issue-11",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-mouth",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            323,
+            234
+          ],
+          "target": [
+            317.57894736842104,
+            237.92797783933517
+          ],
+          "targetStrokeId": "ink-jaw",
+          "distance": 6.69,
+          "gap": 5.84
+        },
+        {
+          "id": "issue-12",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bow-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            258,
+            69
+          ],
+          "target": [
+            249,
+            72.76923076923077
+          ],
+          "targetStrokeId": "ink-bow",
+          "distance": 9.76,
+          "gap": 9.05
+        },
+        {
+          "id": "issue-13",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bang-a",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            287,
+            135
+          ],
+          "target": [
+            285.2206573486328,
+            131.1344108581543
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 4.26,
+          "gap": 3.67
+        },
+        {
+          "id": "issue-14",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bang-a",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            303,
+            207
+          ],
+          "target": [
+            304.0103305785124,
+            210.55371900826447
+          ],
+          "targetStrokeId": "ink-fringe",
+          "distance": 3.69,
+          "gap": 2.96
+        },
+        {
+          "id": "issue-15",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bang-b",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            315,
+            128
+          ],
+          "target": [
+            314.8616780045351,
+            126.25673973293021
+          ],
+          "targetStrokeId": "ink-band",
+          "distance": 1.75,
+          "gap": 0.98
+        },
+        {
+          "id": "issue-16",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-crown-fiber",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            343,
+            79
+          ],
+          "target": [
+            341.7688888888889,
+            75.00888888888889
+          ],
+          "targetStrokeId": "ink-cap",
+          "distance": 4.18,
+          "gap": 3.44
+        },
+        {
+          "id": "issue-17",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-crown-fiber",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            395,
+            179
+          ],
+          "target": [
+            401.8523526230394,
+            183.44023796646837
+          ],
+          "targetStrokeId": "ink-face-lock",
+          "distance": 8.17,
+          "gap": 7.32
+        },
+        {
+          "id": "issue-18",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-rear-hair",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            383,
+            94
+          ],
+          "target": [
+            383.4551324247533,
+            85.94237273050908
+          ],
+          "targetStrokeId": "ink-halo",
+          "distance": 8.07,
+          "gap": 6.91
+        },
+        {
+          "id": "issue-19",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-right-strand",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            411,
+            137
+          ],
+          "target": [
+            412.45505600000007,
+            134.328133
+          ],
+          "targetStrokeId": "ink-rear-hair",
+          "distance": 3.04,
+          "gap": 2.29
+        },
+        {
+          "id": "issue-20",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-right-strand",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            454,
+            473
+          ],
+          "target": [
+            453.8058025951305,
+            471.6032949409535
+          ],
+          "targetStrokeId": "ink-right-strand",
+          "distance": 1.41,
+          "gap": 0.86
+        },
+        {
+          "id": "issue-21",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-right-tail",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            479,
+            440
+          ],
+          "target": [
+            470.7524474467177,
+            435.8264297246657
+          ],
+          "targetStrokeId": "ink-right-strand",
+          "distance": 9.24,
+          "gap": 8.56
+        },
+        {
+          "id": "issue-22",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-left-curl",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            249,
+            295
+          ],
+          "target": [
+            248.33075550267694,
+            291.3658536585366
+          ],
+          "targetStrokeId": "ink-raised-sleeve",
+          "distance": 3.7,
+          "gap": 2.67
+        },
+        {
+          "id": "issue-23",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-left-low",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            244,
+            315
+          ],
+          "target": [
+            241.8346222486615,
+            310.4878048780488
+          ],
+          "targetStrokeId": "ink-raised-sleeve",
+          "distance": 5,
+          "gap": 3.95
+        },
+        {
+          "id": "issue-24",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-braid-right",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            287,
+            223
+          ],
+          "target": [
+            278.24,
+            227.51999999999998
+          ],
+          "targetStrokeId": "ink-braid-left",
+          "distance": 9.86,
+          "gap": 8.86
+        },
+        {
+          "id": "issue-25",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-braid-tail",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            289,
+            281
+          ],
+          "target": [
+            288.8449697993115,
+            278.9130549907325
+          ],
+          "targetStrokeId": "ink-braid-knot",
+          "distance": 2.09,
+          "gap": 1.24
+        },
+        {
+          "id": "issue-26",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-neck-front",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            334,
+            267
+          ],
+          "target": [
+            334,
+            258
+          ],
+          "targetStrokeId": "ink-raised-hand",
+          "distance": 9,
+          "gap": 7.9
+        },
+        {
+          "id": "issue-27",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-neck-front",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            365,
+            273
+          ],
+          "target": [
+            367.5882352941176,
+            273.47058823529414
+          ],
+          "targetStrokeId": "ink-face-lock",
+          "distance": 2.63,
+          "gap": 1.33
+        },
+        {
+          "id": "issue-28",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-collar-trim",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            319,
+            324
+          ],
+          "target": [
+            316.6363636363636,
+            324.54545454545456
+          ],
+          "targetStrokeId": "ink-collar-inner",
+          "distance": 2.43,
+          "gap": 1.65
+        },
+        {
+          "id": "issue-29",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-collar-trim",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            416,
+            284
+          ],
+          "target": [
+            416.7781065088757,
+            277.3343195266272
+          ],
+          "targetStrokeId": "ink-collar-outline",
+          "distance": 6.71,
+          "gap": 5.79
+        },
+        {
+          "id": "issue-30",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-collar-underfold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            316,
+            333
+          ],
+          "target": [
+            313,
+            329
+          ],
+          "targetStrokeId": "ink-collar-outline",
+          "distance": 5,
+          "gap": 3.82
+        },
+        {
+          "id": "issue-31",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bodice",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            299,
+            390
+          ],
+          "target": [
+            299,
+            387
+          ],
+          "targetStrokeId": "ink-tie-left",
+          "distance": 3,
+          "gap": 1.91
+        },
+        {
+          "id": "issue-32",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-bodice-right",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            399,
+            331
+          ],
+          "target": [
+            394.20053050397894,
+            322.31524567386623
+          ],
+          "targetStrokeId": "ink-collar-underfold",
+          "distance": 9.92,
+          "gap": 9.07
+        },
+        {
+          "id": "issue-33",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-raised-sleeve",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            268,
+            276
+          ],
+          "target": [
+            272.0603566529492,
+            274.60219478738
+          ],
+          "targetStrokeId": "ink-braid-knot",
+          "distance": 4.29,
+          "gap": 3.1
+        },
+        {
+          "id": "issue-34",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-raised-sleeve",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            298,
+            311
+          ],
+          "target": [
+            293.921875,
+            309.21875
+          ],
+          "targetStrokeId": "ink-braid-tail",
+          "distance": 4.45,
+          "gap": 3.37
+        },
+        {
+          "id": "issue-35",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-long-sleeve-left",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            438,
+            311
+          ],
+          "target": [
+            436.64221689180664,
+            305.2523671253629
+          ],
+          "targetStrokeId": "ink-collar-outline",
+          "distance": 5.91,
+          "gap": 4.48
+        },
+        {
+          "id": "issue-36",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-sleeve-lower-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            363,
+            539
+          ],
+          "target": [
+            356.204081632653,
+            538.795918367347
+          ],
+          "targetStrokeId": "ink-long-sleeve-left",
+          "distance": 6.8,
+          "gap": 5.79
+        },
+        {
+          "id": "issue-37",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-raised-cuff",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            291,
+            285
+          ],
+          "target": [
+            288.671875,
+            285.21875
+          ],
+          "targetStrokeId": "ink-braid-tail",
+          "distance": 2.34,
+          "gap": 1.68
+        },
+        {
+          "id": "issue-38",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-hair-tip-return",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            449,
+            523
+          ],
+          "target": [
+            448.27819788629745,
+            517.8940415451896
+          ],
+          "targetStrokeId": "ink-rear-hair",
+          "distance": 5.16,
+          "gap": 4.56
+        },
+        {
+          "id": "issue-39",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-elbow-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            355,
+            470
+          ],
+          "target": [
+            352.0430839002268,
+            464.0975056689343
+          ],
+          "targetStrokeId": "ink-sleeve-fold-rim",
+          "distance": 6.6,
+          "gap": 5.73
+        },
+        {
+          "id": "issue-40",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-sleeve-midfold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            407,
+            526
+          ],
+          "target": [
+            413,
+            531
+          ],
+          "targetStrokeId": "ink-hair-tip-return",
+          "distance": 7.81,
+          "gap": 7.22
+        },
+        {
+          "id": "issue-41",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-lower-finger-a",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            388,
+            631
+          ],
+          "target": [
+            388.20649649365936,
+            629.4827757626895
+          ],
+          "targetStrokeId": "ink-long-sleeve-cuff",
+          "distance": 1.53,
+          "gap": 0.59
+        },
+        {
+          "id": "issue-42",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-left-edge",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            244,
+            376
+          ],
+          "target": [
+            248.56701604116066,
+            374.4620315590342
+          ],
+          "targetStrokeId": "ink-raised-sleeve",
+          "distance": 4.82,
+          "gap": 3.47
+        },
+        {
+          "id": "issue-43",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-right-edge",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            487,
+            452
+          ],
+          "target": [
+            485.45772594752174,
+            450.42274052478126
+          ],
+          "targetStrokeId": "ink-rear-hair",
+          "distance": 2.21,
+          "gap": 1.05
+        },
+        {
+          "id": "issue-44",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-right-edge",
+          "end": "end",
+          "claim": "occluded",
+          "point": [
+            433,
+            625
+          ],
+          "target": [
+            433,
+            620
+          ],
+          "targetStrokeId": "ink-long-sleeve-cuff",
+          "distance": 5,
+          "gap": 3.48
+        },
+        {
+          "id": "issue-45",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-waist-fold-a",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            306,
+            415
+          ],
+          "target": [
+            306.304347826087,
+            410.8241965973535
+          ],
+          "targetStrokeId": "ink-bodice",
+          "distance": 4.19,
+          "gap": 3.31
+        },
+        {
+          "id": "issue-46",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-waist-fold-b",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            337,
+            419
+          ],
+          "target": [
+            337.56143841765504,
+            415.6573319642499
+          ],
+          "targetStrokeId": "ink-bodice-right",
+          "distance": 3.39,
+          "gap": 2.61
+        },
+        {
+          "id": "issue-47",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-waist-fold-b",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            323,
+            420
+          ],
+          "target": [
+            325.14285714285717,
+            415.42857142857144
+          ],
+          "targetStrokeId": "ink-tie-right",
+          "distance": 5.05,
+          "gap": 4.19
+        },
+        {
+          "id": "issue-48",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-skirt-fold-a",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            280,
+            501
+          ],
+          "target": [
+            283.6666666666667,
+            504.7142857142858
+          ],
+          "targetStrokeId": "ink-skirt-fold-b",
+          "distance": 5.22,
+          "gap": 4.55
+        },
+        {
+          "id": "issue-49",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-skirt-fold-b",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            319,
+            440
+          ],
+          "target": [
+            319.9999760542133,
+            438.99307966763246
+          ],
+          "targetStrokeId": "ink-waist-fold-b",
+          "distance": 1.42,
+          "gap": 0.77
+        },
+        {
+          "id": "issue-50",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-skirt-fold-b",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            312,
+            457
+          ],
+          "target": [
+            309.35714285714283,
+            450.35714285714283
+          ],
+          "targetStrokeId": "ink-skirt-fold-b",
+          "distance": 7.15,
+          "gap": 6.71
+        },
+        {
+          "id": "issue-51",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-skirt-fold-c",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            340,
+            465
+          ],
+          "target": [
+            349,
+            465
+          ],
+          "targetStrokeId": "ink-long-sleeve-left",
+          "distance": 9,
+          "gap": 8.03
+        },
+        {
+          "id": "issue-52",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-skirt-fold-c",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            346,
+            535
+          ],
+          "target": [
+            354.1020408163265,
+            531.7551020408164
+          ],
+          "targetStrokeId": "ink-long-sleeve-left",
+          "distance": 8.73,
+          "gap": 7.76
+        },
+        {
+          "id": "issue-53",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-left-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            119,
+            413
+          ],
+          "target": [
+            116.51131221719457,
+            410.26244343891403
+          ],
+          "targetStrokeId": "ink-coat-left-edge",
+          "distance": 3.7,
+          "gap": 2.72
+        },
+        {
+          "id": "issue-54",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-left-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            142,
+            429
+          ],
+          "target": [
+            139.22222222222226,
+            430.2222222222223
+          ],
+          "targetStrokeId": "ink-coat-left-fold",
+          "distance": 3.03,
+          "gap": 2.33
+        },
+        {
+          "id": "issue-55",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-coat-right-fold-upper",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            500,
+            519
+          ],
+          "target": [
+            507.2982171799026,
+            512.8541329011343
+          ],
+          "targetStrokeId": "ink-coat-right-edge",
+          "distance": 9.54,
+          "gap": 8.57
+        },
+        {
+          "id": "issue-56",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-ankle-opening",
+          "end": "start",
+          "claim": "joined",
+          "point": [
+            384,
+            652
+          ],
+          "target": [
+            385.21484375,
+            650.05078125
+          ],
+          "targetStrokeId": "ink-near-leg",
+          "distance": 2.3,
+          "gap": 1.24
+        },
+        {
+          "id": "issue-57",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-toe-crease",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            391,
+            735
+          ],
+          "target": [
+            382.6666666666667,
+            737
+          ],
+          "targetStrokeId": "ink-near-leg",
+          "distance": 8.57,
+          "gap": 7.73
+        },
+        {
+          "id": "issue-58",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-shoe-sole",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            141,
+            810
+          ],
+          "target": [
+            138.61591695501733,
+            809.1107266435987
+          ],
+          "targetStrokeId": "ink-shoe-outline",
+          "distance": 2.54,
+          "gap": 1.47
+        },
+        {
+          "id": "issue-59",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-shoe-sole",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            211,
+            761
+          ],
+          "target": [
+            214.92000000000002,
+            759.4
+          ],
+          "targetStrokeId": "ink-shoe-outline",
+          "distance": 4.23,
+          "gap": 3.13
+        },
+        {
+          "id": "issue-60",
+          "kind": "gap",
+          "severity": "candidate",
+          "strokeId": "ink-shoe-vamp",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            144,
+            801
+          ],
+          "target": [
+            139.45674740484426,
+            798.1799307958478
+          ],
+          "targetStrokeId": "ink-shoe-outline",
+          "distance": 5.35,
+          "gap": 4
+        },
+        {
+          "id": "issue-61",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-face-lock",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            379,
+            195
+          ]
+        },
+        {
+          "id": "issue-62",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-band",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            274,
+            145
+          ]
+        },
+        {
+          "id": "issue-63",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-nose",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            316,
+            220
+          ]
+        },
+        {
+          "id": "issue-64",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-nose",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            317,
+            224
+          ]
+        },
+        {
+          "id": "issue-65",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-mouth",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            329,
+            234
+          ]
+        },
+        {
+          "id": "issue-66",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-right-tail",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            454,
+            544
+          ]
+        },
+        {
+          "id": "issue-67",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-left-ribbon",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            244,
+            258
+          ]
+        },
+        {
+          "id": "issue-68",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-left-ribbon",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            245,
+            342
+          ]
+        },
+        {
+          "id": "issue-69",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-sleeve-fold-rim",
+          "end": "start",
+          "claim": "occluded",
+          "point": [
+            463,
+            374
+          ]
+        },
+        {
+          "id": "issue-70",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-upper-sleeve-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            417,
+            330
+          ]
+        },
+        {
+          "id": "issue-71",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-upper-sleeve-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            425,
+            381
+          ]
+        },
+        {
+          "id": "issue-72",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-sleeve-lower-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            413,
+            604
+          ]
+        },
+        {
+          "id": "issue-73",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-elbow-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            391,
+            487
+          ]
+        },
+        {
+          "id": "issue-74",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-sleeve-midfold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            427,
+            472
+          ]
+        },
+        {
+          "id": "issue-75",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-raised-fold",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            263,
+            304
+          ]
+        },
+        {
+          "id": "issue-76",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-raised-fold",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            270,
+            372
+          ]
+        },
+        {
+          "id": "issue-77",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-skirt-fold-a",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            278,
+            435
+          ]
+        },
+        {
+          "id": "issue-78",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-coat-right-fold-upper",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            538,
+            576
+          ]
+        },
+        {
+          "id": "issue-79",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-coat-right-fold-lower",
+          "end": "start",
+          "claim": "open",
+          "point": [
+            555,
+            562
+          ]
+        },
+        {
+          "id": "issue-80",
+          "kind": "dangling",
+          "severity": "inspect",
+          "strokeId": "ink-coat-right-fold-lower",
+          "end": "end",
+          "claim": "open",
+          "point": [
+            528,
+            608
+          ]
+        }
+      ],
+      "truncated": false,
+      "settings": {
+        "maxGap": 10,
+        "angle": 65,
+        "subphases": [
+          "clean"
+        ]
+      },
+      "limitation": "疑点不是错误判定。开放发丝、衣褶与留白须目视判断；不会自动补线或批准线稿。",
+      "overlay": true,
+      "documentChanged": false
+    }
+  },
+  {
+    "tool": "paint_preview_leak",
+    "arguments": {
+      "seed": [
+        173,
+        731
+      ],
+      "targets": [
+        [
+          174,
+          775
+        ]
+      ],
+      "threshold": 24
+    },
+    "result": {
+      "revision": 76,
+      "status": "enclosed",
+      "reachesBorder": false,
+      "pixels": 11680,
+      "areaInDocumentPixels": 11680,
+      "targets": [
+        {
+          "point": [
+            174,
+            775
+          ],
+          "connected": false
+        }
+      ],
+      "seed": [
+        173,
+        731
+      ],
+      "threshold": 24,
+      "resolution": [
+        600,
+        849
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "documentChanged": false,
+      "limitation": "连通性基于可见线稿的透明度与分辨率；开放背景不等于漏画。结合物体语义与比较点判断，未自动封口。"
+    }
+  },
+  {
+    "tool": "paint_preview_leak",
+    "arguments": {
+      "seed": [
+        390,
+        637
+      ],
+      "targets": [
+        [
+          390,
+          617
+        ]
+      ],
+      "threshold": 24
+    },
+    "result": {
+      "revision": 76,
+      "status": "enclosed",
+      "reachesBorder": false,
+      "pixels": 106,
+      "areaInDocumentPixels": 106,
+      "targets": [
+        {
+          "point": [
+            390,
+            617
+          ],
+          "connected": false
+        }
+      ],
+      "seed": [
+        390,
+        637
+      ],
+      "threshold": 24,
+      "resolution": [
+        600,
+        849
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "documentChanged": false,
+      "limitation": "连通性基于可见线稿的透明度与分辨率；开放背景不等于漏画。结合物体语义与比较点判断，未自动封口。"
+    }
+  },
+  {
+    "tool": "paint_preview_leak",
+    "arguments": {
+      "seed": [
+        345,
+        269
+      ],
+      "targets": [
+        [
+          336,
+          301
+        ]
+      ],
+      "threshold": 24
+    },
+    "result": {
+      "revision": 76,
+      "status": "enclosed",
+      "reachesBorder": false,
+      "pixels": 729,
+      "areaInDocumentPixels": 729,
+      "targets": [
+        {
+          "point": [
+            336,
+            301
+          ],
+          "connected": false
+        }
+      ],
+      "seed": [
+        345,
+        269
+      ],
+      "threshold": 24,
+      "resolution": [
+        600,
+        849
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "documentChanged": false,
+      "limitation": "连通性基于可见线稿的透明度与分辨率；开放背景不等于漏画。结合物体语义与比较点判断，未自动封口。"
+    }
+  }
+]

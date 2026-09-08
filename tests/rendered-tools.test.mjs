@@ -5,12 +5,49 @@ import {PaintEngine} from '../app/engine.js';
 import {blankDocument} from '../app/model.js';
 import {renderLineMask} from '../app/renderer.js';
 import {floodLineRegion,scanLineGaps} from '../app/diagnostics.js';
+import {createReviewEvidence} from '../app/review-evidence.js';
+import {inspectWorkingContext} from '../app/drawing-context.js';
 let native;try{native=createRequire(import.meta.url)('@napi-rs/canvas');}catch{if(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES)native=createRequire(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/package.json')('@napi-rs/canvas');}
 if(native){globalThis.document={createElement:()=>native.createCanvas(1,1)};globalThis.Path2D=native.Path2D;globalThis.cancelAnimationFrame=()=>{};globalThis.requestAnimationFrame=()=>1;}
 const testRaster=(name,fn)=>test(name,{skip:!native},fn);
 function make(commands,extra={}){return new PaintEngine(native.createCanvas(100,100),{...blankDocument(100,100),commands:commands.map(c=>({subphase:'clean',width:2,...c})),...extra});}
 const loop={id:'outline',points:[[20,20],[80,20],[80,80],[20,80]],closed:true};
 const probe=m=>floodLineRegion({...m,seed:[Math.floor(50*m.scaleX),Math.floor(50*m.scaleY)]});
+
+testRaster('local query reloads its target and out-of-crop draft; only current paired images satisfy modification feedback',()=>{
+ const e=make([{id:'draft',objectId:'shoe',subphase:'refine',points:[[5,5],[10,10]]},{id:'ink',objectId:'shoe',points:[[40,40],[50,50]]}],{stages:[{id:'lineart',name:'线稿'}],scene:{objects:[{id:'shoe',name:'鞋',frame:[35,35,25,25]}]}});
+ const reference={original:e.canvas,canvas:e.canvas,placement:[0,0,1]};
+ const service=createReviewEvidence(e,{referenceKey:()=> 'test-reference',renderPair:o=>({drawing:e.snapshotRegion(o),reference:e.snapshotRegion(o)})});
+ const issue=service.update({description:'toe narrows too soon',target:'forefoot widens before toe taper',guideIds:['draft'],objectIds:['shoe'],region:[35,35,25,25]});
+ e.revise({replace:[{id:'ink',points:[[40,40],[52,50]]}],note:'test local edit'});
+ const before=JSON.stringify(e.doc);
+ const numeric=inspectWorkingContext(e,{query:'鞋',padding:0,includeImage:false},{reference,referenceAllowed:true},service);
+ assert.equal(numeric.partIssues[0].id,issue.id);assert.match(numeric.partIssues[0].target,/widens/);assert.ok(numeric.strokes.some(s=>s.id==='draft'&&s.relation==='explicit'));
+ assert.equal(numeric.localFeedback.pendingImageParts,1);assert.equal(numeric.observation,undefined);
+ const region=e.doc.localChanges[0].region;
+ const result=inspectWorkingContext(e,{objectId:'shoe',region,padding:0},{reference,referenceAllowed:true},service);
+ assert.ok(result.image.dataUrl);assert.ok(result.observation);assert.equal(result.localFeedback.pendingImageParts,0);
+ assert.equal(JSON.stringify(e.doc),before,'image evidence does not mutate drawing or silently resolve issues');
+ e.revise({replace:[{id:'ink',points:[[40,40],[51,50]]}],note:'another edit'});assert.equal(service.feedback().pendingImageParts,1);
+ e.load(e.doc);assert.equal(service.feedback().pendingImageParts,1);
+});
+
+testRaster('formal review runtime integrates with engine color gate and checkpoint issue retention',async()=>{
+ const e=make([loop]);e.setPhase({phase:'lineart_review',enabled:true});
+ const service=createReviewEvidence(e,{referenceKey:()=> 'test-reference',renderPair:o=>({drawing:e.snapshotRegion(o),reference:e.snapshotRegion(o)})});
+ e.reviewEvidenceValid=kind=>service.approved(kind);
+ e.checkpoint({action:'save',id:'before-issue',name:'test baseline'});
+ const issue=service.update({description:'test corner defect',region:[12,12,76,76]});
+ const packet=service.prepare();const observationIds=[packet.full,packet.mirrored,...packet.locals].map(p=>p.observation.id);
+ const options={scope:'global',status:'pass',note:'test verification',evidence:['drawing','reference','mirrored'],observationIds};
+ assert.throws(()=>service.record({...options,kind:'structure-checkpoint'}),/未解决/);
+ service.update({action:'resolve',id:issue.id,note:'test compared',observationIds});
+ service.record({...options,kind:'structure-checkpoint'});service.record({...options,kind:'lineart-checkpoint'});
+ assert.equal(e.reviewPassed('lineart-checkpoint'),true);
+ e.checkpoint({action:'restore',id:'before-issue'});
+ assert.equal(e.doc.partIssues[0].id,issue.id);assert.equal(e.doc.partIssues[0].status,'awaiting-review');
+ assert.equal(e.reviewPassed('lineart-checkpoint'),false);
+});
 testRaster('rendered closed ink encloses; erasing a hole leaks; checks never alter drawing or playback',()=>{
  const e=make([loop]),before=JSON.stringify(e.doc),cursor=e.cursor,history=e.undoStack.length,pixels=e.canvas.toBuffer('image/png');
  assert.equal(probe(renderLineMask(e)).status,'enclosed');assert.equal(JSON.stringify(e.doc),before);assert.equal(e.cursor,cursor);assert.equal(e.undoStack.length,history);assert.deepEqual(e.canvas.toBuffer('image/png'),pixels);

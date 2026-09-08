@@ -1,0 +1,19 @@
+{
+  "revision": 7,
+  "commands": 138,
+  "projectionFields": [
+    "id",
+    "geometry",
+    "color",
+    "width",
+    "layer",
+    "stage",
+    "subphase",
+    "part"
+  ],
+  "liveFnv1a": "3e7dfc49",
+  "reconstructedFnv1a": "3e7dfc49",
+  "serializedLength": 22286,
+  "match": true,
+  "note": "Non-cryptographic cross-check of command geometry and rendering attributes; not a byte-identical full-document export."
+}

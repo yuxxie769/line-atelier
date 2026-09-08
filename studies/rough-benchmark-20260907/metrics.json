@@ -1,0 +1,378 @@
+{
+  "session_id": "7e05da61-4b8b-4695-8e12-dfad75cac499",
+  "source_sha256": "7145296199b0dff1e7ad28e28aa8f0a2cc963a0d73922f9f51af2d34fd4d6fb5",
+  "raw_event_count": 56,
+  "excluded_preexisting_calls": 1,
+  "first_call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-2",
+  "last_call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-56",
+  "call_count": 55,
+  "succeeded_calls": 52,
+  "failed_calls": 3,
+  "call_failure_rate": 0.05454545454545454,
+  "calls_by_tool": {
+    "paint_new_document": 1,
+    "paint_set_phase": 2,
+    "paint_get_reference_card": 6,
+    "paint_inspect_context": 6,
+    "paint_set_plan": 1,
+    "paint_submit": 7,
+    "paint_playback": 7,
+    "paint_observe_review": 12,
+    "paint_record_inspection": 9,
+    "paint_checkpoint": 2,
+    "paint_set_layers": 1,
+    "paint_record_review": 1
+  },
+  "accepted_batches": 6,
+  "accepted_strokes": 138,
+  "strokes_by_phase": {
+    "layout": 27,
+    "rough": 111
+  },
+  "strokes_by_part": {
+    "body": 40,
+    "head": 49,
+    "arms": 25,
+    "legs": 12,
+    "feet": 12
+  },
+  "batches": [
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-11",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-2",
+      "count": 27,
+      "revision": 2,
+      "basis": {
+        "guideIds": [],
+        "note": "拆开两侧颈线后重新提交空白起稿；先体块与关节，后续衣发依这些底稿展开。"
+      }
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-21",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-3",
+      "count": 24,
+      "revision": 3,
+      "basis": {
+        "guideIds": [
+          "head",
+          "faceaxis",
+          "eyeline",
+          "neckleft",
+          "neckright"
+        ],
+        "note": "承接头体块与眼位；保留遮住左眼的刘海、右侧可见眼、斜光环及左上蝴蝶结，脸颈只做粗稿结构。"
+      }
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-26",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-4",
+      "count": 27,
+      "revision": 4,
+      "basis": {
+        "guideIds": [
+          "shoulders",
+          "ribcage",
+          "ribcross",
+          "raisedaxis",
+          "raisedupper",
+          "raisedfore",
+          "handblock",
+          "downaxis",
+          "downupper",
+          "downfore",
+          "downhand"
+        ],
+        "note": "领口围绕颈根与胸廓，袖子放大包住屈臂和下垂臂；手指依手块概括，宽袖口在掌上方结束。"
+      }
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-30",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-5",
+      "count": 16,
+      "revision": 5,
+      "basis": {
+        "guideIds": [
+          "farthigh",
+          "farshin",
+          "nearthigh",
+          "nearshin",
+          "farfoot",
+          "nearfoot",
+          "farlegaxis",
+          "nearlegaxis"
+        ],
+        "note": "把直段构造转为圆膝与逐渐收窄的小腿；交叉脚袜口比原楔块上沿抬高，脚跟与前掌转折仍承接脚部占位。鞋履包覆左脚楔形。"
+      }
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-34",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-6",
+      "count": 20,
+      "revision": 6,
+      "basis": {
+        "guideIds": [
+          "pelvis",
+          "hipaxis",
+          "farthigh",
+          "nearthigh",
+          "blouse",
+          "blouseleft",
+          "sleeveouter",
+          "sleevefold1",
+          "farknee",
+          "crossinside"
+        ],
+        "note": "裙子包覆骨盆与大腿并遮住近侧大腿根；左右外套尾片承担坐姿的水平展开，袖子位于前景。"
+      }
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-38",
+      "group": "7e05da61-4b8b-4695-8e12-dfad75cac499-group-7",
+      "count": 24,
+      "revision": 7,
+      "basis": {
+        "guideIds": [
+          "head",
+          "haircap",
+          "sideouter",
+          "sidehair",
+          "shoulders",
+          "raisedcoat",
+          "coatleft",
+          "rightshoulder",
+          "sleeveouter",
+          "backcoat"
+        ],
+        "note": "长发从头盖延续，左侧向外飘散后收回肩后，右侧沿袖前后分束；辫子跨在抬手边并以小结连接。保留少量粗稿交叉线待终点检查。"
+      }
+    }
+  ],
+  "context_observations": 6,
+  "review_observations": 12,
+  "retained_unique_pngs": 23,
+  "reference_card_calls": 6,
+  "unique_reference_cards": [
+    "CSP-01",
+    "CSP-02",
+    "CSP-03",
+    "CSP-04",
+    "CSP-05"
+  ],
+  "repair_calls_by_tool": {
+    "paint_revise": 0,
+    "paint_edit_geometry": 0,
+    "paint_undo": 0,
+    "paint_smooth_strokes": 0,
+    "paint_edit_pressure": 0
+  },
+  "rough_inspection_reports": 6,
+  "rough_comparisons": {
+    "different": 10,
+    "aligned": 7,
+    "uncertain": 1
+  },
+  "rough_issue_ids": [
+    "186162ce-6699-4a6f-84d4-421f8cae2fd4",
+    "2929b514-121d-4790-bc03-60267b5cd8fa",
+    "2aeed14e-5240-4ef8-86de-7d0921fcc228",
+    "41b767db-b751-4dcc-91cc-0fc7102e4ed2",
+    "42885115-4d1e-4cf7-b475-ffbd9ff638e7",
+    "a22bc72b-a48d-481f-a0c6-8ea4f93a6572",
+    "bb9b114b-fb85-40ec-a7d6-bbf079669769",
+    "c513ca92-7355-47d7-919b-e778788a4d90",
+    "de08fe33-5a10-4ff1-9fd0-19ddb49889a8",
+    "deefd2b1-5c5f-4a04-9abb-89f9b1178235",
+    "e1d36e3d-4a16-42ab-9a0a-934bc562fb8c"
+  ],
+  "terminal_pending_targets": [
+    {
+      "target": "whole",
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            0,
+            0,
+            600,
+            849
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "whole"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    },
+    {
+      "target": "part:body",
+      "region": [
+        94,
+        76,
+        495,
+        590.8822735705853
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            94,
+            76,
+            495,
+            590.8822735705853
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "part:body"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    },
+    {
+      "target": "part:head",
+      "region": [
+        6.282864417387344,
+        1,
+        508.79713558261267,
+        540
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            6.282864417387344,
+            1,
+            508.79713558261267,
+            540
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "part:head"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    },
+    {
+      "target": "part:arms",
+      "region": [
+        231,
+        234,
+        266.5290858725762,
+        432
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            231,
+            234,
+            266.5290858725762,
+            432
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "part:arms"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    },
+    {
+      "target": "part:legs",
+      "region": [
+        128.92733564013844,
+        420,
+        272.07266435986156,
+        382
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            128.92733564013844,
+            420,
+            272.07266435986156,
+            382
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "part:legs"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    },
+    {
+      "target": "part:feet",
+      "region": [
+        128.67741935483872,
+        641,
+        278.3225806451613,
+        193
+      ],
+      "nextInspection": {
+        "tool": "paint_observe_review",
+        "arguments": {
+          "region": [
+            128.67741935483872,
+            641,
+            278.3225806451613,
+            193
+          ],
+          "scale": 1
+        }
+      },
+      "nextRecord": {
+        "tool": "paint_record_inspection",
+        "target": "part:feet"
+      },
+      "instruction": "先实际看参考和当前画布，再逐项记录 reference、drawing、conclusion。different/uncertain 自动登记问题；不要为填表虚构偏差。"
+    }
+  ],
+  "terminal_revision": 7,
+  "duration_seconds": {
+    "blank_to_first_accepted_batch": 426.573,
+    "first_batch_to_rough_phase": 81.809,
+    "rough_phase_to_last_batch": 550.595,
+    "last_batch_to_endpoint_checkpoint": 399.323,
+    "blank_to_endpoint_checkpoint": 1458.3
+  },
+  "failures": [
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-9",
+      "tool": "paint_submit",
+      "error": "每条 path 只允许一次落笔，请分成多条笔迹"
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-45",
+      "tool": "paint_record_inspection",
+      "error": "检查需要当前版本覆盖目标的参考/画布图片，局部至少原尺寸"
+    },
+    {
+      "call": "7e05da61-4b8b-4695-8e12-dfad75cac499-call-52",
+      "tool": "paint_record_inspection",
+      "error": "检查需要当前版本覆盖目标的参考/画布图片，局部至少原尺寸"
+    }
+  ],
+  "limitations": [
+    "Single reference, single run; no baseline or external art rater.",
+    "Wall time includes tool interaction, reading, observation and orchestration; it is not pure inference time.",
+    "PNG presence and API success do not prove visual comprehension or artistic quality.",
+    "Log does not contain token usage or cost.",
+    "Part issue counts overlap whole-image issues; not independent defect counts.",
+    "Browser UI export attempts and setup failures are outside the WebMCP log."
+  ]
+}

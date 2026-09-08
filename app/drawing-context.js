@@ -1,3 +1,4 @@
+import {drawingOperationGuide} from './drawing-protocol.js';
 import {scenePoint} from './geometry.js';
 import {renderPoints} from './model.js';
 import {renderRegion,strokeRaster} from './renderer.js';
@@ -17,11 +18,21 @@ function crosses(ps,r){
 }
 function integer(n,min,max,name){if(!Number.isInteger(n)||n<min||n>max)throw Error(`${name} 需要 ${min}–${max} 的整数`);return n;}
 
+function partCropBounds(doc,target){
+  // A frame is also a coordinate transform; legacy parts may all use the canvas frame.
+  // Keep reasonable frames, but do not let an oversized transform defeat local viewing.
+  const strokes=doc.commands.filter(c=>c.objectId===target.id&&c.subphase!=='layout'&&c.type==='stroke');
+  let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
+  for(const c of strokes){const radius=c.width/2+1;for(const [x,y] of c.points||renderPoints(c,doc)){left=Math.min(left,x-radius);top=Math.min(top,y-radius);right=Math.max(right,x+radius);bottom=Math.max(bottom,y+radius);}}
+  if(!Number.isFinite(left))return null;
+  const frame=target.frame,region=[left,top,right-left,bottom-top];
+  return frame[2]*frame[3]>region[2]*region[3]*4||left<frame[0]-8||top<frame[1]-8||right>frame[0]+frame[2]+8||bottom>frame[1]+frame[3]+8?region:null;
+}
+
 // Reads existing model-authored geometry only. No reference pixels are analyzed.
-export function collectDrawingContext(doc,{objectId,query,region,padding=40,offset=0,limit=24,guideIds=[]}={}){
-  integer(offset,0,60000,'offset');integer(limit,1,200,'limit');
+export function collectDrawingContext(doc,{objectId,query,region,padding=40,guideIds=[]}={}){
   if(!Number.isFinite(padding)||padding<0||padding>400)throw Error('padding 需要 0–400 画布像素');
-  if(!Array.isArray(guideIds)||guideIds.length>200||guideIds.some(id=>typeof id!=='string'))throw Error('guideIds 格式错误');
+  if(!Array.isArray(guideIds)||guideIds.some(id=>typeof id!=='string'))throw Error('guideIds 格式错误');
   const objects=doc.scene?.objects||[],layers=new Map(doc.layers.map(l=>[l.id,l]));
   let target=objectId?objects.find(o=>o.id===objectId):null;
   if(objectId&&!target)throw Error('物体 ID 不存在');
@@ -33,7 +44,8 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     target=matches[0];
   }
   if(!target&&!region)throw Error('需要 objectId、部位 query 或 region');
-  const base=region||target.frame;
+  const geometryBounds=target&&!region?partCropBounds(doc,target):null;
+  const base=region||geometryBounds||target.frame;
   if(!Array.isArray(base)||base.length!==4||!base.every(Number.isFinite)||base[2]<=0||base[3]<=0)throw Error('region 需要 [x,y,width,height]');
   const x=Math.max(0,Math.floor(base[0]-padding)),y=Math.max(0,Math.floor(base[1]-padding));
   const right=Math.min(doc.width,Math.ceil(base[0]+base[2]+padding)),bottom=Math.min(doc.height,Math.ceil(base[1]+base[3]+padding));
@@ -52,35 +64,49 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     candidates.push({c,l,ps,draft,relationship,rank:explicit.has(c.id)?0:draft?(relationship==='target'?1:relationship==='ancestor'?2:3):4});
   }
   candidates.sort((a,b)=>a.rank-b.rank);
-  const selected=candidates.slice(offset,offset+limit),commands=selected.map(({c,l,ps,draft,relationship},i)=>{
+  const commands=candidates.map(({c,l,ps,draft,relationship},i)=>{
     const g=c.geometry;let kind,points;
     if(g?.kind==='through'){kind='through';points=g.through.map(p=>scenePoint(p,g.space,doc.scene));}
     else if(g?.kind==='control'){kind='bezier-control';points=g.control;}
     else {kind='sampled-trajectory';points=ps.length<=32?ps:Array.from({length:32},(_,j)=>ps[Math.round(j*(ps.length-1)/31)]);}
-    return {label:offset+i+1,id:c.id,name:c.part||c.id,intent:c.intent||'',objectId:c.objectId||null,layer:{id:l.id,name:l.name,visible:l.visible,opacity:l.opacity},subphase:c.subphase,draft,relationship,smoothing:c.smoothing??0,trim:g?.trim||null,bounds:bounds(ps),
+    return {label:i+1,id:c.id,name:c.part||c.id,intent:c.intent||'',objectId:c.objectId||null,layer:{id:l.id,name:l.name,visible:l.visible,opacity:l.opacity},subphase:c.subphase,draft,relationship,smoothing:c.smoothing??0,trim:g?.trim||null,bounds:bounds(ps),
       coordinates:{kind,document:points,localToCrop:points.map(p=>[p[0]-x,p[1]-y,...p.slice(2)]),normalizedToTarget:target?points.map(p=>[(p[0]-target.frame[0])/target.frame[2],(p[1]-target.frame[1])/target.frame[3],...p.slice(2)]):null,originalTrajectoryPointCount:ps.length,sampled:kind==='sampled-trajectory'&&ps.length>32},
       geometry:g?structuredClone(g):null,endpoints:[ps[0],ps.at(-1)]};
   });
   const anchorIds=new Set(commands.flatMap(c=>(c.geometry?.through||[]).filter(p=>p.anchor).map(p=>p.anchor)));
   const anchors=(doc.scene?.anchors||[]).map(a=>({...a,document:scenePoint({anchor:a.id},null,doc.scene)})).filter(a=>anchorIds.has(a.id)||inside(a.document,crop));
-  return {status:'ready',revision:doc.revision,document:{width:doc.width,height:doc.height},target:target?structuredClone(target):null,region:crop,
+  return {status:'ready',revision:doc.revision,document:{width:doc.width,height:doc.height},target:target?structuredClone(target):null,region:crop,cropBasis:region?'explicit-region':geometryBounds?'part-geometry':'object-frame',
     coordinates:'All returned document coordinates use the full canvas. localToCrop subtracts region origin; normalizedToTarget uses target.frame, not screenshot size.',
     objects:objects.filter(o=>ancestors.includes(o.id)||overlaps(o.frame,crop)).map(o=>structuredClone(o)),anchors,commands,
-    total:candidates.length,offset,nextOffset:offset+limit<candidates.length?offset+limit:null,
+    total:candidates.length,complete:true,
     guideStatus:candidates.some(c=>c.draft)?'available':'none-found',
     notes:['Spatial matches are candidate guides, not a claim of anatomical relevance. Select or correct them yourself.','Guide views reveal retained draft stroke geometry, including hidden layers, without masks or occlusion; they are observation aids, not the exported drawing.','Through/control coordinates describe source geometry; smoothing and trim can change the rendered trajectory. Drawing images show current playback.']};
 }
 
 function compactContext(data,engine,referenceStatus){
-  return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,region:data.region,
+  return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,region:data.region,cropBasis:data.cropBasis,
     referenceStatus,guideStatus:data.guideStatus,coordinates:'Absolute canvas pixels. Through points are source landmarks (may differ from smoothed/trimmed ink); bezier-control points are handles. Sampled points describe the processed trajectory. Image transforms include panel offsets.',
     playback:{commandIndex:engine.commandIndex,unitIndex:engine.unitIndex,playing:engine.playing},
     strokes:data.commands.map(c=>({label:c.label,id:c.id,name:c.name,objectId:c.objectId,layer:c.layer.id,draft:c.draft,relation:c.relationship,kind:c.coordinates.kind,points:c.coordinates.document,sampled:c.coordinates.sampled,...(c.smoothing?{smoothing:c.smoothing}:{}),...(c.trim?{trim:c.trim}:{}),...(c.smoothing||c.trim?{renderedEndpoints:c.endpoints}:{})})),
-    anchors:data.anchors.map(a=>({id:a.id,point:a.document})),total:data.total,nextOffset:data.nextOffset,
-    notes:['Guides are retained geometry, including hidden drafts; model decides relevance and corrections.','Drawing follows playback; guide coordinates refer to saved strokes.','Read nextOffset with the same query to see more candidates; guideIds adds specific strokes.']};
+    anchors:data.anchors.map(a=>({id:a.id,point:a.document})),total:data.total,complete:true,
+    notes:['Guides are retained geometry, including hidden drafts; model decides relevance and corrections.','Drawing follows playback; guide coordinates refer to saved strokes.','All matching strokes are returned without pagination; guideIds adds specific strokes.']};
 }
 
-export function inspectDrawingContext(engine,options={}, {reference=null,referenceAllowed=false}={}){
+export function inspectDrawingContext(engine,options={}, referenceOptions={}){
+  return {...inspectDrawingContextContent(engine,options,referenceOptions),operationGuide:drawingOperationGuide()};
+}
+
+export function inspectWorkingContext(engine,options,referenceOptions,reviewEvidence){
+  const selection=collectDrawingContext(engine.doc,options);
+  const scope={objectId:selection.target?.id,region:selection.region};
+  const partIssues=selection.status==='ready'?reviewEvidence.issues(scope):[];
+  const requested=[...(options.guideIds||[]),...partIssues.filter(i=>!['resolved','dismissed'].includes(i.status)).flatMap(i=>(i.guideIds||[]).filter(id=>!i.missingGuideIds.includes(id)))];
+  const guideIds=[...new Set(requested)];
+  const result=inspectDrawingContext(engine,{...options,guideIds},referenceOptions);
+  return {...reviewEvidence.captureContext(result),partIssues,localFeedback:reviewEvidence.feedback(scope),omittedTargetGuideIds:[]};
+}
+
+function inspectDrawingContextContent(engine,options={}, {reference=null,referenceAllowed=false}={}){
   if(options.detail!==undefined&&!['compact','full'].includes(options.detail))throw Error('detail 需要 compact 或 full');
   if(options.includeImage!==undefined&&typeof options.includeImage!=='boolean')throw Error('includeImage 需要 boolean');
   const data=collectDrawingContext(engine.doc,options);if(data.status!=='ready')return data;

@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('.',import.meta.url));
+const previous=JSON.parse(fs.readFileSync(root+'../rough-benchmark-20260907/rough-replay.line.json','utf8'));
+const baseline=structuredClone(previous.checkpoints.find(c=>c.doc.commands.length===27).doc);
+if(baseline.revision!==2||baseline.workflow.phase!=='layout')throw Error('Unexpected baseline');
+baseline.title='白发坐姿 · 1A 独立审核实验 · 20260908';
+baseline.checkpoints=[];
+fs.writeFileSync(root+'baseline.line.json',JSON.stringify(baseline));
+fs.copyFileSync(root+'../rough-benchmark-20260907/layout.png',root+'before.png');
+fs.copyFileSync(root+'../rough-benchmark-20260907/reference.png',root+'reference.png');
+console.log(JSON.stringify({commands:baseline.commands.length,revision:baseline.revision,workflow:baseline.workflow,layers:baseline.layers}));

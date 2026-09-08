@@ -1,0 +1,40 @@
+{
+  "id": "CSP-11661-only",
+  "status": "active",
+  "sourceArticle": "https://tips.clip-studio.com/zh-cn/articles/11661",
+  "author": "dayebeeon",
+  "retrieved": "2026-09-07",
+  "localFolder": "v1-source-mirror",
+  "imageCount": 46,
+  "filenamePattern": "NNN-body-IMAGE_ID.jpg",
+  "policy": {
+    "singleSourceOnly": true,
+    "maxCardsPerDraft": 1,
+    "order": ["比例中线", "动作基线", "关节点", "简单形状", "躯干与四肢", "细节检查"],
+    "doNotMixWith": [
+      "docs/anatomy-card-assets/v1",
+      "docs/anatomy-card-assets/v2",
+      "docs/anatomy-card-assets/v3"
+    ]
+  },
+  "requiredCardsByPhase": {
+    "layout": ["CSP-01", "CSP-05"],
+    "rough": ["CSP-02", "CSP-03", "CSP-04"],
+    "structure_review": ["CSP-03", "CSP-04", "CSP-07"],
+    "refine": ["CSP-08"],
+    "clean": ["CSP-08"],
+    "lineart_review": []
+  },
+  "cards": [
+    {"id":"CSP-00","title":"方法总览：先找可控制的起点","chapterFile":"chapters/CSP-00-overview.md","files":"000-001","phases":["layout"],"purpose":"确定起点与后续章节"},
+    {"id":"CSP-01","title":"结构：身体类型、比例中线与分界","chapterFile":"chapters/CSP-01-structure.md","files":"002-005","phases":["layout"],"purpose":"身体类型与比例中线"},
+    {"id":"CSP-02","title":"创建参考：从关键点到简单形状","chapterFile":"chapters/CSP-02-create-reference.md","files":"006-012","phases":["layout","rough"],"purpose":"躯干起点与手臂/腿/脚的简单形状"},
+    {"id":"CSP-03","title":"上半身：胸部、肩部与手臂","chapterFile":"chapters/CSP-03-upper-body.md","files":"013-014","phases":["rough","structure_review"],"purpose":"胸部、肩部、手臂透视"},
+    {"id":"CSP-04","title":"下半身：臀部、膝盖与脚踝","chapterFile":"chapters/CSP-04-lower-body.md","files":"015-016","phases":["rough","structure_review"],"purpose":"臀部到膝盖、脚踝的距离"},
+    {"id":"CSP-05","title":"指南：动作基线、参考点与连接","chapterFile":"chapters/CSP-05-guides.md","files":"017-024","phases":["layout","rough"],"purpose":"动作基线与关节点"},
+    {"id":"CSP-06","title":"参考练习：把观察练成可复用动作","chapterFile":"chapters/CSP-06-reference-practice.md","files":"025-031","phases":["layout","rough"],"purpose":"多姿势快速练习"},
+    {"id":"CSP-07","title":"复杂草图：按显著部位拆解","chapterFile":"chapters/CSP-07-complex-sketch.md","files":"032-037","phases":["layout","rough","structure_review"],"purpose":"先明显部分、后复杂腿部"},
+    {"id":"CSP-08","title":"细节：线条质量如何改变人体观感","chapterFile":"chapters/CSP-08-line-quality.md","files":"038-039","phases":["structure_review","refine","clean"],"purpose":"线宽、曲线与身体细节复查"},
+    {"id":"CSP-09","title":"草图总流程：从比例骨架到完整结果","chapterFile":"chapters/CSP-09-sketch-workflow.md","files":"040-045","phases":["layout","rough","structure_review"],"purpose":"比例线与可见部分优先的总流程"}
+  ]
+}

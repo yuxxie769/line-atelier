@@ -54,3 +54,30 @@ test('compact evidence retains complete source geometry and legacy trajectories 
   assert.deepEqual(session,before);
   assert.deepEqual(exportEvidenceSnapshot(session).events[0].acceptedStrokes,strokes);
 });
+test('reference-card reads retain compact chapter provenance rather than chapter or image payloads',async()=>{
+  const e=fixture(),log=createSessionEvidence(e);
+  const jpeg='data:image/jpeg;base64,ZmFrZQ==';
+  const result=await log.run('paint_get_reference_card',{id:'CSP-05'},async()=>({
+    id:'CSP-05',title:'辅助线',purpose:'建立人体动作基线',source:'docs/anatomy-card-assets-clipstudio-11661/chapters/CSP-05-guides.md',sha256:'abc123',
+    phases:['layout','rough'],text:'chapter body must not be retained',
+    images:[{index:2,name:'019-body-5198168.jpg',source:'docs/anatomy-card-assets-clipstudio-11661/v1-source-mirror/019-body-5198168.jpg',publicPath:'/docs/anatomy-card-assets-clipstudio-11661/v1-source-mirror/019-body-5198168.jpg',dataUrl:jpeg}],totalImages:8,complete:true
+  }),'webmcp');
+  const event=log.snapshot().events[0];
+  const expected={id:'CSP-05',title:'辅助线',purpose:'建立人体动作基线',source:'docs/anatomy-card-assets-clipstudio-11661/chapters/CSP-05-guides.md',sha256:'abc123',phases:['layout','rough'],totalImages:8,images:[{index:2,name:'019-body-5198168.jpg',source:'docs/anatomy-card-assets-clipstudio-11661/v1-source-mirror/019-body-5198168.jpg',publicPath:'/docs/anatomy-card-assets-clipstudio-11661/v1-source-mirror/019-body-5198168.jpg'}]};
+  assert.deepEqual(event.referenceCard,expected);
+  assert.deepEqual(event.result,{referenceCard:expected});
+  assert.deepEqual(result.callEvidence.referenceCard,expected);
+  assert.equal(event.images.length,0);
+  assert.equal(JSON.stringify(event).includes('chapter body must not be retained'),false);
+  assert.equal(JSON.stringify(event).includes(jpeg),false);
+});
+test('image reads record completion and the interval to the next model action in both directions',async()=>{
+  const ticks=['2026-09-07T09:59:59.000Z','2026-09-07T10:00:00.000Z','2026-09-07T10:00:00.250Z','2026-09-07T10:00:02.750Z','2026-09-07T10:00:03.000Z'];
+  const e=fixture(),log=createSessionEvidence(e,{now:()=>ticks.shift()});
+  await log.run('paint_snapshot_region',{region:[0,0,10,10]},async()=>({region:[0,0,10,10],dataUrl:png,width:1,height:1}),'webmcp');
+  await log.run('paint_submit',{commands:[{id:'next'}]},async()=>({accepted:1}),'webmcp');
+  const [read,next]=log.snapshot().events;
+  assert.deepEqual(read.imageRead,{completedAt:'2026-09-07T10:00:00.250Z',imageCount:1,imageIds:[read.images[0].id],referenceCardImages:[]});
+  assert.deepEqual(read.nextAction,{callId:next.id,tool:'paint_submit',entryPoint:'webmcp',startedAt:'2026-09-07T10:00:02.750Z',delayMs:2500});
+  assert.deepEqual(next.sinceImageRead,{callId:read.id,tool:'paint_snapshot_region',completedAt:'2026-09-07T10:00:00.250Z',delayMs:2500});
+});

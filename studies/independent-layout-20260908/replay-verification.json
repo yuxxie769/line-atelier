@@ -1,0 +1,13 @@
+{
+  "revision": 3,
+  "count": 27,
+  "fnv1a": "baad18b3",
+  "length": 4361,
+  "match": true,
+  "changedIds": [
+    "nearlegaxis",
+    "nearshin",
+    "nearfoot"
+  ],
+  "note": "Matches live revision-3 compact command geometry/rendering projection; non-cryptographic check, not full native export."
+}

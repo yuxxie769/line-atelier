@@ -12,7 +12,9 @@
 
 WebMCP、具名 `window.paint` 方法及 JSON 提交共用独立记录层。每次页面加载开始新会话，记录保存在当前来源的 IndexedDB；不进入作品撤销栈。手动画笔和直接 UI 编辑不属于完整模型调用日志。存储失败时记录暂留内存，响应标明 persistence，不影响已经成功的落笔。
 
-读取记录：`paint_export_document({section:"evidence",compact:true,offset:0,limit:100})`，limit 为 1–100，按 nextOffset 翻页。`compact:true` 仅在保留完整源几何时省略重复采样点。默认图片只返回 ID 与 SHA-256；`includeImages:true` 返回 PNG，`imageIds:[…]` 可单独选择图片；`sessionId` 可指定已保存的旧会话。大图请分批读取。
+读取记录：`paint_export_document({section:"evidence",compact:true,offset:0,limit:100})`，limit 为 1–100，按 nextOffset 翻页。`compact:true` 仅在保留完整源几何时省略重复采样点。`paint_get_reference_card` 只接收章节 ID，并一次返回完整正文和全部对应本地图；它会额外留下 `referenceCard`：章节 ID、SHA-256、章节来源和全部返回的本地图片文件名与路径。章节正文和图片 data URL 不会写入证据日志。当前阶段的 `referenceKnowledge.requiredCardIds` 是强制门槛：未完整读取时不能提交或修改笔迹。默认图片只返回 ID 与 SHA-256；`includeImages:true` 返回 PNG，`imageIds:[…]` 可单独选择图片；`sessionId` 可指定已保存的旧会话。大图请分批读取。
+
+实际返回图片的成功调用会记录 `imageRead.completedAt`、图片数量和标识。下一次模型工具调用开始后，读图事件的 `nextAction.delayMs` 与后续事件的 `sinceImageRead.delayMs` 同时记录从图片返回到下一步开始的间隔；没有后续调用时保持为空。该时序只能证明图片已由接口返回，不能证明模型理解了内容。
 
 普通工程导出默认不附带证据；`includeEvidence:true` 或导出框勾选可附带当前完整会话和图片。证据图可能含已读取的参考局部。组与复看图的关联只是 revision／范围候选，须结合图像实际呈现和视觉判断，不能自动认证绘画质量。
 
@@ -26,13 +28,15 @@ WebMCP、具名 `window.paint` 方法及 JSON 提交共用独立记录层。每�
 
 每个部位的观察—坐标—小组落笔—实际复看、无底稿处理、阶段和审核要求均以正式规范为准。下面说明完成这些动作的现有工具参数。
 
+模型落笔采用强制短循环：`paint_submit` 与单次 `paint_revise` 合计都最多处理 1–3 笔，只围绕一个具体轮廓或连接关系。每批完成后读取返回的 `localFeedback.inspection.drawingCycle`，取得 `pendingTargets` 对应的当前图像并调用 `paint_record_inspection`；未完成本批检查时，下一次绘画修改会被拒绝。检查结论为 `different`／`uncertain` 会生成持续问题并暂停无关的新笔迹；仍可用 `paint_revise`、几何编辑或撤销返修，返修后必须重新看图、重新记录检查，再以当前图像证据解决或排除问题。这个门槛约束动作顺序与证据，不能代替模型判断线条是否真的自然。
+
 ## 一次查看部位底稿与定位依据
 
 开始一个部位前，优先调用 `paint_inspect_context({query:"左眼"})`，或使用明确的 `objectId` / `[x,y,w,h]` 的 `region`。它把原本分开的观察和坐标查询合并，不检查绘画是否合格，也不拦截下笔。
 
 默认返回一张四格对照图（参考、当前画布、底稿叠图、整图位置）及精简笔迹坐标。`detail:"full"` 才返回底稿独立图、原始几何、多种坐标、意图等详细内容。图片中的底稿编号对应 `strokes[].label`（详细模式为 `commands[].label`）。贝塞尔控制点明确标为 `bezier-control`，不能当成曲线上经过点；旧采样轨迹默认最多取 32 点，完整点可用 `paint_get_strokes({ids:[...]})` 读取。
 
-候选按显式指定、目标底稿、祖先物体底稿、空间相交底稿、其他笔迹排序。例如人体层的眼线即使归属 figure，也能随左眼查询返回。模型需要自己判断这些线是否有用、是否准确；空间相邻不等于语义正确。`guideIds` 可以显式补充候选。`nextOffset` 非空时用相同参数和返回的 offset 读取下一页（每页默认 24 条）；每页图像仅标注该页底稿。
+候选按显式指定、目标底稿、祖先物体底稿、空间相交底稿、其他笔迹排序。例如人体层的眼线即使归属 figure，也能随左眼查询返回。模型需要自己判断这些线是否有用、是否准确；空间相邻不等于语义正确。`guideIds` 可以显式补充候选。全部匹配候选一次返回；不提供 limit/offset 分页控制，旧调用即使带入这两个字段也不能截断底稿。图像标注全部候选底稿。
 
 默认四周留 40 画布像素，可用 `padding` 调整。读取不会改变画布、图层显示、播放位置、复核或历史。底稿观察图显示保留的草稿几何，不应用遮挡或蒙版，因此不代表最终作品。当前画布图遵循播放位置，坐标来自已保存几何；需看完成结果时先完成播放。原始参考使用既有位置变换，与画布裁切对齐；未授权时仅返回 `referenceStatus: access-disabled`，不会泄露参考。
 
@@ -194,3 +198,42 @@ compact 仅省略有源几何的笔迹采样缓存，导入时根据源几何重
 
 ### 曲线落笔与平滑
 观察底稿与参考后先确定整条线的走势、最大弯曲处、两端方向及必要尖角，再提交足够而不过多的关键点。新笔迹可直接加 `smoothing: 0.5`；旧笔迹用 `paint_smooth_strokes({ids, smoothing})` 一次调整。省略或 0 保持原线，0 也可恢复已经平滑的原始轨迹。不新增预览、确认或审核工序，在已有局部与整体回看中判断效果。平滑保护端点、共享锚点、声明尖角，不能替代重画错误造型。
+
+
+## 阶段性规范加载
+
+`drawingProtocol.stage.agentReview` 在 1A、1C、1F 返回完整的子 agent 协作要求（source、sha256、text、trigger、maxAgentCalls 和容差），即使 includeProtocol:false 也保留。1A／1C 在结束推进前执行；1F 的 formalReviewRound 为 2，只在第二轮清线审核执行。先独立初审，修订后新开另一个子 agent 最终复核，最多两次。paint_inspect_context 的 stageRequirements 同样携带该字段；状态、切换阶段及恢复检查点沿用既有阶段返回路径。程序返回要求，宿主 agent 调用自己的子 agent 工具；网页不自动开模型，不认证审核者身份。记录方式和宽容度由返回的正文规定。
+
+正式规范由 `docs/WORKFLOW_PRINCIPLES.md` 核心原则和 `docs/workflow-stages/` 六个阶段文件组成。首次阅读核心即可，不预加载全部阶段正文。
+
+- `paint_get_state` 默认返回 `drawingProtocol.text`（核心）及 `drawingProtocol.stage`（当前阶段的 phase、source、sha256、text）。开始或恢复任务使用默认完整返回。
+- `includeProtocol:false` 只省略核心正文，不省略当前阶段正文；仅用于连续操作中已读同一核心版本的情况。
+- `paint_set_phase` 成功后自动返回完整核心及所选阶段要求，即使再次进入同一阶段也重新返回。
+- `paint_checkpoint` 恢复检查点后按恢复的阶段返回完整要求。
+- 核心和阶段各有独立哈希；更改后运行 `npm run sync:protocol`。网页副本及内嵌模块由源文件生成，不直接维护。
+
+加载发生在工具返回中，不会主动启动新的模型调用，也不证明模型执行了观察或达到美术质量。保持 1A–1F 和 1F 两轮审核，不增加审批轮次。
+
+
+## 底稿承接与局部修图说明的加载
+
+底稿利用、局部修图步骤与底稿 ID、`basis`、坐标换算、控制柄和平滑等相关工具操作合并维护在 `docs/workflow-actions/local-revision.md`。网页副本为 [local-revision.md](./workflow-actions/local-revision.md)。`paint_inspect_context` 每次返回 `operationGuide`（source、sha256、text），包含该文件完整正文；在后续落笔或修订前读取。compact、full 和仅坐标返回均包含全文，不需另行加载两份文档。说明加载本身不创建新审核节点；实际绘画仍受逐批检查与先返修再继续的门槛约束。返回正文不代表模型已经实际看图或利用了底稿。
+# 自动日志与持续问题
+
+精细绘画的执行连接：`paint_update_issue` 的可选 `target` 保存从参考观察到的具体目标，`guideIds` 关联实际底稿，`action:amend` 更新原问题。`paint_inspect_context` 按实际解析出的部位／范围带回目标和图层，自动读取关联底稿；丢失引用单列 `missingGuideIds`。提交和修改返回 `localFeedback.next[].nextInspection`，可以直接按该参数生成修改后的对照图。`pendingImageParts` 是待返回当前对照图的已跟踪范围数量，不是未看懂的次数，也不等于美术缺陷数。工程的 `localChanges` 保存改动范围；无该字段的历史记录属于未跟踪。详见工具随上下文返回的完整操作说明。
+
+本地开发工作台自动将现有完整会话（含 PNG）写入 `logs/sessions/<sessionId>.json`。`paint_get_state.localEvidence` 返回文件保存状态与路径；`callEvidence.persistence` 保持原有浏览器存储含义。无本地服务时显示待写入，并保留浏览器记录，不声称已写文件。
+
+`paint_update_issue` 管理工程 `partIssues`：`open` 登记具体描述、部位和区域；`resolve` / `dismiss` 需要 `note` 与当前图片 `observationIds`；`reopen` 重开问题。空审核列表不清空问题。`paint_inspect_context` 返回问题、当前阶段要求及完整操作说明，有效对照图还返回观察凭据。`paint_observe_review` 可生成专门的局部参考／画布对照。
+
+1F 使用 `paint_prepare_review` 取得核心／阶段标准、整图、镜像、部位与问题局部对照，实际查看后提交 `paint_record_review.observationIds`。程序只核验当前图像依据与问题状态；仍需模型判断形体和精细度。工程恢复后重新取图，不能复用历史通过文本作为当前凭据。
+
+## 图像绑定的检查记录
+
+底稿候选不分页：paint_inspect_context 一次返回全部匹配笔迹，limit/offset 不再提供；旧参数不能截断结果。范围仍按 objectId/query/region 确定，不等于返回全工程无关笔迹。
+
+读取 localFeedback.inspection：pending 给出 whole 和 part:部位ID，criteria 给出当前阶段必须比较的项目。按 nextInspection 取得图片并实际对照，再调用 paint_record_inspection({target,observationIds,comparisons})。comparisons 每项包含 criterion、reference（参考可见形状）、drawing（当前可见形状）、conclusion（aligned/different/uncertain）。不要输出隐含思考过程；只记录可复查的视觉事实和结论，不能用“已检查”替代对照。
+
+首次问题列表为空正常。different/uncertain 会自动登记问题，reference 保存为目标；aligned 不会虚构问题。修正后重新取图、重新检查，并按已有问题解决流程逐项处理。图片返回本身不会完成检查。
+
+前进到下一绘画阶段、关闭已启用流程、提交 1F 正式通过时，程序要求完整检查记录；仍可留在本阶段修改或退回修稿，不增加逐笔许可。记录保存在工程 visualChecks 和全量调用日志中。导入、恢复或刷新后，历史记录仅供审计，须用本次图片重新检查。局部检查按该区域几何判断失效，整图检查对整体变化失效。程序只能证明提交了绑定图像的检查记录，不能证明真实注意或视觉判断正确。

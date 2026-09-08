@@ -1,0 +1,11 @@
+{
+  "sessionId": "43106c18-2d1e-44da-8de1-c02ed53153d2",
+  "revision": 25,
+  "commands": 281,
+  "signature": {
+    "length": 94321,
+    "fnv": "9d39388b"
+  },
+  "imageSha256": "654d7992dd8827b69380e04aee635ac7c701de31e517645bccdbc854a2dc8986",
+  "source": "Saved WebMCP calls; geometry checked against paint_export_document; PNG is the actual paint_snapshot_region result."
+}

@@ -17,13 +17,13 @@ test('one lookup finds hidden ancestor axis and resolves local points / shared a
  assert.equal(c.commands.find(c=>c.id==='eye-axis').relationship,'ancestor');assert.deepEqual(c.anchors[0].document,[50,90]);
  assert.equal(JSON.stringify(doc),before);
 });
-test('ambiguous names, empty guides, explicit selection, pagination and invalid input are honest',()=>{
+test('ambiguous names, empty guides, explicit selection, full return and invalid input are honest',()=>{
  const d=fixture();d.scene.objects.push({id:'other-eye',name:'右眼',frame:[130,70,40,40]});
  assert.equal(collectDrawingContext(d,{query:'眼'}).status,'ambiguous');assert.equal(collectDrawingContext(d,{query:'手'}).status,'not-found');
- const first=collectDrawingContext(d,{objectId:'eye',limit:1});assert.equal(first.nextOffset,1);assert.notEqual(collectDrawingContext(d,{objectId:'eye',offset:1,limit:1}).commands[0].id,first.commands[0].id);
+ const first=collectDrawingContext(d,{objectId:'eye',limit:1,offset:2});assert.equal(first.complete,true);assert.equal(first.commands.length,first.total);assert.equal(first.commands.length,3);assert.equal(first.nextOffset,undefined);
  assert.equal(collectDrawingContext(d,{region:[150,150,20,20],padding:0}).guideStatus,'none-found');
  assert.equal(collectDrawingContext(d,{region:[150,150,20,20],padding:0,guideIds:['eye-axis']}).commands[0].relationship,'explicit');
- assert.throws(()=>collectDrawingContext(d,{objectId:'missing'}));assert.throws(()=>collectDrawingContext(d,{region:[500,500,20,20]}));assert.throws(()=>collectDrawingContext(d,{objectId:'eye',limit:1.5}));
+ assert.throws(()=>collectDrawingContext(d,{objectId:'missing'}));assert.throws(()=>collectDrawingContext(d,{region:[500,500,20,20]}));
 });
 test('rendered packet reveals hidden guides without changing canvas, layers, history or playhead; reference gate preserved',()=>{
  const e=new PaintEngine(native.createCanvas(200,200),fixture());e.seek(.5);
@@ -66,4 +66,34 @@ test('integrated context distinguishes retained source points from smoothed ink 
  assert.ok(!ink.points.some(p=>Math.hypot(p[0]-80,p[1]-70)<1e-5));
  const full=inspectDrawingContext(e,{query:'左眼',includeImage:false,detail:'full'});assert.equal(full.commands.find(c=>c.id===line.id).smoothing,.8);
  assert.equal(JSON.stringify(e.doc),before);assert.equal(e.cursor,cursor);assert.equal(e.undoStack.length,history);
+});
+
+test('more than 200 matching guides are all returned even with legacy truncation options',()=>{
+ const d=fixture(),source=d.commands.find(c=>c.id==='lid-guide');
+ d.commands=Array.from({length:205},(_,i)=>({...structuredClone(source),id:'guide-'+i}));
+ const result=collectDrawingContext(d,{objectId:'eye',limit:3,offset:200,guideIds:d.commands.map(c=>c.id)});
+ assert.equal(result.commands.length,205);assert.equal(result.total,205);assert.equal(result.complete,true);
+ assert.equal(result.commands.at(-1).id,'guide-204');assert.equal(result.nextOffset,undefined);
+});
+test('a canvas-sized part frame does not turn a local query into a full-canvas inspection',()=>{
+ const doc=validateDocument({...blankDocument(600,849),scene:{objects:[{id:'foot',name:'悬空脚',frame:[0,0,600,849]}]},commands:[{id:'outline',objectId:'foot',subphase:'clean',width:1,points:[[365,640],[380,685],[398,740]]}]});
+ const before=JSON.stringify(doc),local=collectDrawingContext(doc,{query:'悬空脚',padding:10});
+ assert.equal(local.cropBasis,'part-geometry');assert.ok(local.region[2]<70&&local.region[3]<130);
+ assert.deepEqual(local.target.frame,[0,0,600,849]);assert.equal(JSON.stringify(doc),before);
+ const explicit=collectDrawingContext(doc,{objectId:'foot',region:[0,0,600,849],padding:0});
+ assert.equal(explicit.cropBasis,'explicit-region');assert.deepEqual(explicit.region,[0,0,600,849]);
+});
+
+
+test('context returns the complete combined operation guide before editing, in every output mode',async()=>{
+ const source=readFileSync(new URL('../docs/workflow-actions/local-revision.md',import.meta.url),'utf8').replace(/\r\n/g,'\n');
+ const engine=new PaintEngine(native.createCanvas(200,200),fixture()),before=JSON.stringify(engine.doc);
+ for(const options of [{includeImage:false},{includeImage:false,detail:'full'},{maxSize:256},{maxSize:256,detail:'full'}]){
+  const result=inspectDrawingContext(engine,{objectId:'eye',...options});
+  assert.equal(result.operationGuide.text,source);
+  assert.equal(result.operationGuide.source,'docs/workflow-actions/local-revision.md');
+  assert.match(result.operationGuide.sha256,/^[a-f0-9]{64}$/);
+  result.operationGuide.text='caller change';
+ }
+ assert.equal(JSON.stringify(engine.doc),before);
 });
