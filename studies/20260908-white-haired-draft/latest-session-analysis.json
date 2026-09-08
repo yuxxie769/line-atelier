@@ -434,6 +434,657 @@
       "diagnosticCalls": 5
     }
   },
+  "timing": {
+    "wallSeconds": 8860.781,
+    "activeToolSeconds": 58.086,
+    "betweenCallSeconds": 8802.695,
+    "activeShare": 0.00655540408909779,
+    "byPhase": {
+      "layout": {
+        "name": "1A 整体定位",
+        "wallSeconds": 1005.056,
+        "activeToolSeconds": 1.221,
+        "betweenCallSeconds": 1003.835,
+        "calls": 44
+      },
+      "rough": {
+        "name": "1B 完整粗稿",
+        "wallSeconds": 696.447,
+        "activeToolSeconds": 2.734,
+        "betweenCallSeconds": 693.713,
+        "calls": 69
+      },
+      "structure_review": {
+        "name": "1C 结构修稿",
+        "wallSeconds": 451.995,
+        "activeToolSeconds": 0.927,
+        "betweenCallSeconds": 451.068,
+        "calls": 20
+      },
+      "refine": {
+        "name": "1D 细化草稿",
+        "wallSeconds": 2266.821,
+        "activeToolSeconds": 10.097,
+        "betweenCallSeconds": 2256.724,
+        "calls": 184
+      },
+      "clean": {
+        "name": "1E 独立清线",
+        "wallSeconds": 3669.152,
+        "activeToolSeconds": 39.734,
+        "betweenCallSeconds": 3629.418,
+        "calls": 325
+      },
+      "lineart_review": {
+        "name": "1F 两轮审核",
+        "wallSeconds": 724.226,
+        "activeToolSeconds": 3.373,
+        "betweenCallSeconds": 720.853,
+        "calls": 18
+      }
+    },
+    "byTool": {
+      "paint_checkpoint": {
+        "calls": 6,
+        "totalSeconds": 1.538,
+        "averageSeconds": 0.2563333333333333,
+        "medianSeconds": 0.065,
+        "p95Seconds": 0.605,
+        "maxSeconds": 0.626
+      },
+      "paint_clear_diagnostics": {
+        "calls": 1,
+        "totalSeconds": 0.002,
+        "averageSeconds": 0.002,
+        "medianSeconds": 0.002,
+        "p95Seconds": 0.002,
+        "maxSeconds": 0.002
+      },
+      "paint_get_reference_card": {
+        "calls": 15,
+        "totalSeconds": 0.437,
+        "averageSeconds": 0.029133333333333334,
+        "medianSeconds": 0.019,
+        "p95Seconds": 0.045,
+        "maxSeconds": 0.105
+      },
+      "paint_get_state": {
+        "calls": 4,
+        "totalSeconds": 1.31,
+        "averageSeconds": 0.3275,
+        "medianSeconds": 0.171,
+        "p95Seconds": 0.506,
+        "maxSeconds": 0.567
+      },
+      "paint_inspect_context": {
+        "calls": 21,
+        "totalSeconds": 7.741,
+        "averageSeconds": 0.36861904761904757,
+        "medianSeconds": 0.465,
+        "p95Seconds": 0.664,
+        "maxSeconds": 0.678
+      },
+      "paint_new_document": {
+        "calls": 1,
+        "totalSeconds": 0.023,
+        "averageSeconds": 0.023,
+        "medianSeconds": 0.023,
+        "p95Seconds": 0.023,
+        "maxSeconds": 0.023
+      },
+      "paint_observe_review": {
+        "calls": 217,
+        "totalSeconds": 10.335,
+        "averageSeconds": 0.04762672811059908,
+        "medianSeconds": 0.037,
+        "p95Seconds": 0.104,
+        "maxSeconds": 0.148
+      },
+      "paint_prepare_review": {
+        "calls": 1,
+        "totalSeconds": 0.415,
+        "averageSeconds": 0.415,
+        "medianSeconds": 0.415,
+        "p95Seconds": 0.415,
+        "maxSeconds": 0.415
+      },
+      "paint_preview_leak": {
+        "calls": 3,
+        "totalSeconds": 0.024,
+        "averageSeconds": 0.008,
+        "medianSeconds": 0.007,
+        "p95Seconds": 0.007,
+        "maxSeconds": 0.012
+      },
+      "paint_record_inspection": {
+        "calls": 201,
+        "totalSeconds": 4.733,
+        "averageSeconds": 0.02354726368159204,
+        "medianSeconds": 0.021,
+        "p95Seconds": 0.039,
+        "maxSeconds": 0.076
+      },
+      "paint_record_review": {
+        "calls": 6,
+        "totalSeconds": 0.151,
+        "averageSeconds": 0.025166666666666667,
+        "medianSeconds": 0.009,
+        "p95Seconds": 0.054,
+        "maxSeconds": 0.068
+      },
+      "paint_revise": {
+        "calls": 7,
+        "totalSeconds": 4.558,
+        "averageSeconds": 0.6511428571428571,
+        "medianSeconds": 0.807,
+        "p95Seconds": 1.063,
+        "maxSeconds": 1.075
+      },
+      "paint_scan_gaps": {
+        "calls": 1,
+        "totalSeconds": 0.035,
+        "averageSeconds": 0.035,
+        "medianSeconds": 0.035,
+        "p95Seconds": 0.035,
+        "maxSeconds": 0.035
+      },
+      "paint_set_layers": {
+        "calls": 1,
+        "totalSeconds": 0.558,
+        "averageSeconds": 0.558,
+        "medianSeconds": 0.558,
+        "p95Seconds": 0.558,
+        "maxSeconds": 0.558
+      },
+      "paint_set_phase": {
+        "calls": 6,
+        "totalSeconds": 0.996,
+        "averageSeconds": 0.166,
+        "medianSeconds": 0.056,
+        "p95Seconds": 0.158,
+        "maxSeconds": 0.687
+      },
+      "paint_set_plan": {
+        "calls": 4,
+        "totalSeconds": 0.51,
+        "averageSeconds": 0.1275,
+        "medianSeconds": 0.093,
+        "p95Seconds": 0.186,
+        "maxSeconds": 0.221
+      },
+      "paint_submit": {
+        "calls": 70,
+        "totalSeconds": 24.446,
+        "averageSeconds": 0.34922857142857144,
+        "medianSeconds": 0.246,
+        "p95Seconds": 0.879,
+        "maxSeconds": 1.09
+      },
+      "paint_update_issue": {
+        "calls": 95,
+        "totalSeconds": 0.274,
+        "averageSeconds": 0.0028842105263157895,
+        "medianSeconds": 0.003,
+        "p95Seconds": 0.005,
+        "maxSeconds": 0.006
+      }
+    },
+    "gapByNextTool": {
+      "paint_checkpoint": {
+        "count": 6,
+        "totalSeconds": 27.992000000000004,
+        "averageSeconds": 4.665333333333334,
+        "medianSeconds": 4.769,
+        "p95Seconds": 4.923,
+        "maxSeconds": 5.806
+      },
+      "paint_clear_diagnostics": {
+        "count": 1,
+        "totalSeconds": 73.253,
+        "averageSeconds": 73.253,
+        "medianSeconds": 73.253,
+        "p95Seconds": 73.253,
+        "maxSeconds": 73.253
+      },
+      "paint_get_reference_card": {
+        "count": 15,
+        "totalSeconds": 370.537,
+        "averageSeconds": 24.702466666666666,
+        "medianSeconds": 24.527,
+        "p95Seconds": 54.58,
+        "maxSeconds": 72.404
+      },
+      "paint_get_state": {
+        "count": 4,
+        "totalSeconds": 743.285,
+        "averageSeconds": 185.82125,
+        "medianSeconds": 15.57,
+        "p95Seconds": 182.794,
+        "maxSeconds": 530.137
+      },
+      "paint_inspect_context": {
+        "count": 21,
+        "totalSeconds": 370.921,
+        "averageSeconds": 17.662904761904763,
+        "medianSeconds": 5.941,
+        "p95Seconds": 65.243,
+        "maxSeconds": 88.915
+      },
+      "paint_observe_review": {
+        "count": 217,
+        "totalSeconds": 1391.366,
+        "averageSeconds": 6.411824884792627,
+        "medianSeconds": 5.009,
+        "p95Seconds": 11.889,
+        "maxSeconds": 104.469
+      },
+      "paint_prepare_review": {
+        "count": 1,
+        "totalSeconds": 12.772,
+        "averageSeconds": 12.772,
+        "medianSeconds": 12.772,
+        "p95Seconds": 12.772,
+        "maxSeconds": 12.772
+      },
+      "paint_preview_leak": {
+        "count": 3,
+        "totalSeconds": 13.161000000000001,
+        "averageSeconds": 4.3870000000000005,
+        "medianSeconds": 4.324,
+        "p95Seconds": 4.324,
+        "maxSeconds": 4.546
+      },
+      "paint_record_inspection": {
+        "count": 201,
+        "totalSeconds": 3160.1359999999995,
+        "averageSeconds": 15.722069651741291,
+        "medianSeconds": 7.663,
+        "p95Seconds": 42.642,
+        "maxSeconds": 152.34
+      },
+      "paint_record_review": {
+        "count": 6,
+        "totalSeconds": 506.036,
+        "averageSeconds": 84.33933333333333,
+        "medianSeconds": 25.206,
+        "p95Seconds": 67.709,
+        "maxSeconds": 355.085
+      },
+      "paint_revise": {
+        "count": 7,
+        "totalSeconds": 200.771,
+        "averageSeconds": 28.681571428571427,
+        "medianSeconds": 28.589,
+        "p95Seconds": 30.065,
+        "maxSeconds": 70.449
+      },
+      "paint_scan_gaps": {
+        "count": 1,
+        "totalSeconds": 31.291,
+        "averageSeconds": 31.291,
+        "medianSeconds": 31.291,
+        "p95Seconds": 31.291,
+        "maxSeconds": 31.291
+      },
+      "paint_set_layers": {
+        "count": 1,
+        "totalSeconds": 14.051,
+        "averageSeconds": 14.051,
+        "medianSeconds": 14.051,
+        "p95Seconds": 14.051,
+        "maxSeconds": 14.051
+      },
+      "paint_set_phase": {
+        "count": 6,
+        "totalSeconds": 49.876,
+        "averageSeconds": 8.312666666666667,
+        "medianSeconds": 4.121,
+        "p95Seconds": 5.147,
+        "maxSeconds": 30.193
+      },
+      "paint_set_plan": {
+        "count": 4,
+        "totalSeconds": 126.20800000000001,
+        "averageSeconds": 31.552000000000003,
+        "medianSeconds": 4.12,
+        "p95Seconds": 34.872,
+        "maxSeconds": 83.251
+      },
+      "paint_submit": {
+        "count": 70,
+        "totalSeconds": 1057.741,
+        "averageSeconds": 15.110585714285714,
+        "medianSeconds": 6.496,
+        "p95Seconds": 36.152,
+        "maxSeconds": 55.066
+      },
+      "paint_update_issue": {
+        "count": 95,
+        "totalSeconds": 653.2980000000001,
+        "averageSeconds": 6.8768210526315805,
+        "medianSeconds": 5.185,
+        "p95Seconds": 17.931,
+        "maxSeconds": 33.35
+      }
+    },
+    "byCategory": {
+      "drawing": {
+        "calls": 78,
+        "totalSeconds": 29.027,
+        "averageSeconds": 0.37214102564102564,
+        "medianSeconds": 0.262,
+        "p95Seconds": 1.026,
+        "maxSeconds": 1.09
+      },
+      "visualInspection": {
+        "calls": 451,
+        "totalSeconds": 23.436,
+        "averageSeconds": 0.051964523281596446,
+        "medianSeconds": 0.026,
+        "p95Seconds": 0.119,
+        "maxSeconds": 0.678
+      },
+      "issueTracking": {
+        "calls": 95,
+        "totalSeconds": 0.274,
+        "averageSeconds": 0.0028842105263157895,
+        "medianSeconds": 0.003,
+        "p95Seconds": 0.005,
+        "maxSeconds": 0.006
+      },
+      "workflow": {
+        "calls": 36,
+        "totalSeconds": 5.349,
+        "averageSeconds": 0.14858333333333335,
+        "medianSeconds": 0.045,
+        "p95Seconds": 0.605,
+        "maxSeconds": 0.687
+      }
+    },
+    "gapByNextCategory": {
+      "drawing": {
+        "count": 77,
+        "totalSeconds": 1258.512,
+        "averageSeconds": 16.344311688311688,
+        "medianSeconds": 7.595,
+        "p95Seconds": 41.592,
+        "maxSeconds": 70.449
+      },
+      "visualInspection": {
+        "count": 451,
+        "totalSeconds": 5558.935999999996,
+        "averageSeconds": 12.325800443458972,
+        "medianSeconds": 5.577,
+        "p95Seconds": 35.434,
+        "maxSeconds": 355.085
+      },
+      "issueTracking": {
+        "count": 95,
+        "totalSeconds": 653.2980000000001,
+        "averageSeconds": 6.8768210526315805,
+        "medianSeconds": 5.185,
+        "p95Seconds": 17.931,
+        "maxSeconds": 33.35
+      },
+      "workflow": {
+        "count": 36,
+        "totalSeconds": 1331.949,
+        "averageSeconds": 36.998583333333336,
+        "medianSeconds": 7.389,
+        "p95Seconds": 83.251,
+        "maxSeconds": 530.137
+      }
+    },
+    "longestEvents": [
+      {
+        "call": 577,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 1.09
+      },
+      {
+        "call": 632,
+        "phase": "clean",
+        "tool": "paint_revise",
+        "status": "succeeded",
+        "seconds": 1.075
+      },
+      {
+        "call": 622,
+        "phase": "clean",
+        "tool": "paint_revise",
+        "status": "succeeded",
+        "seconds": 1.063
+      },
+      {
+        "call": 605,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 1.058
+      },
+      {
+        "call": 593,
+        "phase": "clean",
+        "tool": "paint_revise",
+        "status": "succeeded",
+        "seconds": 1.026
+      },
+      {
+        "call": 585,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 1.008
+      },
+      {
+        "call": 567,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.923
+      },
+      {
+        "call": 526,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.879
+      },
+      {
+        "call": 557,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.872
+      },
+      {
+        "call": 495,
+        "phase": "clean",
+        "tool": "paint_revise",
+        "status": "succeeded",
+        "seconds": 0.807
+      },
+      {
+        "call": 546,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.806
+      },
+      {
+        "call": 536,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.794
+      },
+      {
+        "call": 474,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.764
+      },
+      {
+        "call": 444,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.76
+      },
+      {
+        "call": 506,
+        "phase": "clean",
+        "tool": "paint_submit",
+        "status": "succeeded",
+        "seconds": 0.75
+      }
+    ],
+    "longestGaps": [
+      {
+        "afterCall": 317,
+        "beforeCall": 318,
+        "phase": "refine",
+        "seconds": 530.137,
+        "nextTool": "paint_get_state"
+      },
+      {
+        "afterCall": 659,
+        "beforeCall": 660,
+        "phase": "lineart_review",
+        "seconds": 355.085,
+        "nextTool": "paint_record_review"
+      },
+      {
+        "afterCall": 129,
+        "beforeCall": 130,
+        "phase": "structure_review",
+        "seconds": 182.794,
+        "nextTool": "paint_get_state"
+      },
+      {
+        "afterCall": 597,
+        "beforeCall": 598,
+        "phase": "clean",
+        "seconds": 152.34,
+        "nextTool": "paint_record_inspection"
+      },
+      {
+        "afterCall": 658,
+        "beforeCall": 659,
+        "phase": "lineart_review",
+        "seconds": 104.469,
+        "nextTool": "paint_observe_review"
+      },
+      {
+        "afterCall": 40,
+        "beforeCall": 41,
+        "phase": "layout",
+        "seconds": 88.915,
+        "nextTool": "paint_inspect_context"
+      },
+      {
+        "afterCall": 6,
+        "beforeCall": 7,
+        "phase": "layout",
+        "seconds": 83.251,
+        "nextTool": "paint_set_plan"
+      },
+      {
+        "afterCall": 657,
+        "beforeCall": 658,
+        "phase": "lineart_review",
+        "seconds": 73.253,
+        "nextTool": "paint_clear_diagnostics"
+      },
+      {
+        "afterCall": 39,
+        "beforeCall": 40,
+        "phase": "layout",
+        "seconds": 72.404,
+        "nextTool": "paint_get_reference_card"
+      },
+      {
+        "afterCall": 494,
+        "beforeCall": 495,
+        "phase": "clean",
+        "seconds": 70.449,
+        "nextTool": "paint_revise"
+      },
+      {
+        "afterCall": 42,
+        "beforeCall": 43,
+        "phase": "layout",
+        "seconds": 67.709,
+        "nextTool": "paint_record_review"
+      },
+      {
+        "afterCall": 38,
+        "beforeCall": 39,
+        "phase": "layout",
+        "seconds": 65.243,
+        "nextTool": "paint_inspect_context"
+      },
+      {
+        "afterCall": 438,
+        "beforeCall": 439,
+        "phase": "clean",
+        "seconds": 57.37,
+        "nextTool": "paint_record_inspection"
+      },
+      {
+        "afterCall": 395,
+        "beforeCall": 396,
+        "phase": "clean",
+        "seconds": 55.066,
+        "nextTool": "paint_submit"
+      },
+      {
+        "afterCall": 99,
+        "beforeCall": 100,
+        "phase": "rough",
+        "seconds": 55.029,
+        "nextTool": "paint_record_inspection"
+      },
+      {
+        "afterCall": 556,
+        "beforeCall": 557,
+        "phase": "clean",
+        "seconds": 54.925,
+        "nextTool": "paint_submit"
+      },
+      {
+        "afterCall": 3,
+        "beforeCall": 4,
+        "phase": "layout",
+        "seconds": 54.58,
+        "nextTool": "paint_get_reference_card"
+      },
+      {
+        "afterCall": 550,
+        "beforeCall": 551,
+        "phase": "clean",
+        "seconds": 52.938,
+        "nextTool": "paint_record_inspection"
+      },
+      {
+        "afterCall": 589,
+        "beforeCall": 590,
+        "phase": "clean",
+        "seconds": 49.6,
+        "nextTool": "paint_record_inspection"
+      },
+      {
+        "afterCall": 119,
+        "beforeCall": 120,
+        "phase": "structure_review",
+        "seconds": 49.434,
+        "nextTool": "paint_inspect_context"
+      }
+    ]
+  },
   "failures": [
     {
       "call": 10,

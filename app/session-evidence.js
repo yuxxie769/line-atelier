@@ -35,10 +35,11 @@ export function createSessionEvidence(engine,{save=async()=>{},now=()=>new Date(
         let image=session.images.find(i=>i.sha256===sha256);
         if(!image){image={id:session.id+'-image-'+(session.images.length+1),sha256,mimeType:'image/png',dataUrl:item};session.images.push(image);}
         const region=value.region||event.resultRegion||null;
+        const imageRevision=value.evidenceRole==='before-drawing'&&Number.isInteger(value.revision)?value.revision:event.before.revision;
         const referenceOnly=['paint_get_reference','paint_prepare_reference','paint_preview_revision'].includes(event.tool)||event.arguments.source&&event.arguments.source!=='drawing'||/\.reference(?:\.|$)/.test(path);
-        const groupIds=referenceOnly?[]:session.events.filter(e=>e.groupId&&e.status==='succeeded'&&e.epoch===epoch&&e.after.revision<=event.before.revision&&intersects(region,e.strokeBounds)).map(e=>e.groupId);
+        const groupIds=referenceOnly?[]:session.events.filter(e=>e.groupId&&e.status==='succeeded'&&e.epoch===epoch&&e.after.revision<=imageRevision&&intersects(region,e.strokeBounds)).map(e=>e.groupId);
         const ref={id:image.id,sha256,path,region,width:value.width,height:value.height,scale:value.scale,mirror:value.mirror,panels:value.panels,imageToDocument:value.imageToDocument,
-          revision:event.before.revision,playback:copy(event.before),groupIds,association:'revision-and-region-candidate',visualObservation:'requires-conversation-image-evidence'};
+          revision:imageRevision,playback:value.evidenceRole==='before-drawing'?null:copy(event.before),evidenceRole:value.evidenceRole||'current',groupIds,association:'revision-and-region-candidate',visualObservation:'requires-conversation-image-evidence'};
         event.images.push(ref);result.imageId=image.id;result.sha256=sha256;
       }else result[key]=await summarize(item,event,path+'.'+key);
     }

@@ -14,6 +14,32 @@ function make(commands,extra={}){return new PaintEngine(native.createCanvas(100,
 const loop={id:'outline',points:[[20,20],[80,20],[80,80],[20,80]],closed:true};
 const probe=m=>floodLineRegion({...m,seed:[Math.floor(50*m.scaleX),Math.floor(50*m.scaleY)]});
 
+testRaster('automatic before/after crops preserve real old pixels and require change explanation',()=>{
+ const e=make([{...loop,part:'sleeve'}],{stages:[{id:'lineart',name:'线稿'}],workflow:{enabled:true,phase:'refine'}});
+ let ref='reference';const service=createReviewEvidence(e,{referenceKey:()=>ref,renderPair:o=>({drawing:e.snapshotRegion(o),reference:e.snapshotRegion(o)})});
+ const region=[0,0,100,100],before=e.snapshotRegion({region,scale:2});
+ e.revise({replace:[{id:'outline',points:[[20,20],[70,20],[80,80],[20,80]]}],note:'change sleeve turn'});
+ const pair=service.observe(region,false,2);
+ assert.equal(pair.beforeAfter.status,'available');assert.equal(pair.beforeAfter.beforeRevision,0);assert.equal(pair.beforeAfter.afterRevision,1);
+ assert.equal(pair.beforeAfter.drawing.dataUrl,before.dataUrl);assert.notEqual(pair.drawing.dataUrl,before.dataUrl);
+ const options={target:'whole',observationIds:[pair.observation.id],comparisons:service.feedback().inspection.criteria.map(c=>({criterion:c.id,reference:'参考形状',drawing:'修改后形状',conclusion:'aligned'}))};
+ assert.throws(()=>service.recordInspection(options),/changeSummary/);
+ const report=service.recordInspection({...options,changeSummary:'袖外侧收窄，转面更明确，相邻发束未改变'});
+ assert.equal(report.beforeAfter[0].beforeRevision,0);assert.equal(report.comparisons.length,5);
+ assert.equal(service.feedback().inspection.targets.find(t=>t.target==='whole').status,'pass');
+ ref='another';assert.equal(service.observe(region).beforeAfter.status,'unavailable');ref='reference';
+ e.load(e.doc);assert.equal(service.observe(region).beforeAfter.status,'unavailable');
+});
+
+testRaster('layer-only edits pair correctly even without undo history',()=>{
+ const e=make([{...loop,part:'sleeve'}],{stages:[{id:'lineart',name:'线稿'}],workflow:{enabled:true,phase:'clean'}});
+ const service=createReviewEvidence(e,{referenceKey:()=> 'ref',renderPair:o=>({drawing:e.snapshotRegion(o),reference:e.snapshotRegion(o)})});
+ const region=[0,0,100,100],before=e.snapshotRegion({region});
+ e.setLayers([{id:'paper',visible:false}],{history:false});
+ const pair=service.observe(region);assert.equal(pair.beforeAfter.status,'available');
+ assert.equal(pair.beforeAfter.drawing.dataUrl,before.dataUrl);assert.notEqual(pair.drawing.dataUrl,before.dataUrl);
+});
+
 testRaster('local query reloads its target and out-of-crop draft; only current paired images satisfy modification feedback',()=>{
  const e=make([{id:'draft',objectId:'shoe',subphase:'refine',points:[[5,5],[10,10]]},{id:'ink',objectId:'shoe',points:[[40,40],[50,50]]}],{stages:[{id:'lineart',name:'线稿'}],scene:{objects:[{id:'shoe',name:'鞋',frame:[35,35,25,25]}]}});
  const reference={original:e.canvas,canvas:e.canvas,placement:[0,0,1]};
@@ -42,6 +68,10 @@ testRaster('formal review runtime integrates with engine color gate and checkpoi
  const options={scope:'global',status:'pass',note:'test verification',evidence:['drawing','reference','mirrored'],observationIds};
  assert.throws(()=>service.record({...options,kind:'structure-checkpoint'}),/未解决/);
  service.update({action:'resolve',id:issue.id,note:'test compared',observationIds});
+ for(const target of service.feedback().inspection.stagePending){
+  const pair=service.observe(target.region,false,target.target==='whole'?1:2);
+  service.recordInspection({target:target.target,observationIds:[pair.observation.id],comparisons:service.feedback().inspection.criteria.map(c=>({criterion:c.id,reference:'test reference',drawing:'test drawing',conclusion:'aligned'}))});
+ }
  service.record({...options,kind:'structure-checkpoint'});service.record({...options,kind:'lineart-checkpoint'});
  assert.equal(e.reviewPassed('lineart-checkpoint'),true);
  e.checkpoint({action:'restore',id:'before-issue'});

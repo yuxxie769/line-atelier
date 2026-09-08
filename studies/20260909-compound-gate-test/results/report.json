@@ -1,0 +1,44 @@
+{
+  "source": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\studies\\20260909-local-turn-trial\\results-scheme3\\candidate.line.json",
+  "scope": "Local execution of current app adapter helpers plus PaintEngine. No browser tool session or formal artwork acceptance claimed.",
+  "records": [
+    {
+      "name": "missing ordinary planning",
+      "passed": true,
+      "error": "当前阶段每条普通线都必须显式声明 contourMode:\"simple-sweep\" 并填写 simpleSweepReason；不能确认是简单扫线时，请改用 compoundGroups 规划复合轮廓"
+    },
+    {
+      "name": "complex contour claimed simple",
+      "passed": true,
+      "error": "检测到长而复杂的单笔轮廓（ink-raised-sleeve）。当前阶段必须改用 compoundGroups 规划，不能继续提交一条普通长 path"
+    },
+    {
+      "name": "complex contour mislabeled rough",
+      "passed": true,
+      "error": "检测到长而复杂的单笔轮廓（ink-raised-sleeve）。当前阶段必须改用 compoundGroups 规划，不能继续提交一条普通长 path"
+    },
+    {
+      "name": "genuine simple sweep accepted",
+      "passed": true
+    },
+    {
+      "name": "hand-authored compound id",
+      "passed": true,
+      "error": "复合轮廓不能直接手写最终分笔；请改用 compoundGroups，由模型提交完整 path、1–2 个有原因的接点和压力计划，程序自动生成 2–3 笔"
+    },
+    {
+      "name": "four actual strokes rejected",
+      "passed": true,
+      "error": "提交每批最多 3 笔；请围绕一个具体轮廓关系分批绘制。"
+    },
+    {
+      "name": "compound replacement generated three strokes with unrelated artwork preserved",
+      "passed": true
+    },
+    {
+      "name": "full compound method injected even with core omitted",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,6 +1,7 @@
-import {DRAWING_PROTOCOL,DRAWING_STAGE_PROTOCOLS,DRAWING_OPERATION_GUIDE,DRAWING_REFERENCE_CARDS} from './drawing-protocol.generated.js';
+import {DRAWING_PROTOCOL,DRAWING_STAGE_PROTOCOLS,DRAWING_OPERATION_GUIDE,DRAWING_COMPOUND_METHOD,DRAWING_REFERENCE_CARDS} from './drawing-protocol.generated.js';
 
 export function drawingOperationGuide(){return {...DRAWING_OPERATION_GUIDE};}
+export function drawingCompoundMethod(){return structuredClone(DRAWING_COMPOUND_METHOD);}
 
 export function drawingReferenceCardCatalog({phase}={}){
   if(phase!==undefined&&!Object.hasOwn(DRAWING_STAGE_PROTOCOLS,phase))throw new Error('Unknown drawing phase: '+phase);
@@ -17,5 +18,6 @@ export function drawingProtocol({includeProtocol=true,phase}={}){
   if(typeof includeProtocol!=='boolean')throw new Error('includeProtocol must be a boolean');
   if(phase!==undefined&&!Object.hasOwn(DRAWING_STAGE_PROTOCOLS,phase))throw new Error('Unknown drawing phase: '+phase);
   const {source,sha256,text}=DRAWING_PROTOCOL;
-  return {source,sha256,...(includeProtocol?{text}:{}),...(phase!==undefined?{stage:structuredClone(DRAWING_STAGE_PROTOCOLS[phase]),referenceCards:drawingReferenceCardCatalog({phase})}:{referenceCards:drawingReferenceCardCatalog()})};
+  const compoundMethod=phase!==undefined&&DRAWING_COMPOUND_METHOD.requiredPhases.includes(phase)?drawingCompoundMethod():undefined;
+  return {source,sha256,...(includeProtocol?{text}:{}),...(phase!==undefined?{stage:structuredClone(DRAWING_STAGE_PROTOCOLS[phase]),...(compoundMethod?{compoundMethod}:{}),referenceCards:drawingReferenceCardCatalog({phase})}:{referenceCards:drawingReferenceCardCatalog()})};
 }

@@ -1,0 +1,56 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {validateBatch,validateDocument} from '../../app/model.js';
+import {inspectStrokeQuality} from '../../app/stroke-quality.js';
+import {assertCompoundPlanning,assertStrokeBatch} from '../../app/workflow-policy.js';
+import {compileContourV1} from '../../app/compound-v1.js';
+import {PaintEngine} from '../../app/engine.js';
+import {drawingProtocol} from '../../app/drawing-protocol.js';
+import {exportDocumentData} from '../../app/document-export.js';
+import {base,sourcePath,sourceBytes,regions,clean,draw,reference,createCanvas,label,fit} from '../20260909-compound-v1-three/inspect-render.mjs';
+import {drawings} from '../20260909-compound-v1-three/inputs.mjs';
+
+const out=new URL('./results/',import.meta.url);fs.mkdirSync(out,{recursive:true});
+const save=(name,value)=>fs.writeFileSync(new URL(name,out),Buffer.isBuffer(value)?value:JSON.stringify(value,null,2));
+const doc=validateDocument({...base,workflow:{...base.workflow,phase:'clean'}});
+const engine=new PaintEngine(createCanvas(doc.width,doc.height),doc);
+const part=regions.find(p=>p.id==='sleeve'),plan=drawings.find(p=>p.id==='sleeve'),old=doc.commands.find(c=>c.id===part.sourceId);
+// Execute the actual page adapter helpers, without copying their implementation.
+const app=fs.readFileSync(new URL('../../app/app.js',import.meta.url),'utf8');
+const helpers=app.slice(app.indexOf('function normalizeDirectCommands('),app.indexOf('async function submitPayload('));
+const context=vm.createContext({engine,activeLayer:old.layer,activeStage:old.stage,validateBatch,inspectStrokeQuality,assertCompoundPlanning,compileContourV1});
+vm.runInContext(helpers,context);
+const records=[];
+function rejected(name,input,pattern){try{context.assertDirectCompoundPolicy(input);records.push({name,passed:false,error:'unexpected acceptance'});}catch(e){records.push({name,passed:pattern.test(e.message),error:e.message});}}
+rejected('missing ordinary planning',[old],/contourMode/);
+rejected('complex contour claimed simple',[{...old,contourMode:'simple-sweep',simpleSweepReason:'测试声明，实际复杂几何应覆盖该声明'}],/长而复杂/);
+rejected('complex contour mislabeled rough',[{...old,subphase:'rough',contourMode:'simple-sweep',simpleSweepReason:'测试阶段标签不能绕过当前清稿门槛'}],/长而复杂/);
+const simple={type:'stroke',id:'test-simple',color:old.color,path:'M 10 10 Q 20 15 30 16',contourMode:'simple-sweep',simpleSweepReason:'单一方向短弧，没有转面或遮挡变化'};
+context.assertDirectCompoundPolicy([simple]);records.push({name:'genuine simple sweep accepted',passed:true});
+rejected('hand-authored compound id',[{...simple,compoundId:'manual-group'}],/不能直接手写/);
+const group={stroke:{type:'stroke',color:old.color,path:plan.path,width:plan.width,opacity:1,pressureFloor:0,pressureProfile:plan.pressureProfile,smoothing:0,intent:plan.note},lifts:plan.lifts,overlapPx:plan.overlapPx,roles:['silhouette','turn','silhouette']};
+const input={compoundReplace:[{id:old.id,group}],note:'本地接口处理与渲染试验：袖肘复合笔组'};
+const expanded=context.expandCompoundRevisions(input);
+const actual=[...expanded.replace,...expanded.insert.flatMap(x=>x.commands)];
+assert.equal(actual.length,3);assertStrokeBatch({commands:actual,phase:'clean'});
+try{assertStrokeBatch({commands:[...actual,simple],phase:'clean'});records.push({name:'four actual strokes rejected',passed:false});}catch(e){records.push({name:'four actual strokes rejected',passed:/最多 3 笔/.test(e.message),error:e.message});}
+engine.revise(expanded);
+const changedIds=new Set(actual.map(c=>c.id));
+assert.deepEqual(engine.doc.commands.filter(c=>!changedIds.has(c.id)),doc.commands.filter(c=>c.id!==old.id));
+records.push({name:'compound replacement generated three strokes with unrelated artwork preserved',passed:true});
+const protocol=drawingProtocol({phase:'clean',includeProtocol:false});
+assert(protocol.compoundMethod.text.includes('compoundReplace'));records.push({name:'full compound method injected even with core omitted',passed:true});
+const after=engine.doc.commands.filter(c=>c.subphase==='clean'&&engine.doc.layers.find(l=>l.id===c.layer)?.visible);
+const sheet=createCanvas(1200,850),ctx=sheet.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,1200,850);
+label(ctx,'实际工程 · 袖肘三号接笔测试',20,35,25);
+[reference(part.box),draw(clean,part.box),draw(after,part.box)].forEach((im,i)=>{label(ctx,['参考','原工程','本次接口编译结果：3 笔'][i],400*i+18,75);fit(ctx,im,400*i+15,95,370,435);});
+label(ctx,'接头放大：原线 / 新线 / 三笔分色（仅说明接笔位置）',20,570,20);
+[draw(clean,part.zoom,10,[old.id]),draw(after,part.zoom,10,[...changedIds]),draw(after,part.zoom,10,[...changedIds],true)].forEach((im,i)=>fit(ctx,im,400*i+15,590,370,240));
+save('comparison.png',sheet.toBuffer('image/png'));
+save('candidate.line.json',exportDocumentData(engine.doc,{compact:true,includeCheckpoints:false}));
+save('input.json',input);save('expanded.json',expanded);
+save('report.json',{source:sourcePath,scope:'Local execution of current app adapter helpers plus PaintEngine. No browser tool session or formal artwork acceptance claimed.',records,passed:records.every(r=>r.passed)});
+assert(fs.readFileSync(sourcePath).equals(sourceBytes));
+console.log(JSON.stringify(records,null,2));
+if(records.some(r=>!r.passed))process.exitCode=1;

@@ -1,6 +1,6 @@
 import {normalizeVisualChecks} from './visual-inspection.js';
 import {normalizeLocalChanges} from './local-feedback.js';
-import {normalizePartIssues} from './review-evidence.js';
+import {normalizePartIssues,normalizeRefinementDiagnoses} from './review-evidence.js';
 import {smoothStrokePoints} from './smoothing.js';
 import {validatePressureProfile,applyPressureProfile,validateWidthEdits,insertWidthKnots} from './pressure.js';
 import {LINE_PHASES,normalizeScene,normalizeThrough,throughGeometry,scenePoint} from './geometry.js';
@@ -16,6 +16,8 @@ export const PAINT_STAGES = [
   ['highlights','高光与整理','按材质补高光，整理边缘与局部压线'],
   ['review','局部复核','放大检查脸、手、遮挡与线条交接']
 ].map(([id,name,description])=>({id,name,description}));
+export const STROKE_ROLES=['silhouette','occlusion','turn','crease','detail','reinforcement'];
+export const JOIN_STYLES=['independent','overlap','shared','occluded'];
 // Curves express the agent's pen trajectory, never image-derived contours.
 // One path is one pen-down gesture. A second M is rejected to prevent hidden lifts.
 export function pathPoints(path,quality=1){
@@ -99,8 +101,12 @@ export function validateBatch(input, doc, defaults={}) {
     if(raw.objectId&&!doc.scene?.objects.some(o=>o.id===raw.objectId))throw Error('笔迹所属物体不存在');
     const subphase=raw.subphase||doc.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===subphase))throw Error('线稿子阶段不存在');
     if(raw.endpoints&&(!Array.isArray(raw.endpoints)||raw.endpoints.length!==2||raw.endpoints.some(e=>!['open','occluded','joined','corner','contact'].includes(e))))throw Error('endpoints 需要两个线端关系');
+    if([raw.compoundId,raw.strokeRole,raw.joinStyle].some(v=>v!==undefined)&&type!=='stroke')throw Error('复合轮廓元数据仅用于画笔笔迹');
+    if(raw.compoundId&&(typeof raw.compoundId!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(raw.compoundId)))throw Error('compoundId 格式错误');
+    if(raw.strokeRole&&!STROKE_ROLES.includes(raw.strokeRole))throw Error('strokeRole 不受支持');
+    if(raw.joinStyle&&!JOIN_STYLES.includes(raw.joinStyle))throw Error('joinStyle 不受支持');
     const id=raw.id||`c-${Date.now()}-${doc.commands.length+i}`;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id)||commandIds.has(id))throw Error('笔迹 ID 重复或格式错误');commandIds.add(id);
-    return {id,type,layer,stage,...(raw.smoothing!==undefined?{smoothing}:{}),color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
+    return {id,type,layer,stage,...(raw.smoothing!==undefined?{smoothing}:{}),color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.compoundId?{compoundId:raw.compoundId}:{}),...(raw.strokeRole?{strokeRole:raw.strokeRole}:{}),...(raw.joinStyle?{joinStyle:raw.joinStyle}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
   });
   return commands;
 }
@@ -125,6 +131,7 @@ export function validateDocument(raw,{includeCheckpoints=true}={}) {
   doc.localChanges=normalizeLocalChanges(raw.localChanges);
   doc.visualChecks=normalizeVisualChecks(raw.visualChecks);
   doc.partIssues=normalizePartIssues(raw.partIssues??(raw.reviews||[]).flatMap((r,n)=>(r.issues||[]).map((description,j)=>({id:'legacy-issue-'+n+'-'+j,description:String(description),objectIds:r.objectIds||[],region:r.region?.length===4?r.region:[0,0,width,height],status:'open',discoveredRevision:Number(r.revision)||0,history:[]}))));
+  doc.refinementDiagnoses=normalizeRefinementDiagnoses(raw.refinementDiagnoses);
   doc.reviews=Array.isArray(raw.reviews)?raw.reviews.slice(-100).map(r=>({at:Number(r.at)||0,region:Array.isArray(r.region)?r.region.slice(0,4).map(Number):[],note:String(r.note||'').slice(0,1500),kind:String(r.kind||'observation').slice(0,40),reviewPhase:LINE_PHASES.some(p=>p.id===r.reviewPhase)?r.reviewPhase:null,ids:Array.isArray(r.ids)?r.ids.slice(0,200).map(String):[],scope:r.scope==='global'?'global':'local',objectIds:(r.objectIds||[]).slice(0,128).map(String),status:['pass','needs-work'].includes(r.status)?r.status:'needs-work',stale:!!r.stale,revision:Number(r.revision)||0,observationIds:(r.observationIds||[]).map(String),evidence:(r.evidence||[]).slice(0,5).map(String),issues:(r.issues||[]).slice(0,20).map(s=>String(s).slice(0,500))})):[];
   doc.checkpoints=includeCheckpoints?(raw.checkpoints||[]).slice(-8).map(c=>({id:String(c.id).slice(0,100),name:String(c.name).slice(0,100),revision:Number(c.revision)||0,doc:validateDocument({...c.doc,checkpoints:[]},{includeCheckpoints:false})})):[];return doc;
 }

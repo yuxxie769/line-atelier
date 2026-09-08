@@ -64,10 +64,25 @@ test('each phase loads only its own canonical requirements, even when core text 
     const brief=drawingProtocol({phase,includeProtocol:false});
     assert.equal(brief.text,undefined);
     assert.deepEqual(brief.stage,full.stage);
+    if(['refine','clean','lineart_review'].includes(phase))assert.deepEqual(brief.compoundMethod,full.compoundMethod);
+    else assert.equal(brief.compoundMethod,undefined);
     full.stage.text='mutated by consumer';
     assert.equal(drawingProtocol({phase}).stage.text,text);
   }
   for(const phase of ['unknown','toString','__proto__',null])assert.throws(()=>drawingProtocol({phase}),/Unknown/);
+});
+
+test('mandatory compound method is independently hashed and injected only in drawing quality phases',async()=>{
+  const source=(await readFile(new URL('../docs/drawing-methods/COMPOUND_V1.md',import.meta.url),'utf8')).replace(/\r\n/g,'\n');
+  for(const phase of ['refine','clean','lineart_review']){
+    const method=drawingProtocol({phase,includeProtocol:false}).compoundMethod;
+    assert.equal(method.id,'compound-v1');
+    assert.equal(method.version,'3.1.0');
+    assert.equal(method.source,'docs/drawing-methods/COMPOUND_V1.md');
+    assert.equal(method.text,source);
+    assert.equal(method.sha256,createHash('sha256').update(source).digest('hex'));
+  }
+  for(const phase of ['layout','rough','structure_review'])assert.equal(drawingProtocol({phase}).compoundMethod,undefined);
 });
 
 test('specific acceptance criteria are deferred until review, preserving cross-object checks',()=>{

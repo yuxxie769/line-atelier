@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "version": "3.1.0",
+  "source": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\studies\\20260909-local-turn-trial\\results-scheme3\\candidate.line.json",
+  "sha256": "e24f7b3c996dc85ccf9c0fd3d08b76dc73b56cc30937e71069d3563d9846232c",
+  "unchangedCommands": 198,
+  "replacedCommands": 3,
+  "generatedCommands": 9,
+  "scope": "脚本级离线三部位试画，不是正式网页绘画验收；膝部沿用上轮候选。"
+}

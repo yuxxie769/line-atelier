@@ -1,0 +1,28 @@
+{
+  "version": "3.1.0",
+  "passed": true,
+  "strokes": 3,
+  "preservedEndpoints": true,
+  "sourceSamplesRetained": true,
+  "joins": [
+    {
+      "at": 0.2790876292095068,
+      "reason": "脸颊凸面接入下颌斜面，轻微改变方向",
+      "point": [
+        312,
+        233.5
+      ],
+      "overlapPx": 3
+    },
+    {
+      "at": 0.5448225187926535,
+      "reason": "下巴转向另一侧，保留已有颏部位置",
+      "point": [
+        334,
+        248
+      ],
+      "overlapPx": 3
+    }
+  ],
+  "note": "保留脸部两端及下巴位置；把左颊到下颌分成不同走势，避免通过缩脸制造改善。"
+}

@@ -1,0 +1,26 @@
+{
+  "sourceUnchanged": true,
+  "otherCommandsUnchanged": 197,
+  "oldStrokeCount": 1,
+  "newStrokeCount": 3,
+  "uniformWidth": 1.5,
+  "smoothing": 0,
+  "joints": [
+    {
+      "point": [
+        163,
+        527
+      ],
+      "sampledAngleDegrees": 11.507249491704986
+    },
+    {
+      "point": [
+        171,
+        566
+      ],
+      "sampledAngleDegrees": 6.443396121731525
+    }
+  ],
+  "scope": "离线局部表现试验，沿用上轮实际 renderer；没有网页逐批验收记录，不是整图清线通过。",
+  "interpretation": "小折向为用户要求的风格试验；参考分辨率不足以逐个证实这些微小折角。原稿内侧膝弯硬折等未改。"
+}

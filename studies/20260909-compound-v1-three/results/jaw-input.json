@@ -1,0 +1,73 @@
+{
+  "stroke": {
+    "id": "v1-jaw",
+    "type": "stroke",
+    "layer": "ink",
+    "stage": "lineart",
+    "part": "body",
+    "subphase": "clean",
+    "color": "#37323f",
+    "opacity": 1,
+    "smoothing": 0,
+    "pressureFloor": 0,
+    "path": "M 295 212 C 299 221 305 228 312 233.5 C 318 238 327 244 334 248 C 347 244.5 362 236 373 226",
+    "width": 1.4,
+    "pressureProfile": [
+      [
+        0,
+        0.6
+      ],
+      [
+        0.23,
+        0.82
+      ],
+      [
+        0.43,
+        0.68
+      ],
+      [
+        0.51,
+        0.87
+      ],
+      [
+        0.66,
+        0.75
+      ],
+      [
+        0.88,
+        0.5
+      ],
+      [
+        1,
+        0.6
+      ]
+    ],
+    "endpoints": [
+      "occluded",
+      "occluded"
+    ],
+    "intent": "保留脸部两端及下巴位置；把左颊到下颌分成不同走势，避免通过缩脸制造改善。"
+  },
+  "lifts": [
+    {
+      "point": [
+        312,
+        233.5
+      ],
+      "reason": "脸颊凸面接入下颌斜面，轻微改变方向"
+    },
+    {
+      "point": [
+        334,
+        248
+      ],
+      "reason": "下巴转向另一侧，保留已有颏部位置"
+    }
+  ],
+  "overlapPx": 3,
+  "roles": [
+    "silhouette",
+    "turn",
+    "silhouette"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": "3.1.0",
+  "passed": true,
+  "strokes": 3,
+  "preservedEndpoints": true,
+  "sourceSamplesRetained": true,
+  "joins": [
+    {
+      "at": 0.3056780932127515,
+      "reason": "袖侧由鼓面转入肘部",
+      "point": [
+        244,
+        346
+      ],
+      "overlapPx": 5
+    },
+    {
+      "at": 0.4637640684414797,
+      "reason": "肘部短转折接入袖底，保留衣料折向",
+      "point": [
+        255.5,
+        386
+      ],
+      "overlapPx": 5
+    }
+  ],
+  "note": "保留袖底与衣领方向；外肘不再用一段匀圆弧包到底，布料转折比皮肤更明确。"
+}

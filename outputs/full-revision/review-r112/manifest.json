@@ -1,0 +1,350 @@
+{
+  "revision": 112,
+  "workflowPhase": "refine",
+  "context": "1F round-two corrective revision, awaiting final independent review",
+  "images": [
+    {
+      "name": "body",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\body-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-47",
+      "sha256": "79a89e337cb08d4a6528528d6f4538f1e18aea811197ee02a38fe785b9b08a76",
+      "width": 308,
+      "height": 755,
+      "region": [
+        129,
+        79,
+        308,
+        755
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "body",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\body-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-152",
+      "sha256": "fa5205db41f4bf4e8f2c1da65204297a7f49c17a55cb20c2488ec9da39d2c8d6",
+      "width": 308,
+      "height": 755,
+      "region": [
+        129,
+        79,
+        308,
+        755
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "full",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\full-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-2",
+      "sha256": "ba939e63e88cbbb8c1e2c240332812c3c1ab8d984f29f24717d63dda76d51258",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "full",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\full-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-153",
+      "sha256": "46eecb4bfe7cb47760c1a70942f035229a21ec2359c0153d4fe6cf3d8e0a653d",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "mirror",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\mirror-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-73",
+      "sha256": "f0ca3038db46e636df450c0d9173dd2fbcc28de1bd0c67baa17c63bd94a8cb61",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": true,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + region[2] - imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "mirror",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\mirror-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-155",
+      "sha256": "422dac12e64580758e4922ef31be22b5e88755260579f8d37579e3b1235b3b74",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": true,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + region[2] - imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "costume",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\costume-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-9",
+      "sha256": "9defdef252f80cb0307320b653fd7479236cf7e981d81b394d25b7e370e985b6",
+      "width": 743,
+      "height": 657,
+      "region": [
+        93,
+        231,
+        495,
+        438
+      ],
+      "scale": 1.5,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "costume",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\costume-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-157",
+      "sha256": "aa6d82835d5d99e537ffc1b4d30cdd7a8358aaec4da17c40ca15464db03f86c6",
+      "width": 743,
+      "height": 657,
+      "region": [
+        93,
+        231,
+        495,
+        438
+      ],
+      "scale": 1.5,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "face",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\face-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-98",
+      "sha256": "65be2e34e8a4efde244f3010de86802ab9818a5edd6d972ca9183a10e7add109",
+      "width": 423,
+      "height": 339,
+      "region": [
+        267,
+        176,
+        141,
+        113
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "face",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\face-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-158",
+      "sha256": "eb7c32768f9745eac242816551b30d5171a30dcb18854275f5e6a66605990373",
+      "width": 423,
+      "height": 339,
+      "region": [
+        267,
+        176,
+        141,
+        113
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "shoe",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\shoe-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-104",
+      "sha256": "af3270915525d3ca71e2eb57d4625a20e5515df90d3cba0cb53159c82112f7a1",
+      "width": 273,
+      "height": 381,
+      "region": [
+        133,
+        707,
+        91,
+        127
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "shoe",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\shoe-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-103",
+      "sha256": "e3c37a0c5e23d8fa0a9babc6be5e55cf7a5b09516b1bf3f1b1eca8d01742f51c",
+      "width": 273,
+      "height": 381,
+      "region": [
+        133,
+        707,
+        91,
+        127
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "wrist",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\wrist-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-106",
+      "sha256": "5ba3873f059f20b9002cf33b6a030a8cff17004676b8291ff4086d3efe53f671",
+      "width": 216,
+      "height": 204,
+      "region": [
+        363,
+        606,
+        72,
+        68
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "wrist",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r112\\wrist-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-159",
+      "sha256": "98db44ac5d29e1c64573750cde3a867e4908e91a8553edf3609bd3cc1542f30c",
+      "width": 216,
+      "height": 204,
+      "region": [
+        363,
+        606,
+        72,
+        68
+      ],
+      "scale": 3,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    }
+  ]
+}

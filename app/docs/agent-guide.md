@@ -8,7 +8,7 @@
 
 ## 批次依据与实际调用记录
 
-`paint_submit` / `paint_revise` 可附带 `basis:{guideIds:["已有笔迹ID"],note:"本组沿用端点，略抬弧顶"}`；一组一句。省略依据、空 guideIds 或没有底稿都不阻止落笔。结果中的 `callEvidence` 返回 sessionId、callId、groupId、实际笔迹 ID、前后 revision 和图片 ID。
+`paint_submit` / `paint_revise` 可附带 `basis:{guideIds:["已有笔迹ID"],note:"本组沿用端点，略抬弧顶"}`。进入 clean 后它成为硬要求：每个实际修改目标都必须绑定同部位保留底稿。结果中的 `callEvidence` 返回 sessionId、callId、groupId、实际笔迹 ID、前后 revision 和图片 ID。
 
 WebMCP、具名 `window.paint` 方法及 JSON 提交共用独立记录层。每次页面加载开始新会话，记录保存在当前来源的 IndexedDB；不进入作品撤销栈。手动画笔和直接 UI 编辑不属于完整模型调用日志。存储失败时记录暂留内存，响应标明 persistence，不影响已经成功的落笔。
 
@@ -22,13 +22,15 @@ WebMCP、具名 `window.paint` 方法及 JSON 提交共用独立记录层。每�
 
 正式作画流程和质量标准仅维护在仓库 `docs/WORKFLOW_PRINCIPLES.md`，网页 [workflow-principles.md](workflow-principles.md) 为自动生成的同源正文。工具用法见本接口指南和 [drawing-tools.md](drawing-tools.md)，不在接口说明里维护另一套作画标准。
 
-开始绘画先调用 `paint_get_state({})`（页面 API 为 `window.paint.state()`）。返回的 `drawingProtocol` 包含 `source`、`sha256` 和完整 `text`；实际读取正文后再作画。状态仍包含当前图层、阶段、播放与参考信息。用户当前明确要求优先，规范适用于实际作画，不要求维护代码时执行绘画。
+开始绘画先调用 `paint_get_state({})`（页面 API 为 `window.paint.state()`）。返回的 `drawingProtocol` 包含 `source`、`sha256` 和完整 `text`；在 refine、clean、lineart_review 还包含完整的 `compoundMethod`（独立 source、version、sha256、text）。实际读取正文后再作画。状态仍包含当前图层、阶段、播放与参考信息。用户当前明确要求优先，规范适用于实际作画，不要求维护代码时执行绘画。
 
 已读同一版本后可调用 `paint_get_state({includeProtocol:false})` 或 `window.paint.state({includeProtocol:false})`，仅省略规范正文，保留来源和哈希；哈希改变后重新取全文。参数必须是布尔值。不在页面保存“某模型已读”的全局状态，新模型接手同一页面仍能默认取得全文；正文进入工具结果不代表它已被正确理解或执行。
 
 每个部位的观察—坐标—小组落笔—实际复看、无底稿处理、阶段和审核要求均以正式规范为准。下面说明完成这些动作的现有工具参数。
 
-模型落笔采用强制短循环：`paint_submit` 与单次 `paint_revise` 合计都最多处理 1–3 笔，只围绕一个具体轮廓或连接关系。每批完成后读取返回的 `localFeedback.inspection.drawingCycle`，取得 `pendingTargets` 对应的当前图像并调用 `paint_record_inspection`；未完成本批检查时，下一次绘画修改会被拒绝。检查结论为 `different`／`uncertain` 会生成持续问题并暂停无关的新笔迹；仍可用 `paint_revise`、几何编辑或撤销返修，返修后必须重新看图、重新记录检查，再以当前图像证据解决或排除问题。这个门槛约束动作顺序与证据，不能代替模型判断线条是否真的自然。
+模型落笔采用强制短循环：普通 `paint_submit` 与单次 `paint_revise` 最多处理 1–3 笔；所有绘画阶段中，同一部位、两端开放且不承担敏感结构关系的低风险线，可用 `batchMode:"low-risk-clean"` 提交 5–6 笔。每批完成后只检查 `localFeedback.inspection.drawingCycle.pendingTargets`：一个目标取局部图，多个目标按 `batchInspection` 只取一张当前整图、重点观察列出的部位，并复用同一 observationId 分别调用 `paint_record_inspection`。整图与未改部位列在 `stagePending`，阶段推进前完成。检查结论为 `different`／`uncertain` 会生成持续问题并暂停无关的新笔迹。
+
+在 refine、clean、lineart_review，普通 stroke/bezier 还必须声明 `contourMode:"simple-sweep"` 与 `simpleSweepReason`。复杂轮廓使用 `paint_submit.compoundGroups` 或 `paint_revise.compoundReplace`，提交完整 `path`、1–2 个结构性 `lifts` 和全局 `pressureProfile`；程序生成并按实际 2–3 笔计数。直接手写 `compoundId`、省略分类或提交检测为长而复杂的普通路径会被拒绝。
 
 ## 一次查看部位底稿与定位依据
 
@@ -118,7 +120,7 @@ frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0
 
 ## 复核与检查点
 
-每次局部完成后，先 `paint_playback({action:"finish"})`，再看画布和参考，记录具体观察。发现问题就修，修后再次查看。
+每次局部完成后，先 `paint_playback({action:"finish"})`，再看画布和参考，记录具体观察。clean 的每个小批次同时查看参考、绑定底稿和当前清稿，只记录 `preserved`／`improved`／`regressed`；退步后只修当前部位。五项检查只在阶段出口执行。
 
 ```json
 {
@@ -133,6 +135,8 @@ frame 始终为文档坐标 `[x,y,w,h]`。`space:"face"` 中的经过点使用 0
 交给 `paint_record_review`。scope 为 local/global；kind 为 observation / structure-checkpoint / lineart-checkpoint；status 为 pass/needs-work。改动会令相关复核 stale，历史仍保留。
 
 `paint_set_phase({phase:"refine"})` 启用规范流程；进入 refine/clean 不再要求先提交正式审核通过。完成清线后进入 1F `lineart_review`，第一轮实际检查结构与造型并记录全身 structure-checkpoint；第二轮检查边界、接头和线条质量并记录全身 lineart-checkpoint。两轮都查看实际画布、参考与缩小／翻转视图，缺口和泄漏工具辅助第二轮。两轮未通过前颜色提交会拒绝。旧版或非 1F 的记录保留，但不能替代本流程两轮审核。记录不是自动质量评分，不能为了让接口通过而编造观察。
+
+进入 refine 后，先用当前整图对照调用 `paint_record_refinement_diagnosis`，提交 `scope:"whole"` 和 `decision:"proceed" | "return-structure" | "needs-evidence"`。允许继续时，每个局部批次前再提交 `scope:"local"`，完整写出 `referenceFacts`、`structureInference`、`drawingFacts`、`uncertainty` 和 `decision:"detail" | "repair" | "retain" | "needs-evidence"`。只有 detail/repair 返回的 `diagnosisId` 能授权一个相同 `part/objectId` 的小批次；画面改变后重新看图、检查结果并重新诊断。程序校验材料与顺序，不验证这些美术陈述是否属实。
 
 `paint_checkpoint({action:"save",name:"结构修正后"})` 保存阶段；list 返回列表；restore 加 id 可恢复，恢复可撤销。最多 8 个检查点，工程中保留几何、图层和复核，不含参考像素。`paint_undo` 撤销文档操作。
 
@@ -224,15 +228,38 @@ compact 仅省略有源几何的笔迹采样缓存，导入时根据源几何重
 
 本地开发工作台自动将现有完整会话（含 PNG）写入 `logs/sessions/<sessionId>.json`。`paint_get_state.localEvidence` 返回文件保存状态与路径；`callEvidence.persistence` 保持原有浏览器存储含义。无本地服务时显示待写入，并保留浏览器记录，不声称已写文件。
 
-`paint_update_issue` 管理工程 `partIssues`：`open` 登记具体描述、部位和区域；`resolve` / `dismiss` 需要 `note` 与当前图片 `observationIds`；`reopen` 重开问题。空审核列表不清空问题。`paint_inspect_context` 返回问题、当前阶段要求及完整操作说明，有效对照图还返回观察凭据。`paint_observe_review` 可生成专门的局部参考／画布对照。
+`paint_update_issue` 管理工程 `partIssues`：`open` 登记具体描述、部位和区域；`resolve` / `dismiss` 需要 `note` 与当前图片 `observationIds`；`reopen` 重开问题。已解决问题仅在关联 `guideIds`、`objectIds` 或区域几何变化时自动转为 `awaiting-review`，无关修改不触发；重复 resolve 为不新增历史的幂等结果。阶段最终审核仍需当前局部图片。
 
 1F 使用 `paint_prepare_review` 取得核心／阶段标准、整图、镜像、部位与问题局部对照，实际查看后提交 `paint_record_review.observationIds`。程序只核验当前图像依据与问题状态；仍需模型判断形体和精细度。工程恢复后重新取图，不能复用历史通过文本作为当前凭据。
 
 ## 图像绑定的检查记录
 
+1D／1E／1F 的 `criteria` 固定为五个独立结果：`likeness`、`volume`、`boundary`、`detail`、`coherence`；每项提交参考事实、当前事实与结论，缺项或旧三项格式会被拒绝。`comparisons[].observationIds` 可指定各项证据，省略则展开保存共享 `observationIds`，每项均校验当前版本和覆盖范围。`inspection.targets` 显示各目标的 `pass`、`needs-work`、`needs-evidence`、`stale`、`needs-inspection`，相关改动使通过失效；整图与无关部位不因本批检查而被强制重复检查。
+
+完整播放且参考已授权时，绘画修改会自动保存修改前渲染状态。修改后 `paint_observe_review` 或带图的 `paint_inspect_context` 增加 `beforeAfter`：`drawing` 为同区域同倍率的修改前图，`beforeRevision` / `afterRevision` 标明版本；当前图仍在正常结果字段中。`available` 时，检查须填写 `changeSummary`（具体改善／退步及相邻影响），不能用旧图作为当前凭据。首次运行、恢复或参考变化可能为 `unavailable`，必须诚实说明缺少前图；未变化为 `unchanged`。仅保存当前运行的最近一次修改前状态，图片返回后进入会话证据日志；导入工程不会恢复历史检查授权。
+
+例如袖子一批修改后的记录（ID 和事实须替换为实际观察）：
+
+```js
+paint_record_inspection({
+  target: "part:sleeve",
+  observationIds: [currentObservationId],
+  changeSummary: "肘外侧由直折改为鼓起，内侧褶线汇向肘弯；相邻发束轮廓保持。",
+  comparisons: [
+    {criterion:"likeness", reference:"参考袖外侧鼓起", drawing:"当前外侧鼓起位置对应", conclusion:"aligned"},
+    {criterion:"volume", reference:"内侧压缩、外侧舒展", drawing:"当前内侧仍平直，压缩不足", conclusion:"different"},
+    {criterion:"boundary", reference:"发束压在袖前", drawing:"袖边在发束后终止", conclusion:"aligned"},
+    {criterion:"detail", reference:"主褶由肘弯展开", drawing:"主褶起点可辨，但压缩形待修", conclusion:"different"},
+    {criterion:"coherence", reference:"袖宽与上臂及袖口呼应", drawing:"局部宽度保持，待修褶形未影响邻部", conclusion:"aligned"}
+  ]
+})
+```
+
+这个例子应产生 `needs-work` 和持续问题，不能推进清线。五项记录只是材料与程序门槛，模型仍负责判断美术事实，不可复制示例文字冒充真实观察。
+
 底稿候选不分页：paint_inspect_context 一次返回全部匹配笔迹，limit/offset 不再提供；旧参数不能截断结果。范围仍按 objectId/query/region 确定，不等于返回全工程无关笔迹。
 
-读取 localFeedback.inspection：pending 给出 whole 和 part:部位ID，criteria 给出当前阶段必须比较的项目。按 nextInspection 取得图片并实际对照，再调用 paint_record_inspection({target,observationIds,comparisons})。comparisons 每项包含 criterion、reference（参考可见形状）、drawing（当前可见形状）、conclusion（aligned/different/uncertain）。不要输出隐含思考过程；只记录可复查的视觉事实和结论，不能用“已检查”替代对照。
+读取 `localFeedback.inspection`：`pending` 只给出本批实际改动目标，`stagePending` 给出阶段节点的整图和最终部位目标，`criteria` 给出当前阶段必须比较的项目。按 `nextInspection` 取得图片并实际对照，再调用 `paint_record_inspection({target,observationIds,comparisons})`。
 
 首次问题列表为空正常。different/uncertain 会自动登记问题，reference 保存为目标；aligned 不会虚构问题。修正后重新取图、重新检查，并按已有问题解决流程逐项处理。图片返回本身不会完成检查。
 

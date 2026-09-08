@@ -43,12 +43,12 @@ function layoutCalibration(doc,hasImages){
     guideIds:guideIds,totalGuideIds:guideIds.length,changedGuideIds:guideIds.filter(id=>changedIds.has(id)),anchorIds,
     nextInspection:{tool:'paint_inspect_context',arguments:{region,padding:0,maxSize:1024,guideIds:guideIds}},
     originalSizeComparison:{tool:'paint_observe_review',arguments:{region,scale:1}},
-    instruction:'1A 提交成功只表示占位底稿已画出，不表示定位正确。播放未完先 finish；对照整图校准头身比例、头/胸廓/骨盆的位置与倾斜、肩胯方向、关节与四肢端点、重心及身体周围负形。发现偏差直接修改这些底稿 ID 或锚点，修改后再看整图；确认接近参考后才承接到 1B，不能把纠错全留给 1C。图像返回不等于校准完成；无需凑修改次数，不增加正式审核。',
+    instruction:'修改前后都必须对比参考图。1A 提交成功只表示占位底稿已画出，不表示定位正确。播放未完先 finish；对照整图校准头身比例、头/胸廓/骨盆的位置与倾斜、肩胯方向、关节与四肢端点、重心及身体周围负形。发现偏差直接修改这些底稿 ID 或锚点，修改后再看整图；确认接近参考后才承接到 1B，不能把纠错全留给 1C。图像返回不等于校准完成；无需凑修改次数，不增加正式审核。',
     guidePagination:null};
 }
 export function localChangeFeedback(doc,hasImages,{objectId,region,limit=8}={}){
   const rows=(doc.localChanges||[]).filter(r=>!objectId&&!region||r.objectIds.includes(objectId)||region&&overlap(r.region,region)).sort((a,b)=>b.revision-a.revision);
   const pending=rows.filter(r=>!hasImages(r));
   const calibration=layoutCalibration(doc,hasImages);
-  return {phase:doc.workflow.phase,...(calibration?{layoutCalibration:calibration}:{}),trackedParts:rows.length,pendingImageParts:pending.length,scope:'tracked changes only; legacy work without these records is unknown',meaning:'Images returned is not proof of visual inspection or artistic quality.',next:calibration?.totalGuideIds?[calibration]:pending.slice(0,limit).map(r=>({...clone(r),strokeIds:r.strokeIds,totalStrokeIds:r.strokeIds.length,nextInspection:Math.max(r.region[2],r.region[3])>1024?{tool:'paint_observe_review',arguments:{region:r.region,scale:1}}:{tool:'paint_inspect_context',arguments:{region:r.region,padding:0,maxSize:1024}},instruction:'对照参考逐段检查关键转折、宽窄和相邻空隙；改过的目标是否更接近参考，不用顺滑或可辨认代替。'}))};
+  return {phase:doc.workflow.phase,...(calibration?{layoutCalibration:calibration}:{}),trackedParts:rows.length,pendingImageParts:pending.length,scope:'tracked changes only; legacy work without these records is unknown',meaning:'Images returned is not proof of visual inspection or artistic quality.',next:calibration?.totalGuideIds?[calibration]:pending.slice(0,limit).map(r=>({...clone(r),strokeIds:r.strokeIds,totalStrokeIds:r.strokeIds.length,nextInspection:Math.max(r.region[2],r.region[3])>1024?{tool:'paint_observe_review',arguments:{region:r.region,scale:1}}:{tool:'paint_inspect_context',arguments:{region:r.region,padding:0,maxSize:1024}},instruction:'修改前后都必须对比参考图。对照参考逐段检查关键转折、宽窄和相邻空隙；改过的目标是否更接近参考，不用顺滑或可辨认代替。'}))};
 }

@@ -1,0 +1,28 @@
+{
+  "version": "3.1.0",
+  "passed": true,
+  "strokes": 3,
+  "preservedEndpoints": true,
+  "sourceSamplesRetained": true,
+  "joins": [
+    {
+      "at": 0.479682220568997,
+      "reason": "鞋面侧缘绕入前端的宽弧",
+      "point": [
+        168,
+        804
+      ],
+      "overlapPx": 3
+    },
+    {
+      "at": 0.8567860826124776,
+      "reason": "鞋头前端由稍平小面转向左侧收笔",
+      "point": [
+        149.5,
+        805.8
+      ],
+      "overlapPx": 3
+    }
+  ],
+  "note": "只试鞋头鞋面边线，保留鞋底和搭扣；略平的前端与局部线重表达边缘，不增加假材质纹。"
+}

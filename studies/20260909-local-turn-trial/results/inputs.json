@@ -1,0 +1,68 @@
+[
+  {
+    "type": "stroke",
+    "layer": "ink",
+    "stage": "lineart",
+    "subphase": "clean",
+    "part": "body",
+    "color": "#37323f",
+    "width": 1.5,
+    "opacity": 1,
+    "pressureFloor": 0,
+    "smoothing": 0,
+    "id": "local-turn-approach",
+    "path": "M 246 474 C 207 487 175 507 163 527",
+    "compoundId": "near-knee-local-turn",
+    "strokeRole": "silhouette",
+    "joinStyle": "shared",
+    "endpoints": [
+      "occluded",
+      "joined"
+    ],
+    "intent": "承接大腿到膝前的长扫线，末端偏向左下；不均匀切碎。"
+  },
+  {
+    "type": "stroke",
+    "layer": "ink",
+    "stage": "lineart",
+    "subphase": "clean",
+    "part": "body",
+    "color": "#37323f",
+    "width": 1.5,
+    "opacity": 1,
+    "pressureFloor": 0,
+    "smoothing": 0,
+    "id": "local-turn-knee",
+    "path": "M 163 527 C 160.5 534 158.5 541 159.5 547 C 160.5 554 165 561 171 566",
+    "compoundId": "near-knee-local-turn",
+    "strokeRole": "turn",
+    "joinStyle": "shared",
+    "endpoints": [
+      "joined",
+      "joined"
+    ],
+    "intent": "较直的膝前短面接下方鼓起；入口保留约 11 度折向。"
+  },
+  {
+    "type": "stroke",
+    "layer": "ink",
+    "stage": "lineart",
+    "subphase": "clean",
+    "part": "body",
+    "color": "#37323f",
+    "width": 1.5,
+    "opacity": 1,
+    "pressureFloor": 0,
+    "smoothing": 0,
+    "id": "local-turn-calf",
+    "path": "M 171 566 C 176.6 569.7 181.2 573.6 187.2 577.8 C 213 594.4 241 616 266 630 C 275 635.1 283 639.8 290 644 L 354 684 Q 365 700 374 723 L 387 744 Q 391 752 395 746 L 398 738 L 397 733 L 400 730 Q 396 717 394 708 L 391 683 L 395 663 Q 394 650 384 650 L 368 653 Q 346 646 327 625 Q 317 603 297 588 Q 253 558 210 538 L 276 529",
+    "compoundId": "near-knee-local-turn",
+    "strokeRole": "silhouette",
+    "joinStyle": "shared",
+    "endpoints": [
+      "joined",
+      "occluded"
+    ],
+    "intent": "膝下以约 6 度折向接出；小腿段略有起伏，290,644 之后沿用原画。"
+  }
+]

@@ -6,7 +6,7 @@ function fixture(){return validateDocument({...blankDocument(100,100),stages:[{i
 test('pending crop includes old and new positions; repeated edits retain earlier regions and real stroke IDs',()=>{
  const doc=fixture(),old=structuredClone(doc.commands[0]);doc.revision=1;
  doc.commands[0].points=[[60,60],[70,70]];trackLocalChanges(doc,{ids:['a'],previousCommands:[old]});
- const first=localChangeFeedback(doc,()=>false);assert.deepEqual(first.next[0].region,[12,12,66,66]);
+ const first=localChangeFeedback(doc,()=>false);assert.deepEqual(first.next[0].region,[12,12,66,66]);assert.match(first.next[0].instruction,/修改前后都必须对比参考图/);
  doc.revision++;doc.commands[0].points=[[40,40],[45,45]];trackLocalChanges(doc,{ids:['a']});
  const after=localChangeFeedback(doc,()=>false);assert.deepEqual(after.next[0].region,first.next[0].region);assert.deepEqual(after.next[0].strokeIds,['a']);
  assert.equal(after.next[0].nextInspection.tool,'paint_inspect_context');assert.equal(after.next[0].revision,2);
@@ -32,7 +32,7 @@ test('1A prioritizes whole-drawing calibration after a batch, even when requesti
  assert.equal(feedback.next[0].kind,'layout-calibration');assert.deepEqual(calibration.region,[0,0,100,100]);
  assert.deepEqual(calibration.guideIds,['a']);assert.deepEqual(calibration.changedGuideIds,['a']);
  assert.deepEqual(calibration.nextInspection.arguments.region,[0,0,100,100]);assert.equal(calibration.status,'needs-whole-comparison');
- assert.match(calibration.instruction,/不表示定位正确/);
+ assert.match(calibration.instruction,/不表示定位正确/);assert.match(calibration.instruction,/修改前后都必须对比参考图/);
  const returned=localChangeFeedback(doc,()=>true);assert.equal(returned.next[0].status,'images-returned-calibration-required');
  assert.match(returned.next[0].instruction,/图像返回不等于校准完成/);
  doc.workflow.phase='rough';assert.equal(localChangeFeedback(doc,()=>false).layoutCalibration,undefined);

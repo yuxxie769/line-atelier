@@ -1,0 +1,642 @@
+{
+  "revision": 104,
+  "images": [
+    {
+      "name": "full",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\full-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-118",
+      "sha256": "f1fb8dd6aee933355f88608a97b9a23b8b71ffef27da4e08b777269250811c8e",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "full",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\full-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-2",
+      "sha256": "ba939e63e88cbbb8c1e2c240332812c3c1ab8d984f29f24717d63dda76d51258",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "mirror",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\mirror-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-120",
+      "sha256": "557ae92f23a2a911c260e90ad0732f98f866b2cc32e77c91efe5994bfd45cc54",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": true,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + region[2] - imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "mirror",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\mirror-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-73",
+      "sha256": "f0ca3038db46e636df450c0d9173dd2fbcc28de1bd0c67baa17c63bd94a8cb61",
+      "width": 600,
+      "height": 849,
+      "region": [
+        0,
+        0,
+        600,
+        849
+      ],
+      "scale": 1,
+      "mirror": true,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + region[2] - imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-0",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-0-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-122",
+      "sha256": "15de7100ed57970dc5e6ef416834556578458cd279fc258000a8d4e91e339797",
+      "width": 141,
+      "height": 113,
+      "region": [
+        267,
+        176,
+        141,
+        113
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-0",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-0-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-130",
+      "sha256": "6aeeffb07487ec5351eaff3c051b0444282cfcb64b8e2a65c8360b90e9c99985",
+      "width": 141,
+      "height": 113,
+      "region": [
+        267,
+        176,
+        141,
+        113
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-1",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-1-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-123",
+      "sha256": "bec4375095798bcb6132f6ea9713ef920b4fbd0d7a20e3c78e3b433a329e8b32",
+      "width": 91,
+      "height": 127,
+      "region": [
+        133,
+        707,
+        91,
+        127
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-1",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-1-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-131",
+      "sha256": "e11d4731a93a240f7cc12ac64a4a5c5625647ee96cbcb39edce274b6bad1ec79",
+      "width": 91,
+      "height": 127,
+      "region": [
+        133,
+        707,
+        91,
+        127
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-2",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-2-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-124",
+      "sha256": "7303892ea0d7baaef12200264c95c82a651cd2460a64474c467f2e2e2f792042",
+      "width": 72,
+      "height": 68,
+      "region": [
+        363,
+        606,
+        72,
+        68
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-2",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-2-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-132",
+      "sha256": "e87193308fe98372d4e7c1ff084b6219e1f29eb76c7cb79c2a52f6e46d249065",
+      "width": 72,
+      "height": 68,
+      "region": [
+        363,
+        606,
+        72,
+        68
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-3",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-3-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-125",
+      "sha256": "91891a58a3964a5a5d3e6fcffbda767a828f1b3b184f138a55891fd5fc49a9a9",
+      "width": 150,
+      "height": 95,
+      "region": [
+        295,
+        250,
+        150,
+        95
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-3",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-3-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-133",
+      "sha256": "3bc72601bc056af0e269fbcf600abcfc5d508912a8ef8bd5062d01428be3ecc2",
+      "width": 150,
+      "height": 95,
+      "region": [
+        295,
+        250,
+        150,
+        95
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-4",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-4-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-126",
+      "sha256": "62f0d9548848afd4509757cdee132eefac7fa7a04b63cc653b1a862a61336a2d",
+      "width": 285,
+      "height": 657,
+      "region": [
+        129.16732604767694,
+        174.900826446281,
+        284.83267395232303,
+        656.8589833040162
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-4",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-4-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-134",
+      "sha256": "4fe6ee41297377ade467ddd20da97300f7a7f8d9be5dd59211a8ba01cb41da4f",
+      "width": 285,
+      "height": 657,
+      "region": [
+        129.16732604767694,
+        174.900826446281,
+        284.83267395232303,
+        656.8589833040162
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-5",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-5-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-127",
+      "sha256": "c4f106aecf6d59739b610b7f01d39918e19dbb1867851623467db481cf65a2ef",
+      "width": 484,
+      "height": 550,
+      "region": [
+        7.891779396462018,
+        2,
+        483.89261857608,
+        550
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-5",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-5-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-135",
+      "sha256": "a353b1d15a0ea258f34496d6e337efcb2ef544240d269eff1bc766ebffe9506c",
+      "width": 484,
+      "height": 550,
+      "region": [
+        7.891779396462018,
+        2,
+        483.89261857608,
+        550
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-6",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-6-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-128",
+      "sha256": "8a456780f350b7c56a391237a116e6ff4a6d70dc3cfc78d4bbf5162cabd9b79b",
+      "width": 494,
+      "height": 436,
+      "region": [
+        93,
+        231,
+        494,
+        435.7839335180056
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-6",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-6-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-136",
+      "sha256": "c20261fa09b6f15436d6cbc208819e40b186f17bd7dfd2cbe089eed5917a6b77",
+      "width": 494,
+      "height": 436,
+      "region": [
+        93,
+        231,
+        494,
+        435.7839335180056
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-7",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-7-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-129",
+      "sha256": "40e06b175d83688c2ed5405d791f4b0940dc3c6be8782fc6a28e0d8c9f9af767",
+      "width": 80,
+      "height": 70,
+      "region": [
+        275,
+        575,
+        80,
+        70
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-7",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-7-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-137",
+      "sha256": "ed1af3feebeed9faa3ade579a277c8aa2231c0dc1c8f188981e52c6326b0fdca",
+      "width": 80,
+      "height": 70,
+      "region": [
+        275,
+        575,
+        80,
+        70
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-8",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-8-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-111",
+      "sha256": "bea87b7d5eac29e57fb39f45283890746b8c43b38e61636e89b1a72c7f752bf2",
+      "width": 495,
+      "height": 438,
+      "region": [
+        93,
+        231,
+        495,
+        438
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-8",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-8-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-28",
+      "sha256": "69f9741820445da5951b4aa6f9139ae4b78742e922ac30b1bac472804822f668",
+      "width": 495,
+      "height": 438,
+      "region": [
+        93,
+        231,
+        495,
+        438
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-9",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-9-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-113",
+      "sha256": "7d7ffb4dd994b25ecb2b4ff2abbe6b305ddb449aa8eff46990688cdc165a3ab8",
+      "width": 308,
+      "height": 755,
+      "region": [
+        129,
+        79,
+        308,
+        755
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-9",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-9-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-47",
+      "sha256": "79a89e337cb08d4a6528528d6f4538f1e18aea811197ee02a38fe785b9b08a76",
+      "width": 308,
+      "height": 755,
+      "region": [
+        129,
+        79,
+        308,
+        755
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-10",
+      "role": "drawing",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-10-drawing.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-110",
+      "sha256": "5e7b075431fa4587887b0624b4c2741d748e585b8e639bab99c887ce8c02551c",
+      "width": 490,
+      "height": 550,
+      "region": [
+        6,
+        2,
+        490,
+        550
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "geometry",
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    },
+    {
+      "name": "local-10",
+      "role": "reference",
+      "file": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\outputs\\full-revision\\review-r104\\local-10-reference.png",
+      "imageId": "fe8b29de-1ad7-4a0a-a742-f7c8648c40f6-image-67",
+      "sha256": "37b50a452a4e3a9129b5fa9cd6c82748ecfb9f484401f6d9c2c42051012ebd3e",
+      "width": 490,
+      "height": 550,
+      "region": [
+        6,
+        2,
+        490,
+        550
+      ],
+      "scale": 1,
+      "mirror": false,
+      "rendering": "original-reference",
+      "sourceWidth": 600,
+      "sourceHeight": 849,
+      "documentWidth": 600,
+      "documentHeight": 849,
+      "placement": {
+        "x": 0,
+        "y": 0,
+        "scale": 1
+      },
+      "coordinates": "documentX = region[0] + imageX / scale; documentY = region[1] + imageY / scale"
+    }
+  ]
+}

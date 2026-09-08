@@ -1,0 +1,1616 @@
+[
+  {
+    "part": "leg",
+    "sourceId": "ink-near-leg",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-1",
+          "path": "M 246 474 C 207 487 171 509 162 531 C 154 549 164 564 181 575",
+          "pressureProfile": [
+            [
+              0,
+              0.55
+            ],
+            [
+              0.5,
+              0.82
+            ],
+            [
+              0.84,
+              1
+            ],
+            [
+              0.95,
+              0.85
+            ],
+            [
+              1,
+              0.12
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "occluded",
+            "joined"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-2",
+          "path": "M 175 571 Q 235 611 290 644 L 354 684 Q 358 690 361 696",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.04,
+              0.96
+            ],
+            [
+              0.35,
+              0.58
+            ],
+            [
+              0.78,
+              0.72
+            ],
+            [
+              0.95,
+              0.8
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-3",
+          "path": "M 356 687 Q 365 700 374 723 L 387 744 Q 391 752 395 746 L 398 738 L 397 733 L 400 730 Q 398 724 397 720",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.8
+            ],
+            [
+              0.35,
+              0.64
+            ],
+            [
+              0.68,
+              0.5
+            ],
+            [
+              0.93,
+              0.6
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-4",
+          "path": "M 399 726 Q 395 714 394 708 L 391 683 L 395 663 Q 394 650 384 650 L 368 653 Q 363 651 358 648",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.1,
+              0.6
+            ],
+            [
+              0.5,
+              0.82
+            ],
+            [
+              0.8,
+              0.98
+            ],
+            [
+              0.93,
+              0.85
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-5",
+          "path": "M 365 652 Q 346 646 327 625 Q 317 603 297 588 Q 289 582 281 577",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.1,
+              0.87
+            ],
+            [
+              0.4,
+              1
+            ],
+            [
+              0.78,
+              0.65
+            ],
+            [
+              0.94,
+              0.6
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.7,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "body",
+          "id": "ink-near-leg-manual-6",
+          "path": "M 287 581 Q 249 556 210 538 L 276 529",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.6
+            ],
+            [
+              0.56,
+              0.76
+            ],
+            [
+              0.76,
+              0.55
+            ],
+            [
+              1,
+              0.4
+            ]
+          ],
+          "compoundId": "ink-near-leg-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "occluded"
+          ],
+          "intent": "方案2：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.7,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "body",
+        "id": "ink-near-leg",
+        "path": "M 246 474 C 207 487 171 509 162 531 C 154 549 164 564 181 575 Q 235 611 290 644 L 354 684 Q 365 700 374 723 L 387 744 Q 391 752 395 746 L 398 738 L 397 733 L 400 730 Q 396 717 394 708 L 391 683 L 395 663 Q 394 650 384 650 L 368 653 Q 346 646 327 625 Q 317 603 297 588 Q 253 558 210 538 L 276 529",
+        "pressureProfile": [
+          [
+            0,
+            0.55
+          ],
+          [
+            0.1,
+            0.82
+          ],
+          [
+            0.185,
+            1
+          ],
+          [
+            0.28,
+            0.58
+          ],
+          [
+            0.4,
+            0.72
+          ],
+          [
+            0.46,
+            0.8
+          ],
+          [
+            0.55,
+            0.5
+          ],
+          [
+            0.64,
+            0.82
+          ],
+          [
+            0.73,
+            1
+          ],
+          [
+            0.85,
+            0.6
+          ],
+          [
+            1,
+            0.4
+          ]
+        ],
+        "endpoints": [
+          "occluded",
+          "occluded"
+        ],
+        "intent": "方案3：膝部鼓起后接入小腿外侧，足端及踝部回转独立落笔。"
+      },
+      "breaks": [
+        {
+          "at": 0.185,
+          "reason": "膝下接入长外轮廓"
+        },
+        {
+          "at": 0.446,
+          "reason": "脚踝前开始足端"
+        },
+        {
+          "at": 0.568,
+          "reason": "脚尖绕回脚背"
+        },
+        {
+          "at": 0.692,
+          "reason": "踝上接入胫侧"
+        },
+        {
+          "at": 0.824,
+          "reason": "胫侧接入大腿内边"
+        }
+      ],
+      "overlapPx": 8,
+      "roles": [
+        "silhouette",
+        "silhouette",
+        "turn",
+        "turn",
+        "silhouette",
+        "silhouette"
+      ]
+    }
+  },
+  {
+    "part": "hair",
+    "sourceId": "ink-left-curl",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.4,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-curl-manual-1",
+          "path": "M 249 204 Q 223 259 211 302 Q 210 309 205 314",
+          "pressureProfile": [
+            [
+              0,
+              0.45
+            ],
+            [
+              0.5,
+              0.72
+            ],
+            [
+              0.85,
+              0.98
+            ],
+            [
+              0.94,
+              0.9
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-curl-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "open",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.4,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-curl-manual-2",
+          "path": "M 210 307 Q 206 321 186 325 C 154 332 141 316 150 302 Q 152 299 154 297",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.1,
+              0.95
+            ],
+            [
+              0.5,
+              0.8
+            ],
+            [
+              0.88,
+              0.95
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-curl-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.4,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-curl-manual-3",
+          "path": "M 150 302 Q 166 280 184 294 Q 172 291 166 305 C 164 313 167 317 175 320",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.95
+            ],
+            [
+              0.38,
+              0.18
+            ],
+            [
+              0.67,
+              0.6
+            ],
+            [
+              0.9,
+              0.75
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-curl-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.4,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-curl-manual-4",
+          "path": "M 168 316 C 178 329 197 325 211 317 Q 232 310 249 295",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.12,
+              0.78
+            ],
+            [
+              0.4,
+              0.82
+            ],
+            [
+              0.76,
+              0.45
+            ],
+            [
+              1,
+              0.12
+            ]
+          ],
+          "compoundId": "ink-left-curl-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "open"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.4,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "hair",
+        "id": "ink-left-curl",
+        "path": "M 249 204 Q 223 259 211 302 Q 207 321 186 325 C 154 332 141 316 150 302 Q 166 280 184 294 Q 172 291 166 305 C 159 326 193 327 211 317 Q 232 310 249 295",
+        "pressureProfile": [
+          [
+            0,
+            0.45
+          ],
+          [
+            0.16,
+            0.72
+          ],
+          [
+            0.3,
+            0.98
+          ],
+          [
+            0.43,
+            0.8
+          ],
+          [
+            0.55,
+            0.95
+          ],
+          [
+            0.653,
+            0.18
+          ],
+          [
+            0.73,
+            0.6
+          ],
+          [
+            0.86,
+            0.82
+          ],
+          [
+            1,
+            0.12
+          ]
+        ],
+        "endpoints": [
+          "open",
+          "open"
+        ],
+        "intent": "方案3：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+      },
+      "breaks": [
+        {
+          "at": 0.304,
+          "reason": "长发束转入卷曲"
+        },
+        {
+          "at": 0.55,
+          "reason": "卷曲外缘回转"
+        },
+        {
+          "at": 0.745,
+          "reason": "发尖回到内缘"
+        }
+      ],
+      "overlapPx": 6,
+      "roles": [
+        "silhouette",
+        "turn",
+        "turn",
+        "silhouette"
+      ]
+    }
+  },
+  {
+    "part": "hair",
+    "sourceId": "ink-left-low",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.25,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-low-manual-1",
+          "path": "M 244 315 Q 203 378 130 394 L 123 396",
+          "pressureProfile": [
+            [
+              0,
+              0.12
+            ],
+            [
+              0.55,
+              0.5
+            ],
+            [
+              0.9,
+              0.88
+            ],
+            [
+              0.97,
+              0.78
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-low-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "open",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.25,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-low-manual-2",
+          "path": "M 130 394 C 76 411 22 410 16 391 Q 14 387 16 384",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.88
+            ],
+            [
+              0.5,
+              0.98
+            ],
+            [
+              0.92,
+              0.65
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-low-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.25,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-low-manual-3",
+          "path": "M 15 390 Q 7 377 49 378 Q 11 384 35 395 L 41 397",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.58
+            ],
+            [
+              0.38,
+              0.12
+            ],
+            [
+              0.85,
+              0.55
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-left-low-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.25,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "hair",
+          "id": "ink-left-low-manual-4",
+          "path": "M 35 395 C 97 411 207 388 244 360",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.04,
+              0.55
+            ],
+            [
+              0.48,
+              0.8
+            ],
+            [
+              1,
+              0.12
+            ]
+          ],
+          "compoundId": "ink-left-low-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "open"
+          ],
+          "intent": "方案2：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.25,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "hair",
+        "id": "ink-left-low",
+        "path": "M 244 315 Q 203 378 130 394 C 76 411 22 410 16 391 Q 7 377 49 378 Q 11 384 35 395 C 97 411 207 388 244 360",
+        "pressureProfile": [
+          [
+            0,
+            0.12
+          ],
+          [
+            0.16,
+            0.5
+          ],
+          [
+            0.26,
+            0.88
+          ],
+          [
+            0.4,
+            0.98
+          ],
+          [
+            0.49,
+            0.55
+          ],
+          [
+            0.545,
+            0.12
+          ],
+          [
+            0.62,
+            0.55
+          ],
+          [
+            0.78,
+            0.8
+          ],
+          [
+            1,
+            0.12
+          ]
+        ],
+        "endpoints": [
+          "open",
+          "open"
+        ],
+        "intent": "方案3：发束长扫线、卷曲回转和发尖分别控制轻重；检查接笔是否造成双边或毛刺。"
+      },
+      "breaks": [
+        {
+          "at": 0.254,
+          "reason": "长发外缘鼓点"
+        },
+        {
+          "at": 0.473,
+          "reason": "最低发梢回转"
+        },
+        {
+          "at": 0.618,
+          "reason": "接入长发内侧"
+        }
+      ],
+      "overlapPx": 6,
+      "roles": [
+        "silhouette",
+        "silhouette",
+        "turn",
+        "silhouette"
+      ]
+    }
+  },
+  {
+    "part": "coat",
+    "sourceId": "ink-coat-right-edge",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.8,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-edge-manual-1",
+          "path": "M 487 452 L 499 503 L 515 522 L 520 524",
+          "pressureProfile": [
+            [
+              0,
+              0.35
+            ],
+            [
+              0.7,
+              0.72
+            ],
+            [
+              0.91,
+              0.82
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-edge-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "occluded",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.8,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-edge-manual-2",
+          "path": "M 515 522 L 556 541 Q 570 558 572 568 L 575 576",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.1,
+              0.82
+            ],
+            [
+              0.5,
+              0.66
+            ],
+            [
+              0.92,
+              0.96
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-edge-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.8,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-edge-manual-3",
+          "path": "M 572 568 L 580 589 L 559 613 L 557 618",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.12,
+              0.96
+            ],
+            [
+              0.58,
+              0.88
+            ],
+            [
+              0.94,
+              0.75
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-edge-compound",
+          "strokeRole": "turn",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.8,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-edge-manual-4",
+          "path": "M 559 613 L 549 637 L 531 658 L 526 659",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.12,
+              0.75
+            ],
+            [
+              0.7,
+              1
+            ],
+            [
+              0.94,
+              0.9
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-edge-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.8,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-edge-manual-5",
+          "path": "M 531 658 Q 473 667 424 637 L 433 625",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.07,
+              0.98
+            ],
+            [
+              0.54,
+              0.76
+            ],
+            [
+              1,
+              0.55
+            ]
+          ],
+          "compoundId": "ink-coat-right-edge-compound",
+          "strokeRole": "silhouette",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "occluded"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.8,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "costume",
+        "id": "ink-coat-right-edge",
+        "path": "M 487 452 L 499 503 L 515 522 L 556 541 Q 570 558 572 568 L 580 589 L 559 613 L 549 637 L 531 658 Q 473 667 424 637 L 433 625",
+        "pressureProfile": [
+          [
+            0,
+            0.35
+          ],
+          [
+            0.2,
+            0.82
+          ],
+          [
+            0.34,
+            0.66
+          ],
+          [
+            0.42,
+            0.96
+          ],
+          [
+            0.54,
+            0.75
+          ],
+          [
+            0.67,
+            1
+          ],
+          [
+            0.83,
+            0.76
+          ],
+          [
+            1,
+            0.55
+          ]
+        ],
+        "endpoints": [
+          "occluded",
+          "occluded"
+        ],
+        "intent": "方案3：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+      },
+      "breaks": [
+        {
+          "at": 0.204,
+          "reason": "上缘折角后接笔"
+        },
+        {
+          "at": 0.411,
+          "reason": "向下垂落"
+        },
+        {
+          "at": 0.542,
+          "reason": "侧边折回"
+        },
+        {
+          "at": 0.677,
+          "reason": "底缘回转"
+        }
+      ],
+      "overlapPx": 6,
+      "roles": [
+        "silhouette",
+        "silhouette",
+        "turn",
+        "silhouette",
+        "silhouette"
+      ]
+    }
+  },
+  {
+    "part": "coat",
+    "sourceId": "ink-coat-right-fold-upper",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-upper-manual-1",
+          "path": "M 500 519 L 479 536 L 483 536",
+          "pressureProfile": [
+            [
+              0,
+              0.08
+            ],
+            [
+              0.8,
+              0.95
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-upper-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "open",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-upper-manual-2",
+          "path": "M 479 536 Q 514 535 551 549 L 546 550",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.06,
+              0.95
+            ],
+            [
+              0.5,
+              0.42
+            ],
+            [
+              0.91,
+              0.82
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-upper-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-upper-manual-3",
+          "path": "M 551 549 L 500 559 Q 503 560 506 561",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              0.82
+            ],
+            [
+              0.5,
+              0.42
+            ],
+            [
+              0.87,
+              1
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-upper-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-upper-manual-4",
+          "path": "M 500 559 Q 520 567 538 576",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.07,
+              1
+            ],
+            [
+              0.5,
+              0.45
+            ],
+            [
+              1,
+              0.08
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-upper-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "open"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.2,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "costume",
+        "id": "ink-coat-right-fold-upper",
+        "path": "M 500 519 L 479 536 Q 514 535 551 549 L 500 559 Q 520 567 538 576",
+        "pressureProfile": [
+          [
+            0,
+            0.08
+          ],
+          [
+            0.139,
+            0.95
+          ],
+          [
+            0.3,
+            0.42
+          ],
+          [
+            0.518,
+            0.82
+          ],
+          [
+            0.65,
+            0.42
+          ],
+          [
+            0.785,
+            1
+          ],
+          [
+            1,
+            0.08
+          ]
+        ],
+        "endpoints": [
+          "open",
+          "open"
+        ],
+        "intent": "方案3：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+      },
+      "breaks": [
+        {
+          "at": 0.147,
+          "reason": "短褶根部"
+        },
+        {
+          "at": 0.526,
+          "reason": "上褶折回"
+        },
+        {
+          "at": 0.792,
+          "reason": "下褶根部"
+        }
+      ],
+      "overlapPx": 4,
+      "roles": [
+        "crease",
+        "crease",
+        "crease",
+        "crease"
+      ]
+    }
+  },
+  {
+    "part": "coat",
+    "sourceId": "ink-coat-right-fold-lower",
+    "scheme2": {
+      "commands": [
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-lower-manual-1",
+          "path": "M 555 562 Q 554 579 566 589 L 561 589.6",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.75,
+              0.85
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-lower-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "open",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-lower-manual-2",
+          "path": "M 566 589 L 482 599 L 487 600",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.05,
+              0.85
+            ],
+            [
+              0.45,
+              0.4
+            ],
+            [
+              0.94,
+              1
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-lower-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "joined"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        },
+        {
+          "type": "stroke",
+          "layer": "ink",
+          "stage": "lineart",
+          "color": "#37323f",
+          "opacity": 1,
+          "width": 1.2,
+          "pressureFloor": 0,
+          "subphase": "clean",
+          "part": "costume",
+          "id": "ink-coat-right-fold-lower-manual-3",
+          "path": "M 482 599 L 528 608",
+          "pressureProfile": [
+            [
+              0,
+              0.1
+            ],
+            [
+              0.08,
+              1
+            ],
+            [
+              0.5,
+              0.45
+            ],
+            [
+              1,
+              0.1
+            ]
+          ],
+          "compoundId": "ink-coat-right-fold-lower-compound",
+          "strokeRole": "crease",
+          "joinStyle": "overlap",
+          "endpoints": [
+            "joined",
+            "open"
+          ],
+          "intent": "方案2：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+        }
+      ]
+    },
+    "scheme3": {
+      "stroke": {
+        "type": "stroke",
+        "layer": "ink",
+        "stage": "lineart",
+        "color": "#37323f",
+        "opacity": 1,
+        "width": 1.2,
+        "pressureFloor": 0,
+        "subphase": "clean",
+        "part": "costume",
+        "id": "ink-coat-right-fold-lower",
+        "path": "M 555 562 Q 554 579 566 589 L 482 599 L 528 608",
+        "pressureProfile": [
+          [
+            0,
+            0.1
+          ],
+          [
+            0.187,
+            0.85
+          ],
+          [
+            0.42,
+            0.4
+          ],
+          [
+            0.71,
+            1
+          ],
+          [
+            1,
+            0.1
+          ]
+        ],
+        "endpoints": [
+          "open",
+          "open"
+        ],
+        "intent": "方案3：衣摆的折角保留，改变边缘和褶皱的轻重；检查自动接笔能否改善折纸感。"
+      },
+      "breaks": [
+        {
+          "at": 0.196,
+          "reason": "垂落褶转横向"
+        },
+        {
+          "at": 0.717,
+          "reason": "横褶根部折回"
+        }
+      ],
+      "overlapPx": 4,
+      "roles": [
+        "crease",
+        "crease",
+        "crease"
+      ]
+    }
+  }
+]

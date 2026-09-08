@@ -50,3 +50,11 @@ test('continuous cubic paths retain stable identity, part metadata and tapered p
  assert.throws(()=>validateBatch([{id:'eye',path:'M 0 0 L 2 2'}],a),/ID/);
  assert.throws(()=>validateBatch([{path:'M 0 0 L 2 2 M 3 3 L 4 4'}],blankDocument()),/落笔/);
 });
+
+test('compound contour metadata survives replay validation and rejects invalid roles',()=>{
+ const d=blankDocument();d.commands=[{id:'edge-a',path:'M 10 20 Q 30 5 50 30',compoundId:'sleeve-edge',strokeRole:'turn',joinStyle:'overlap'}];
+ const command=validateDocument(d).commands[0];
+ assert.equal(command.compoundId,'sleeve-edge');assert.equal(command.strokeRole,'turn');assert.equal(command.joinStyle,'overlap');
+ assert.throws(()=>validateBatch([{path:'M 0 0 L 2 2',strokeRole:'curve'}],blankDocument()),/strokeRole/);
+ assert.throws(()=>validateBatch([{type:'fill',points:[[0,0],[2,0],[1,1]],compoundId:'shape'}],blankDocument()),/仅用于画笔/);
+});

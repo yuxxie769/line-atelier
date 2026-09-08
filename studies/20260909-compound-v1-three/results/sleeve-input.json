@@ -1,0 +1,77 @@
+{
+  "stroke": {
+    "id": "v1-sleeve",
+    "type": "stroke",
+    "layer": "ink",
+    "stage": "lineart",
+    "part": "costume",
+    "subphase": "clean",
+    "color": "#37323f",
+    "opacity": 1,
+    "smoothing": 0,
+    "pressureFloor": 0,
+    "path": "M 268 276 L 249 290 Q 235 318 244 346 C 243.7 359 249.2 375 255.5 386 C 261 393 267.5 406 278 413 L 294 382 L 303 345 L 298 311",
+    "width": 1.8,
+    "pressureProfile": [
+      [
+        0,
+        0.62
+      ],
+      [
+        0.2,
+        0.76
+      ],
+      [
+        0.35,
+        0.6
+      ],
+      [
+        0.47,
+        0.96
+      ],
+      [
+        0.58,
+        0.82
+      ],
+      [
+        0.68,
+        0.72
+      ],
+      [
+        0.85,
+        0.68
+      ],
+      [
+        1,
+        0.6
+      ]
+    ],
+    "endpoints": [
+      "occluded",
+      "occluded"
+    ],
+    "intent": "保留袖底与衣领方向；外肘不再用一段匀圆弧包到底，布料转折比皮肤更明确。"
+  },
+  "lifts": [
+    {
+      "point": [
+        244,
+        346
+      ],
+      "reason": "袖侧由鼓面转入肘部"
+    },
+    {
+      "point": [
+        255.5,
+        386
+      ],
+      "reason": "肘部短转折接入袖底，保留衣料折向"
+    }
+  ],
+  "overlapPx": 5,
+  "roles": [
+    "silhouette",
+    "turn",
+    "silhouette"
+  ]
+}

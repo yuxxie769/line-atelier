@@ -10,7 +10,7 @@ const cardImageBase='app/docs/anatomy-card-assets-clipstudio-11661/v1-source-mir
 const cardImages={};
 for(const name of (await readdir(new URL(cardImageBase,root))).filter(name=>/^\d{3}-body-\d+\.jpg$/.test(name)).sort())cardImages['/docs/anatomy-card-assets-clipstudio-11661/v1-source-mirror/'+name]='data:image/jpeg;base64,'+(await readFile(new URL(cardImageBase+name,root))).toString('base64');
 let script='const EMBEDDED_STUDY='+JSON.stringify(doc).replace(/</g,'\\u003c')+';\nconst EMBEDDED_REFERENCE='+JSON.stringify(reference)+';\nglobalThis.EMBEDDED_REFERENCE_CARD_IMAGES=Object.freeze('+JSON.stringify(cardImages)+');\n';
-for(const file of ['drawing-protocol.generated.js','drawing-protocol.js','session-evidence.js','local-evidence.js','local-feedback.js','visual-inspection.js','review-evidence.js','smoothing.js','geometry.js','pressure.js','model.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','drawing-context.js','viewport-renderer.js','app.js']){
+for(const file of ['drawing-protocol.generated.js','drawing-protocol.js','session-evidence.js','local-evidence.js','local-feedback.js','visual-inspection.js','review-evidence.js','smoothing.js','geometry.js','pressure.js','model.js','stroke-quality.js','workflow-policy.js','compound-v1.js','renderer.js','reference.js','document-export.js','connections.js','diagnostics.js','engine.js','drawing-assist.js','drawing-context.js','viewport-renderer.js','app.js']){
   const source=await read('app/'+file);
   const names=[...source.matchAll(/^export (?:async )?(?:function|class|const|let) (\w+)/gm)].map(m=>m[1]);
   const body=source.replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'');

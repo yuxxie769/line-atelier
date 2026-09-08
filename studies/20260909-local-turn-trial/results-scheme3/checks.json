@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "source": {
+    "path": "C:\\Users\\xie\\Documents\\GitHub\\line-atelier\\line-atelier\\studies\\20260909-local-turn-trial\\results\\candidate.line.json",
+    "sha256": "ee6daff1f3b788651c0e6f68136071edeeba6d7744f8b5a8e34be4db5386b2ea",
+    "state": {
+      "width": 600,
+      "height": 849,
+      "phase": "clean",
+      "revision": 77
+    }
+  },
+  "unchangedCommands": 197,
+  "jointChecks": [
+    {
+      "variant": 0,
+      "point": [
+        163,
+        527
+      ],
+      "overlapPx": 5,
+      "angles": [
+        11.752496021649932,
+        11.752496021649089
+      ]
+    },
+    {
+      "variant": 0,
+      "point": [
+        171,
+        566
+      ],
+      "overlapPx": 5,
+      "angles": [
+        6.719120302898074,
+        6.719120302892365
+      ]
+    },
+    {
+      "variant": 1,
+      "point": [
+        163,
+        527
+      ],
+      "overlapPx": 5,
+      "angles": [
+        11.752496021642312,
+        11.752496021642685
+      ]
+    },
+    {
+      "variant": 1,
+      "point": [
+        171,
+        566
+      ],
+      "overlapPx": 5,
+      "angles": [
+        6.719120302899433,
+        6.719120302893453
+      ]
+    }
+  ],
+  "outputStrokes": 3,
+  "continuationStrokes": 1,
+  "scope": "离线局部试画；不是网页正式绘画验收。沿用已重画轮廓，未修改几何；自动分笔搭接并增加局部压力。"
+}

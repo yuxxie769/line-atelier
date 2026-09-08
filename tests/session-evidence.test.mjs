@@ -3,6 +3,15 @@ import assert from 'node:assert/strict';
 import {createSessionEvidence,exportEvidenceSnapshot} from '../app/session-evidence.js';
 const png='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4ZkAAAAASUVORK5CYII=';
 function fixture(){return {doc:{revision:2,title:'trial',width:100,height:100,commands:[{id:'guide',points:[[20,30],[40,30]]}],reviews:[],events:[]},cursor:100,index:{total:100},playing:false,undoStack:[]};}
+
+test('paired before image keeps its historical revision and cannot claim the new stroke group',async()=>{
+ const e=fixture(),log=createSessionEvidence(e);
+ const batch=await log.run('paint_submit',{commands:[{id:'ink'}]},async()=>{e.doc.commands.push({id:'ink',points:[[20,30],[40,29]]});e.doc.revision++;return {commandIds:['ink'],accepted:1};});
+ await log.run('paint_observe_review',{region:[0,0,100,100]},async()=>({drawing:{dataUrl:png,region:[0,0,100,100]},beforeAfter:{status:'available',beforeRevision:2,afterRevision:3,drawing:{dataUrl:png,region:[0,0,100,100],revision:2,evidenceRole:'before-drawing'}}}));
+ const event=log.snapshot().events.at(-1),old=event.images.find(i=>i.evidenceRole==='before-drawing'),current=event.images.find(i=>i.path==='result.drawing');
+ assert.equal(old.revision,2);assert.equal(old.playback,null);assert.ok(!old.groupIds.includes(batch.callEvidence.groupId));
+ assert.equal(current.revision,3);assert.ok(current.groupIds.includes(batch.callEvidence.groupId));
+});
 test('read / batch / result image retain real IDs and geometry without putting reads in drawing history',async()=>{
   const e=fixture(),before=JSON.stringify(e),saved=[];
   const log=createSessionEvidence(e,{save:async value=>saved.push(value)});
