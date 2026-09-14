@@ -1,0 +1,18 @@
+{
+  "output": "studies/reference-bundle-preview/current-branch-tested.png",
+  "checks": {
+    "fullAccepted": true,
+    "fakeRejected": true,
+    "staleRejected": true,
+    "unboundRejected": true,
+    "boundAccepted": true
+  },
+  "items": 20,
+  "masks": 27,
+  "segments": 11305,
+  "truncated": false,
+  "width": 1820,
+  "height": 877,
+  "maskSource": "existing retrial project; not a new segmentation",
+  "renderer": "app/reference.js referenceBundle"
+}

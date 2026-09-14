@@ -1,6 +1,7 @@
 import {smoothStrokePoints} from './smoothing.js';
 import {validatePressureProfile,applyPressureProfile,validateWidthEdits,insertWidthKnots} from './pressure.js';
 import {LINE_PHASES,normalizeScene,normalizeThrough,throughGeometry,scenePoint} from './geometry.js';
+import {normalizeObjectMap,objectMapItem} from './object-map.js';
 // Pure document model. Every visible mark is reconstructible from these records.
 export const LIMITS = {commands: 60000, points: 600000, batch: 10000, side: 2048, masks:512, maskPoints:300000, layers:64};
 export const PAINT_STAGES = [
@@ -36,7 +37,7 @@ export function number(value, min, max, label) {
   return value;
 }
 export function blankDocument(width = 1200, height = 1600) {
-  return {version: 1, title: '未命名习作', width, height, background: '#ffffff', layers: [{id:'paper',name:'绘画层',visible:true,opacity:1,locked:false}], stages:[{id:'sketch',name:'轮廓',description:'确定形状与构图'},{id:'base',name:'底色',description:'铺设主要色彩'},{id:'detail',name:'细节',description:'补充线条与明暗'},{id:'finish',name:'收尾',description:'调整边缘与高光'}],commands:[]};
+  return {version: 1, title: '未命名习作', width, height, background: '#ffffff', layers: [{id:'paper',name:'绘画层',visible:true,opacity:1,locked:false}], stages:[{id:'sketch',name:'轮廓',description:'确定形状与构图'},{id:'base',name:'底色',description:'铺设主要色彩'},{id:'detail',name:'细节',description:'补充线条与明暗'},{id:'finish',name:'收尾',description:'调整边缘与高光'}],objectMap:null,commands:[]};
 }
 export function curvePoints(control, steps=32) {
   if (!Array.isArray(control) || ![3,4].includes(control.length)) throw Error('control 必须包含 3 个或 4 个控制点');
@@ -94,10 +95,11 @@ export function validateBatch(input, doc, defaults={}) {
     total+=points.length;if(total>LIMITS.points)throw Error('轨迹点数量超过上限');
     if(raw.mask&&!doc.masks?.some(m=>m.id===raw.mask))throw Error(`选区不存在：${raw.mask}`);
     if(raw.objectId&&!doc.scene?.objects.some(o=>o.id===raw.objectId))throw Error('笔迹所属物体不存在');
+    if(raw.mapItemId&&!objectMapItem(doc.objectMap,raw.mapItemId))throw Error('笔迹所属全局物体不存在');
     const subphase=raw.subphase||doc.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===subphase))throw Error('线稿子阶段不存在');
     if(raw.endpoints&&(!Array.isArray(raw.endpoints)||raw.endpoints.length!==2||raw.endpoints.some(e=>!['open','occluded','joined','corner','contact'].includes(e))))throw Error('endpoints 需要两个线端关系');
     const id=raw.id||`c-${Date.now()}-${doc.commands.length+i}`;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id)||commandIds.has(id))throw Error('笔迹 ID 重复或格式错误');commandIds.add(id);
-    return {id,type,layer,stage,...(raw.smoothing!==undefined?{smoothing}:{}),color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
+    return {id,type,layer,stage,...(raw.smoothing!==undefined?{smoothing}:{}),color:hex.toLowerCase(),width:number(raw.width??4,.25,180,'width'),opacity:number(raw.opacity??1,0,1,'opacity'),points,closed:!!raw.closed,...((geometry||raw.geometry)?{geometry:geometry||raw.geometry}:{}),...(pressureProfile?{pressureProfile}:{}),...(pressureCurve?{pressureCurve}:{}),...(widthEdits?{widthEdits}:{}),subphase,...(raw.objectId?{objectId:raw.objectId}:{}),...(raw.mapItemId?{mapItemId:raw.mapItemId}:{}),...(raw.endpoints?{endpoints:[...raw.endpoints]}:{}),...(raw.mask?{mask:raw.mask}:{}),...(raw.pressureFloor!==undefined?{pressureFloor:number(raw.pressureFloor,0,1,'pressureFloor')}:{}),...(raw.part?{part:String(raw.part).slice(0,80)}:{}),...(raw.intent?{intent:String(raw.intent).slice(0,200)}:{})};
   });
   return commands;
 }
@@ -117,7 +119,8 @@ export function validateDocument(raw,{includeCheckpoints=true}={}) {
   const masks=(raw.masks||[]).map(m=>{if(!Array.isArray(m.polygons)||!m.polygons.length)throw Error('选区需要多边形边界');return {id:safeId(m.id),name:String(m.name||'色块选区').slice(0,80),polygons:m.polygons.map(poly=>{if(!Array.isArray(poly)||poly.length<3)throw Error('选区轮廓至少三个点');maskPoints+=poly.length;if(maskPoints>LIMITS.maskPoints)throw Error('选区边界点超过上限');return poly.map(p=>{if(!Array.isArray(p)||p.length!==2)throw Error('选区点需要 [x,y]');return [number(p[0],-width,width*2,'选区 x'),number(p[1],-height,height*2,'选区 y')];});})};});
   if(!Array.isArray(raw.commands)||raw.commands.length>LIMITS.commands)throw Error('笔迹列表格式错误或数量过多');
   const phase=raw.workflow?.phase||'rough';if(!LINE_PHASES.some(p=>p.id===phase))throw Error('工作流子阶段不存在');
-  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,commands:[],scene:normalizeScene(raw.scene),revision:Number.isInteger(raw.revision)?Math.max(0,raw.revision):0,workflow:{enabled:!!raw.workflow?.enabled,phase},events:(raw.events||[]).slice(-300).map(e=>({revision:Number(e.revision)||0,kind:String(e.kind||'edit').slice(0,40),note:String(e.note||'').slice(0,1000),ids:(e.ids||[]).slice(0,1000).map(String)}))};
+  const scene=normalizeScene(raw.scene),objectMap=normalizeObjectMap(raw.objectMap,{width,height,sceneObjects:scene.objects});
+  const doc={version:1,title:String(raw.title||'导入的习作').slice(0,100),width,height,background:raw.background,layers,stages,masks,objectMap,commands:[],scene,revision:Number.isInteger(raw.revision)?Math.max(0,raw.revision):0,workflow:{enabled:!!raw.workflow?.enabled,phase},events:(raw.events||[]).slice(-300).map(e=>({revision:Number(e.revision)||0,kind:String(e.kind||'edit').slice(0,40),note:String(e.note||'').slice(0,1000),ids:(e.ids||[]).slice(0,1000).map(String)}))};
   for(let i=0;i<raw.commands.length;i+=LIMITS.batch)doc.commands.push(...validateBatch(raw.commands.slice(i,i+LIMITS.batch),doc,{importing:true}));
   doc.reviews=Array.isArray(raw.reviews)?raw.reviews.slice(-100).map(r=>({at:Number(r.at)||0,region:Array.isArray(r.region)?r.region.slice(0,4).map(Number):[],note:String(r.note||'').slice(0,1500),kind:String(r.kind||'observation').slice(0,40),reviewPhase:LINE_PHASES.some(p=>p.id===r.reviewPhase)?r.reviewPhase:null,ids:Array.isArray(r.ids)?r.ids.slice(0,200).map(String):[],scope:r.scope==='global'?'global':'local',objectIds:(r.objectIds||[]).slice(0,128).map(String),status:['pass','needs-work'].includes(r.status)?r.status:'needs-work',stale:!!r.stale,revision:Number(r.revision)||0,evidence:(r.evidence||[]).slice(0,5).map(String),issues:(r.issues||[]).slice(0,20).map(s=>String(s).slice(0,500))})):[];
   doc.checkpoints=includeCheckpoints?(raw.checkpoints||[]).slice(-8).map(c=>({id:String(c.id).slice(0,100),name:String(c.name).slice(0,100),revision:Number(c.revision)||0,doc:validateDocument({...c.doc,checkpoints:[]},{includeCheckpoints:false})})):[];return doc;

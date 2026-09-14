@@ -2,6 +2,8 @@ import {scenePoint} from './geometry.js';
 import {renderPoints} from './model.js';
 import {renderRegion,strokeRaster} from './renderer.js';
 import {referenceCrop} from './reference.js';
+import {referenceObjectMapCanvas,referenceObjectMapOverlay} from './reference.js';
+import {objectMapBounds,objectMapItem} from './object-map.js';
 
 const draftRoles=new Set(['construction','rough','refine','sketch']);
 const inside=(p,r)=>p[0]>=r[0]&&p[0]<=r[0]+r[2]&&p[1]>=r[1]&&p[1]<=r[1]+r[3];
@@ -18,12 +20,13 @@ function crosses(ps,r){
 function integer(n,min,max,name){if(!Number.isInteger(n)||n<min||n>max)throw Error(`${name} 需要 ${min}–${max} 的整数`);return n;}
 
 // Reads existing model-authored geometry only. No reference pixels are analyzed.
-export function collectDrawingContext(doc,{objectId,query,region,padding=40,offset=0,limit=24,guideIds=[]}={}){
+export function collectDrawingContext(doc,{mapItemId,objectId,query,region,padding=40,offset=0,limit=24,guideIds=[]}={}){
   integer(offset,0,60000,'offset');integer(limit,1,200,'limit');
   if(!Number.isFinite(padding)||padding<0||padding>400)throw Error('padding 需要 0–400 画布像素');
   if(!Array.isArray(guideIds)||guideIds.length>200||guideIds.some(id=>typeof id!=='string'))throw Error('guideIds 格式错误');
-  const objects=doc.scene?.objects||[],layers=new Map(doc.layers.map(l=>[l.id,l]));
-  let target=objectId?objects.find(o=>o.id===objectId):null;
+  const objects=doc.scene?.objects||[],layers=new Map(doc.layers.map(l=>[l.id,l])),mapItem=mapItemId?objectMapItem(doc.objectMap,mapItemId):null;
+  if(mapItemId&&!mapItem)throw Error('全局物体对象不存在');
+  let target=mapItem?.sceneObjectId?objects.find(o=>o.id===mapItem.sceneObjectId):objectId?objects.find(o=>o.id===objectId):null;
   if(objectId&&!target)throw Error('物体 ID 不存在');
   if(!target&&query){
     const q=String(query).trim().toLowerCase();if(!q)throw Error('请输入部位名称');
@@ -32,8 +35,9 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     if(matches.length!==1)return {status:matches.length?'ambiguous':'not-found',candidates:matches.map(o=>({id:o.id,name:o.name,frame:o.frame})),hint:'选择一个 objectId，或提供画布 region。'};
     target=matches[0];
   }
-  if(!target&&!region)throw Error('需要 objectId、部位 query 或 region');
-  const base=region||target.frame;
+  if(!target&&!mapItem&&!region)throw Error('需要 mapItemId、objectId、部位 query 或 region');
+  const mapBounds=mapItem?objectMapBounds(mapItem,{padding:0,width:doc.width,height:doc.height}):null;
+  const base=region||mapBounds||target.frame;
   if(!Array.isArray(base)||base.length!==4||!base.every(Number.isFinite)||base[2]<=0||base[3]<=0)throw Error('region 需要 [x,y,width,height]');
   const x=Math.max(0,Math.floor(base[0]-padding)),y=Math.max(0,Math.floor(base[1]-padding));
   const right=Math.min(doc.width,Math.ceil(base[0]+base[2]+padding)),bottom=Math.min(doc.height,Math.ceil(base[1]+base[3]+padding));
@@ -48,8 +52,8 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
     const l=layers.get(c.layer),draft=explicit.has(c.id)||draftRoles.has(l?.role)||['layout','rough','structure_review','refine'].includes(c.subphase);
     const ps=c.points||renderPoints(c,doc),hit=crosses(c.closed?[...ps,ps[0]]:ps,crop);
     if(!explicit.has(c.id)&&!hit)continue;
-    const relationship=explicit.has(c.id)?'explicit':c.objectId===target?.id?'target':ancestors.includes(c.objectId)?'ancestor':'spatial';
-    candidates.push({c,l,ps,draft,relationship,rank:explicit.has(c.id)?0:draft?(relationship==='target'?1:relationship==='ancestor'?2:3):4});
+    const relationship=explicit.has(c.id)?'explicit':mapItem&&c.mapItemId===mapItem.id?'map-item':c.objectId===target?.id?'target':ancestors.includes(c.objectId)?'ancestor':'spatial';
+    candidates.push({c,l,ps,draft,relationship,rank:explicit.has(c.id)?0:draft?(relationship==='map-item'||relationship==='target'?1:relationship==='ancestor'?2:3):4});
   }
   candidates.sort((a,b)=>a.rank-b.rank);
   const selected=candidates.slice(offset,offset+limit),commands=selected.map(({c,l,ps,draft,relationship},i)=>{
@@ -63,7 +67,7 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
   });
   const anchorIds=new Set(commands.flatMap(c=>(c.geometry?.through||[]).filter(p=>p.anchor).map(p=>p.anchor)));
   const anchors=(doc.scene?.anchors||[]).map(a=>({...a,document:scenePoint({anchor:a.id},null,doc.scene)})).filter(a=>anchorIds.has(a.id)||inside(a.document,crop));
-  return {status:'ready',revision:doc.revision,document:{width:doc.width,height:doc.height},target:target?structuredClone(target):null,region:crop,
+  return {status:'ready',revision:doc.revision,document:{width:doc.width,height:doc.height},target:target?structuredClone(target):null,mapItem:mapItem?structuredClone(mapItem):null,cropBasis:region?'explicit-region':mapItem?'object-observation-mask':'scene-object-frame',region:crop,
     coordinates:'All returned document coordinates use the full canvas. localToCrop subtracts region origin; normalizedToTarget uses target.frame, not screenshot size.',
     objects:objects.filter(o=>ancestors.includes(o.id)||overlaps(o.frame,crop)).map(o=>structuredClone(o)),anchors,commands,
     total:candidates.length,offset,nextOffset:offset+limit<candidates.length?offset+limit:null,
@@ -72,7 +76,7 @@ export function collectDrawingContext(doc,{objectId,query,region,padding=40,offs
 }
 
 function compactContext(data,engine,referenceStatus){
-  return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,region:data.region,
+  return {status:data.status,revision:data.revision,canvas:data.document,target:data.target?{id:data.target.id,name:data.target.name,frame:data.target.frame}:null,mapItem:data.mapItem?{id:data.mapItem.id,name:data.mapItem.name,category:data.mapItem.category,form:data.mapItem.form,relations:data.mapItem.relations,uncertainty:data.mapItem.uncertainty,status:data.mapItem.status,visibleMasks:structuredClone(data.mapItem.visibleMasks)}:null,cropBasis:data.cropBasis,region:data.region,
     referenceStatus,guideStatus:data.guideStatus,coordinates:'Absolute canvas pixels. Through points are source landmarks (may differ from smoothed/trimmed ink); bezier-control points are handles. Sampled points describe the processed trajectory. Image transforms include panel offsets.',
     playback:{commandIndex:engine.commandIndex,unitIndex:engine.unitIndex,playing:engine.playing},
     strokes:data.commands.map(c=>({label:c.label,id:c.id,name:c.name,objectId:c.objectId,layer:c.layer.id,draft:c.draft,relation:c.relationship,kind:c.coordinates.kind,points:c.coordinates.document,sampled:c.coordinates.sampled,...(c.smoothing?{smoothing:c.smoothing}:{}),...(c.trim?{trim:c.trim}:{}),...(c.smoothing||c.trim?{renderedEndpoints:c.endpoints}:{})})),
@@ -101,6 +105,7 @@ export function inspectDrawingContext(engine,options={}, {reference=null,referen
   }
   let ref=null;
   if(referenceStatus==='available'&&options.detail==='full')ref=referenceCrop(reference,{region:r,scale,documentWidth:engine.doc.width,documentHeight:engine.doc.height});
+  const referenceWithObjectMask=referenceStatus==='available'&&data.mapItem?referenceObjectMapOverlay(reference,{objectMap:engine.doc.objectMap,itemIds:[data.mapItem.id],region:r,scale,documentWidth:engine.doc.width,documentHeight:engine.doc.height}):null;
   const full=[0,0,engine.doc.width,engine.doc.height],fullScale=maxSize/Math.max(full[2],full[3]),overview=renderRegion(engine,{region:full,scale:fullScale});
   const vx=overview.getContext('2d');vx.strokeStyle='#dc6635';vx.lineWidth=2;vx.strokeRect(r[0]*fullScale,r[1]*fullScale,r[2]*fullScale,r[3]*fullScale);
   const encode=(canvas,region,scale)=>({dataUrl:canvas.toDataURL('image/png'),width:canvas.width,height:canvas.height,region,scale,documentToImage:[scale,0,0,scale,-region[0]*scale,-region[1]*scale],imageToDocument:[1/scale,0,0,1/scale,region[0],region[1]]});
@@ -109,19 +114,21 @@ export function inspectDrawingContext(engine,options={}, {reference=null,referen
     const sheet=document.createElement('canvas');sheet.width=size*2+gap;sheet.height=(size+header)*2+gap;
     const ctx=sheet.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,sheet.width,sheet.height);const panels={};
     for(const [key,label,col,row,source,region,ratio] of [
-      ['reference','REFERENCE',0,0,null,r,scale],['drawing','CURRENT DRAWING',1,0,drawing,r,scale],
+      ['reference',data.mapItem?'REFERENCE + STRUCTURE MASK':'REFERENCE',0,0,null,r,scale],['drawing','CURRENT DRAWING',1,0,drawing,r,scale],
       ['guides','DRAFT GUIDES + DRAWING',0,1,overlay,r,scale],['overview','LOCATION ON CANVAS',1,1,overview,full,fullScale]]){
       const px=col*(size+gap),py=row*(size+header+gap);ctx.fillStyle='#182e38';ctx.font='14px sans-serif';ctx.fillText(label,px+5,py+19);
       const iy=py+header;
       if(source)ctx.drawImage(source,px,iy);
       else if(referenceStatus==='available'){
+        if(data.mapItem)ctx.drawImage(referenceObjectMapCanvas(reference,{objectMap:engine.doc.objectMap,itemIds:[data.mapItem.id],region:r,scale,documentWidth:engine.doc.width,documentHeight:engine.doc.height}).canvas,px,iy);
+        else {
         // Same placement and crop transform as referenceCrop, without another PNG encoding.
         const [rx,ry,rs]=reference.placement;ctx.save();ctx.beginPath();ctx.rect(px,iy,drawing.width,drawing.height);ctx.clip();
-        ctx.setTransform(scale,0,0,scale,px-r[0]*scale,iy-r[1]*scale);ctx.drawImage(reference.original,rx,ry,reference.original.width*rs,reference.original.height*rs);ctx.restore();
+        ctx.setTransform(scale,0,0,scale,px-r[0]*scale,iy-r[1]*scale);ctx.drawImage(reference.original,rx,ry,reference.original.width*rs,reference.original.height*rs);ctx.restore();}
       }else ctx.fillText(referenceStatus,px+5,iy+22);
       panels[key]={rect:[px,iy,source?.width||drawing.width,source?.height||drawing.height],region,scale:ratio,imageToDocument:[1/ratio,0,0,1/ratio,region[0]-px/ratio,region[1]-iy/ratio]};
     }
     return {...summary,image:{dataUrl:sheet.toDataURL('image/png'),width:sheet.width,height:sheet.height,panels}};
   }
-  return {...data,playback:engine.state(),referenceStatus,images:{reference:ref,drawing:encode(drawing,r,scale),drawingWithGuides:encode(overlay,r,scale),guides:encode(guides,r,scale),overview:encode(overview,full,fullScale)}};
+  return {...data,playback:engine.state(),referenceStatus,images:{reference:ref,...(referenceWithObjectMask?{referenceWithObjectMask}:{}),drawing:encode(drawing,r,scale),drawingWithGuides:encode(overlay,r,scale),guides:encode(guides,r,scale),overview:encode(overview,full,fullScale)}};
 }
